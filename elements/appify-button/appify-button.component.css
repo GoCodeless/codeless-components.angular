@@ -4,7 +4,7 @@ div {
 
 button {
     cursor: pointer;
-    padding: var(--spacing-xSmall) var(--spacing-medium);
+    padding: var(--spacing-small);
     box-sizing: border-box;
     border: var(--button-border-width) solid var(--button-border-color);
     color: var(--button-text-color);
@@ -28,6 +28,5 @@ button {
 }
 
 .selectable {
-    outline: 2px solid #3040C4 !important;
     cursor: pointer;
 }

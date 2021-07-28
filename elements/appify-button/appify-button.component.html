@@ -1,25 +1,35 @@
 <div
     (click)="emitBlockSelect(0, 'button')"
-    (mouseover)="hoveringElement = 'button'; hoveringIndex = 0;"
+    (mouseover)="hoveringElement = 'button'; hoveringIndex = 0"
     (mouseout)="hoveringElement = null"
-    [class.selectable]="hoveringElement == 'button' && hoveringIndex == 0 && isEditing == true"
-    [style.text-align]="alignment == alignmentValue.right ? 'right' : alignment == alignmentValue.center ? 'center': 'left'"
+    [class.selectable]="
+        hoveringElement == 'button' && hoveringIndex == 0 && isEditing == true
+    "
+    [style.text-align]="
+        alignment == alignmentValue.right
+            ? 'right'
+            : alignment == alignmentValue.center
+            ? 'center'
+            : 'left'
+    "
     [class.margin-width]="width == containerWidthValue.margin"
     [style.padding-top]="padding?.top ? padding?.top + 'px' : ''"
     [style.padding-bottom]="padding?.bottom ? padding?.bottom + 'px' : ''"
     [style.padding-left]="padding?.left ? padding?.left + 'px' : ''"
-    [style.padding-right]="padding?.right ? padding?.right + 'px' : ''">
-    <button *ngIf="title?.length > 0"
-            (click)="click()"
-            (mouseover)="isHovering = true"
-            (mouseleave)="isHovering = false"
-            type="button"
-            [ngStyle]="{ backgroundColor: backgroundColor() }"
-            [style.borderColor]="borderColor()"
-            [style.color]="color()"
-            [style.border-radius]="style?.border_radius ? style?.border_radius : ''"
-            [style.width]="width == containerWidthValue.margin ? '' : ''"
-            >
+    [style.padding-right]="padding?.right ? padding?.right + 'px' : ''"
+>
+    <button
+        *ngIf="title?.length > 0"
+        (click)="click()"
+        (mouseover)="isHovering = true"
+        (mouseleave)="isHovering = false"
+        type="button"
+        [ngStyle]="{ backgroundColor: backgroundColor() }"
+        [style.borderColor]="borderColor()"
+        [style.color]="color()"
+        [style.border-radius]="style?.border_radius ? style?.border_radius : ''"
+        [style.width]="width == containerWidthValue.margin ? '' : ''"
+    >
         {{ title }}
     </button>
 </div>

@@ -1,0 +1,92 @@
+<div class="dropdown-container">
+    <div
+        [style.padding-top]="
+            style.padding?.top ? style.padding?.top + 'px' : ''
+        "
+        [style.padding-bottom]="
+            style.padding?.bottom ? style.padding?.bottom + 'px' : ''
+        "
+        [style.padding-left]="
+            style.padding?.left ? style.padding?.left + 'px' : ''
+        "
+        [style.padding-right]="
+            style.padding?.right ? style.padding?.right + 'px' : ''
+        "
+        [style.margin-top]="style.margin?.top ? style.margin?.top + 'px' : ''"
+        [style.margin-bottom]="
+            style.margin?.bottom ? style.margin?.bottom + 'px' : ''
+        "
+        [style.margin-left]="
+            style.margin?.left ? style.margin?.left + 'px' : ''
+        "
+        [style.margin-right]="
+            style.margin?.right ? style.margin?.right + 'px' : ''
+        "
+        [style.border-width]="style.border_width ? style.border_width : ''"
+        [style.border-color]="style.border_color ? style.border_color : ''"
+        [style.border-style]="'solid'"
+        [style.background-color]="
+            style.background_color ? style.background_color : ''
+        "
+        (click)="toggleOptions()"
+        class="option-selected"
+    >
+        <appify-text [style]="textStyle" [text]="selectedOption"></appify-text>
+        <svg
+            *ngIf="!showOptions"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M6 9L12 15L18 9"
+                stroke="black"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+        </svg>
+        <svg
+            class="upwards"
+            *ngIf="showOptions"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M6 9L12 15L18 9"
+                stroke="black"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+        </svg>
+    </div>
+    <div
+        *ngIf="showOptions"
+        class="options-container"
+        [style.border-width]="style.border_width ? style.border_width : ''"
+        [style.border-color]="style.border_color ? style.border_color : ''"
+        [style.border-style]="'solid'"
+        [style.background-color]="
+            style.background_color ? style.background_color : ''
+        "
+        [style.border-top]="'0px'"
+    >
+        <div
+            *ngFor="let option of options"
+            (click)="selectOption(option)"
+            class="option"
+        >
+            <appify-text
+                [text]="option"
+                [style]="textStyle"
+                alignment="center"
+            ></appify-text>
+        </div>
+    </div>
+</div>

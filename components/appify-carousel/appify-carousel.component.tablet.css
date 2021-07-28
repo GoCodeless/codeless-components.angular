@@ -1,5 +1,2 @@
 @media screen and (max-width: 1024px) {
-    #inner-container {
-        padding: var(--spacing-large) var(--spacing-large) !important;
-    }
 }

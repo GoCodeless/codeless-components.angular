@@ -1,0 +1,22 @@
+.dropdown-container {
+    position: relative;
+    width: 100%;
+}
+.options-container {
+    position: absolute;
+    width: 100%;
+
+    z-index: 1;
+}
+.option {
+    cursor: pointer;
+}
+.option-selected {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.upwards {
+    transform: rotate(180deg);
+}

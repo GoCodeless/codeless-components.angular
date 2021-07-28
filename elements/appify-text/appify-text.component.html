@@ -1,23 +1,45 @@
-<div id="container"
+<div
+    id="container"
     (click)="emitBlockSelect(0, 'text')"
-    (mouseover)="hoveringElement = 'text'; hoveringIndex = 0;"
+    (mouseover)="hoveringElement = 'text'; hoveringIndex = 0"
     (mouseout)="hoveringElement = null"
     [class.selectable]="hoveringElement == 'text' && hoveringIndex == 0"
     [class.margin-width]="width == textWidthValue.margin"
-    [style.backgroundColor]="style?.background_color ? style?.background_color : ''"
+    [style.backgroundColor]="
+        style?.background_color ? style?.background_color : ''
+    "
     [style.padding-top]="style?.padding?.top ? style?.padding?.top + 'px' : ''"
-    [style.padding-bottom]="style?.padding?.bottom ? style?.padding?.bottom + 'px' : ''"
-    [style.padding-left]="style?.padding?.left ? style?.padding?.left + 'px' : ''"
-    [style.padding-right]="style?.padding?.right ? style?.padding?.right + 'px' : ''">
-    <p [class.headline]="textType == textTypeValue.header"
+    [style.padding-bottom]="
+        style?.padding?.bottom ? style?.padding?.bottom + 'px' : ''
+    "
+    [style.padding-left]="
+        style?.padding?.left ? style?.padding?.left + 'px' : ''
+    "
+    [style.padding-right]="
+        style?.padding?.right ? style?.padding?.right + 'px' : ''
+    "
+>
+    <p
+        [class.headline]="textType == textTypeValue.header"
         [class.body]="textType == textTypeValue.body"
         [style.color]="style?.text?.color ? style?.text?.color : ''"
-        [style.fontFamily]="style?.text?.font ? style?.text?.font : ''"
-        [style.fontSize]="style?.text?.size ? style?.text?.size + 'px' : ''"
-        [style.fontWeight]="style?.text?.weight ? style?.text?.weight : ''"
-        [style.lineHeight]="style?.text?.line_height ? style?.text?.line_height + 'px' : ''"
-        [style.text-align]="alignment == alignmentValue.right ? 'right' : alignment == alignmentValue.center ? 'center': 'left'"
-        [style.letter-spacing]="style?.text?.letter_spacing ? style?.text?.letter_spacing + 'px' : ''">
-      {{ text }}
+        [style.font-family]="style?.text?.font ? style?.text?.font : ''"
+        [style.font-size]="style?.text?.size ? style?.text?.size : ''"
+        [style.font-weight]="style?.text?.weight ? style?.text?.weight : ''"
+        [style.line-height]="
+            style?.text?.line_height ? style?.text?.line_height : ''
+        "
+        [style.text-align]="
+            alignment == alignmentValue.right
+                ? 'right'
+                : alignment == alignmentValue.center
+                ? 'center'
+                : 'left'
+        "
+        [style.letter-spacing]="
+            style?.text?.letter_spacing ? style?.text?.letter_spacing : ''
+        "
+    >
+        {{ text }}
     </p>
 </div>

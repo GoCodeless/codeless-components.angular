@@ -10,7 +10,7 @@
 
 #inner-container {
     margin: auto;
-    padding: calc(var(--size-section-padding) / 2) var(--spacing-xxLarge);
+    /* padding: calc(var(--size-section-padding) / 2) var(--spacing-xxLarge);*/
 }
 
 .margin-width {

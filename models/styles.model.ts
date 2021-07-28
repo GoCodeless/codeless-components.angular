@@ -5,8 +5,8 @@ export class StyleButtonState {
     text_color: string;
 
     init(object: any) {
-        this.color = object.color
-        this.text_color = object.text_color
+        this.color = object.color;
+        this.text_color = object.text_color;
     }
 }
 
@@ -23,13 +23,13 @@ export class StyleButton {
     hover_state: StyleButtonState;
 
     init(object: any) {
-        this.border_radius = object.border_radius
+        this.border_radius = object.border_radius;
         // this.type = object.type
-        this.fill_type = object.fill_type
-        this.normal_state = new StyleButtonState()
-        this.normal_state.init(object.normal_state)
-        this.hover_state = new StyleButtonState()
-        this.hover_state.init(object.hover_state)
+        this.fill_type = object.fill_type;
+        this.normal_state = new StyleButtonState();
+        this.normal_state.init(object.normal_state);
+        this.hover_state = new StyleButtonState();
+        this.hover_state.init(object.hover_state);
     }
 }
 
@@ -45,32 +45,49 @@ export class StyleFont {
     /// Supports hex strings representing colors
     color: string;
     /// Supports fractional number (e.g. - 0.1) on the spacing between letters in EM values
-    letter_spacing: number
+    letter_spacing: number;
 
     init(object: any) {
-        this.font = object.font
-        this.weight = object.weight
-        this.size = object.size
-        this.line_height = object.line_height
-        this.color = object.color
-        this.letter_spacing = object.letter_spacing
+        this.font = object.font;
+        this.weight = object.weight;
+        this.size = object.size;
+        this.line_height = object.line_height;
+        this.color = object.color;
+        this.letter_spacing = object.letter_spacing;
     }
 }
 
 export class StylePadding {
     /// Padding amount at the top of the container
-    top: number = 0
+    top: number = 0;
     /// Padding amount at the bottom of the container
-    bottom: number = 0
+    bottom: number = 0;
     /// Padding amount at the left of the container
-    left: number = 0
+    left: number = 0;
     /// Padding amount at the right of the container
-    right: number = 0
+    right: number = 0;
 
     init(top: number, right: number, bottom: number, left: number) {
-        this.top = top
-        this.right = right
-        this.bottom = bottom
-        this.left = left
+        this.top = top;
+        this.right = right;
+        this.bottom = bottom;
+        this.left = left;
+    }
+}
+export class StyleMargin {
+    /// Padding amount at the top of the container
+    top: number = 0;
+    /// Padding amount at the bottom of the container
+    bottom: number = 0;
+    /// Padding amount at the left of the container
+    left: number = 0;
+    /// Padding amount at the right of the container
+    right: number = 0;
+
+    init(top: number, right: number, bottom: number, left: number) {
+        this.top = top;
+        this.right = right;
+        this.bottom = bottom;
+        this.left = left;
     }
 }
