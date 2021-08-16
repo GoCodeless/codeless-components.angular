@@ -1,9 +1,16 @@
-#container {
+.container-slider {
     position: relative;
     width: 100%;
     color: white;
+    transform: translate3d(0px, 150px, 0px);
+    opacity: 0;
 }
 
+#isInViewport {
+    transition-duration: 0.6s;
+    transform: translate3d(0px, 0px, 0px) !important;
+    opacity: 1 !important;
+}
 #inner {
     position: relative;
     width: 100%;
@@ -32,7 +39,7 @@
     background: white;
     display: inline-block;
     margin-right: var(--spacing-xSmall);
-    opacity: 1.0;
+    opacity: 1;
     cursor: pointer;
 }
 

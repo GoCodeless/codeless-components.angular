@@ -1,8 +1,10 @@
 <div
+    #animate
     id="container"
     (click)="emitBlockSelect(0, 'text')"
     (mouseover)="hoveringElement = 'text'; hoveringIndex = 0"
     (mouseout)="hoveringElement = null"
+    [class.initial-animation-state]="animation ? true : false"
     [class.selectable]="hoveringElement == 'text' && hoveringIndex == 0"
     [class.margin-width]="width == textWidthValue.margin"
     [style.backgroundColor]="
@@ -20,6 +22,7 @@
     "
 >
     <p
+        #toggle
         [class.headline]="textType == textTypeValue.header"
         [class.body]="textType == textTypeValue.body"
         [style.color]="style?.text?.color ? style?.text?.color : ''"

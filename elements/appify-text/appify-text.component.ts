@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import {
+    Component,
+    OnInit,
+    Input,
+    Output,
+    EventEmitter,
+    ViewChild,
+    ElementRef,
+} from "@angular/core";
 
 import { CodelessComponentsService } from "../../services/codeless-components.service";
 import { StyleFont, StylePadding } from "../../models/styles.model";
@@ -20,6 +28,10 @@ export enum Alignment {
     center = "center",
     right = "right",
 }
+export enum Animations {
+    scrollUp = "scrollUp",
+    null = "",
+}
 
 export class TextStyle {
     padding: StylePadding;
@@ -39,7 +51,8 @@ export class AppifyTextComponent implements OnInit {
     @Input() alignment: Alignment = Alignment.left;
     @Input() width: TextWidth = TextWidth.full;
     @Input() style: TextStyle = new TextStyle();
-
+    @Input() animation: Animations = Animations.null;
+    @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
     @Output() editBlockElement = new EventEmitter<EditBlockElementItem>();
     hoveringElement: string = null;
     hoveringIndex: number = 0;
@@ -57,7 +70,19 @@ export class AppifyTextComponent implements OnInit {
     }
 
     constructor(public componentsService: CodelessComponentsService) {}
-    ngOnInit() {}
+    ngOnInit() {
+        function callbackFunc(entries, _) {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.setAttribute("id", "isInViewport");
+                }
+            });
+        }
+
+        let observer = new IntersectionObserver(callbackFunc);
+
+        observer.observe(this.animateRef.nativeElement);
+    }
 
     cleanPixelText(string) {
         return string.replace(/px/g, "");

@@ -1,8 +1,18 @@
-#container {
+.container {
     width: 100%;
     background-position: center;
     background-repeat: no-repeat;
     color: var(--color-foreground);
+}
+.initial-animation-state {
+    transform: translate3d(0px, 150px, 0px);
+    opacity: 0;
+}
+
+#isInViewport {
+    transition-duration: 0.6s;
+    transform: translate3d(0px, 0px, 0px) !important;
+    opacity: 1 !important;
 }
 
 #inner-container {

@@ -1,4 +1,4 @@
-#container {
+.container-carousel {
     width: 100%;
     color: var(--color-foreground);
     background: var(--color-background);
@@ -7,7 +7,16 @@
     background-size: cover;
     text-align: left;
 }
+.initial-animation-state {
+    transform: translate3d(0px, 150px, 0px);
+    opacity: 0;
+}
 
+#isInViewport {
+    transition-duration: 0.6s;
+    transform: translate3d(0px, 0px, 0px) !important;
+    opacity: 1 !important;
+}
 #inner-container {
     margin: auto;
     /* padding: calc(var(--size-section-padding) / 2) var(--spacing-xxLarge);*/

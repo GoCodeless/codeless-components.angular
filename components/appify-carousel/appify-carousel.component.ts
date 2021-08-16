@@ -1,5 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { StyleButton, StyleFont, StylePadding } from '../../models/styles.model'
+import { Component, OnInit, Input, ViewChild, ElementRef } from "@angular/core";
+import { Animations } from "../../elements/appify-text/appify-text.component";
+import {
+    StyleButton,
+    StyleFont,
+    StylePadding,
+} from "../../models/styles.model";
 
 export class CarouselModel {
     image: string;
@@ -9,14 +14,14 @@ export class CarouselModel {
 }
 
 export enum CarouselWidth {
-    full = 'full',
-    margin = 'margin'
+    full = "full",
+    margin = "margin",
 }
 
 export enum CarouselAlignment {
-    left = 'left',
-    center = 'center',
-    right = 'right'
+    left = "left",
+    center = "center",
+    right = "right",
 }
 
 export class CarouselStyle {
@@ -30,22 +35,44 @@ export class CarouselStyle {
 }
 
 @Component({
-  selector: 'appify-carousel',
-  templateUrl: './appify-carousel.component.html',
-  styleUrls: ['./appify-carousel.component.css', './appify-carousel.component.tablet.css', './appify-carousel.component.mobile.css']
+    selector: "appify-carousel",
+    templateUrl: "./appify-carousel.component.html",
+    styleUrls: [
+        "./appify-carousel.component.css",
+        "./appify-carousel.component.tablet.css",
+        "./appify-carousel.component.mobile.css",
+    ],
 })
 export class AppifyCarouselComponent implements OnInit {
-    @Input() headline: String = ''
-    @Input() subtitle: String = ''
-    @Input() columns: Number = 2
-    @Input() items: Array<CarouselModel> = []
-    @Input() width: CarouselWidth = CarouselWidth.margin
-    @Input() alignment: CarouselAlignment = CarouselAlignment.center
-    @Input() style: CarouselStyle = new CarouselStyle()
+    @Input() headline: String = "";
+    @Input() subtitle: String = "";
+    @Input() columns: Number = 2;
+    @Input() items: Array<CarouselModel> = [];
+    @Input() width: CarouselWidth = CarouselWidth.margin;
+    @Input() alignment: CarouselAlignment = CarouselAlignment.center;
+    @Input() style: CarouselStyle = new CarouselStyle();
+    @Input() animation: Animations = Animations.scrollUp;
+    @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
 
-    get carouselWidthValue() { return CarouselWidth; }
-    get carouselAlignmentValue() { return CarouselAlignment; }
+    get carouselWidthValue() {
+        return CarouselWidth;
+    }
+    get carouselAlignmentValue() {
+        return CarouselAlignment;
+    }
 
-    constructor() { }
-    ngOnInit() { }
+    constructor() {}
+    ngOnInit() {
+        function callbackFunc(entries, _) {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.setAttribute("id", "isInViewport");
+                }
+            });
+        }
+
+        let observer = new IntersectionObserver(callbackFunc);
+
+        observer.observe(this.animateRef.nativeElement);
+    }
 }
