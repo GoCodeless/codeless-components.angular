@@ -1,8 +1,11 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ViewChild, ElementRef } from "@angular/core";
+
+import { DomSanitizer } from "@angular/platform-browser";
 import {
     StyleButton,
     StyleFont,
     StylePadding,
+    Animations,
 } from "../../models/styles.model";
 
 export class GridModel {
@@ -60,6 +63,8 @@ export class AppifyGridComponent implements OnInit {
     @Input() alignment: GridAlignment = GridAlignment.left;
     @Input() style: GridStyle = new GridStyle();
     @Input() items: Array<GridModel> = [];
+    @Input() animation: Animations = Animations.none;
+    @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
 
     buttonPadding: StylePadding = new StylePadding();
 
@@ -72,12 +77,38 @@ export class AppifyGridComponent implements OnInit {
         return GridAlignment;
     }
 
-    constructor() {}
-
+    constructor(private sanitizer: DomSanitizer) {}
+    sanitize(val) {
+        console.log(val);
+        return this.sanitizer.bypassSecurityTrustStyle(val);
+    }
     ngOnInit() {
         this.buttonPadding.top = 0;
         this.buttonPadding.bottom = 32;
         this.buttonPadding.left = 0;
         this.buttonPadding.right = 0;
+        const animation = this.animation;
+        if (animation === Animations.none) {
+            return;
+        }
+
+        const callbackFunc = (entries, _) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const element = entry.target.children[0].children;
+                    for (let i = 0; i < element.length; i++) {
+                        for (let j = 0; j < element[i].children.length; j++) {
+                            element[i].children[j].children[0].classList.add(
+                                animation
+                            );
+                        }
+                    }
+                }
+            });
+        };
+
+        let observer = new IntersectionObserver(callbackFunc);
+
+        observer.observe(this.animateRef.nativeElement);
     }
 }

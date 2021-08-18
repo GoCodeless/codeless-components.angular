@@ -1,5 +1,13 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from "@angular/core";
-import { Animations } from "../../elements/appify-text/appify-text.component";
+import {
+    Component,
+    OnInit,
+    Input,
+    ViewChild,
+    ElementRef,
+    ɵbypassSanitizationTrustStyle,
+} from "@angular/core";
+import { DomSanitizer } from "@angular/platform-browser";
+import { Animations } from "../../models/styles.model";
 import {
     StyleButton,
     StyleFont,
@@ -51,7 +59,7 @@ export class AppifyCarouselComponent implements OnInit {
     @Input() width: CarouselWidth = CarouselWidth.margin;
     @Input() alignment: CarouselAlignment = CarouselAlignment.center;
     @Input() style: CarouselStyle = new CarouselStyle();
-    @Input() animation: Animations = Animations.scrollUp;
+    @Input() animation: Animations = Animations.none;
     @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
 
     get carouselWidthValue() {
@@ -61,15 +69,27 @@ export class AppifyCarouselComponent implements OnInit {
         return CarouselAlignment;
     }
 
-    constructor() {}
+    constructor(private sanitizer: DomSanitizer) {}
+    sanitize(val) {
+        return this.sanitizer.bypassSecurityTrustStyle(val);
+    }
     ngOnInit() {
-        function callbackFunc(entries, _) {
+        const animation = this.animation;
+        if (animation === Animations.none) {
+            return;
+        }
+
+        const callbackFunc = (entries, _) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    entry.target.setAttribute("id", "isInViewport");
+                    const element =
+                        entry.target.children[0].children[0].children;
+                    for (let i = 0; i < element.length; i++) {
+                        element[i].classList.add(animation);
+                    }
                 }
             });
-        }
+        };
 
         let observer = new IntersectionObserver(callbackFunc);
 

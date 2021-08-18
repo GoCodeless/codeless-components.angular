@@ -9,7 +9,15 @@ export class StyleButtonState {
         this.text_color = object.text_color;
     }
 }
-
+export enum Animations {
+    slideUp = "slideUp",
+    staggerSlideUp = "staggerSlideUp",
+    slideUpFadeIn = "slideUpFadeIn",
+    staggerSlideUpFadeIn = "staggerSlideUpFadeIn",
+    fadeIn = "fadeIn",
+    staggerFadeIn = "staggerFadeIn",
+    none = "",
+}
 export class StyleButton {
     /// Example: 9999px, 0, or any pixel string
     border_radius: string;

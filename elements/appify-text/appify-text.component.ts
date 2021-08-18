@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 
 import { CodelessComponentsService } from "../../services/codeless-components.service";
-import { StyleFont, StylePadding } from "../../models/styles.model";
+import { StyleFont, StylePadding, Animations } from "../../models/styles.model";
 
 import { EditBlockElementItem } from "../appify-image/appify-image.component";
 
@@ -27,10 +27,6 @@ export enum Alignment {
     left = "left",
     center = "center",
     right = "right",
-}
-export enum Animations {
-    scrollUp = "scrollUp",
-    null = "",
 }
 
 export class TextStyle {
@@ -51,7 +47,7 @@ export class AppifyTextComponent implements OnInit {
     @Input() alignment: Alignment = Alignment.left;
     @Input() width: TextWidth = TextWidth.full;
     @Input() style: TextStyle = new TextStyle();
-    @Input() animation: Animations = Animations.null;
+    @Input() animation: Animations = Animations.none;
     @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
     @Output() editBlockElement = new EventEmitter<EditBlockElementItem>();
     hoveringElement: string = null;
@@ -71,10 +67,15 @@ export class AppifyTextComponent implements OnInit {
 
     constructor(public componentsService: CodelessComponentsService) {}
     ngOnInit() {
+        const animation = this.animation;
+        if (animation == Animations.none) {
+            return;
+        }
+
         function callbackFunc(entries, _) {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    entry.target.setAttribute("id", "isInViewport");
+                    entry.target.classList.add(animation);
                 }
             });
         }

@@ -7,16 +7,34 @@
     background-size: cover;
     text-align: left;
 }
-.initial-animation-state {
+.initial-slideupfadein-state {
     transform: translate3d(0px, 150px, 0px);
     opacity: 0;
 }
+.initial-slideup-state {
+    transform: translate3d(0px, 150px, 0px);
+}
+.initial-fadein-state {
+    opacity: 0;
+}
 
-#isInViewport {
-    transition-duration: 0.6s;
+.staggerSlideUp {
+    transition-duration: 2s;
+    transition-delay: calc(0.05s * var(--index));
+    transform: translate3d(0px, 0px, 0px) !important;
+}
+.staggerSlideUpFadeIn {
+    transition-duration: 2s;
+    transition-delay: calc(0.05s * var(--index));
     transform: translate3d(0px, 0px, 0px) !important;
     opacity: 1 !important;
 }
+.staggerFadeIn {
+    transition-duration: 2s;
+    transition-delay: calc(0.05s * var(--index));
+    opacity: 1 !important;
+}
+
 #inner-container {
     margin: auto;
     /* padding: calc(var(--size-section-padding) / 2) var(--spacing-xxLarge);*/

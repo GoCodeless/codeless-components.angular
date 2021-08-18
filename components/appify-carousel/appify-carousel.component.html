@@ -2,8 +2,6 @@
                     alignment == carouselAlignmentValue.right ? 'right' : 'left'" -->
 <div
     class="container-carousel"
-    #animate
-    [class.initial-animation-state]="animation ? true : false"
     [class.margin-width]="width == carouselWidthValue.margin"
     [style.backgroundColor]="
         style?.background_color ? style?.background_color : ''
@@ -14,6 +12,7 @@
     [style.backgroundSize]="
         style?.background_size ? style?.background_size : ''
     "
+    #animate
 >
     <div
         id="inner-container"
@@ -32,93 +31,110 @@
     >
         <div class="carousel-container">
             <div
-                *ngFor="let item of items"
-                class="col-6 col-md-3"
-                style="max-width: 9999px; padding-left: 0; padding-right: 0"
-                [style.margin-right]="
-                    style?.item_spacing ? style?.item_spacing + 'px' : ''
+                *ngFor="let item of items; let i = index"
+                [class.initial-slideup-state]="
+                    animation == 'staggerSlideUp' ? true : false
                 "
-                [style.width]="
-                    style?.item_width ? style?.item_width + 'px' : ''
+                [class.initial-slideupfadein-state]="
+                    animation == 'staggerSlideUpFadeIn' ? true : false
                 "
-                [style.text-align]="
-                    alignment == carouselAlignmentValue.center
-                        ? 'center'
-                        : alignment == carouselAlignmentValue.right
-                        ? 'right'
-                        : 'left'
+                [class.initial-fadein-state]="
+                    animation == 'staggerFadeIn' ? true : false
                 "
+                [style]="sanitize('--index:' + i)"
             >
-                <img
-                    [src]="item.image"
-                    [style.height]="
-                        style?.image_height
-                            ? style?.image_height + 'px'
-                            : 'auto'
+                <div
+                    class="col-6 col-md-3"
+                    style="max-width: 9999px; padding-left: 0; padding-right: 0"
+                    [style.margin-right]="
+                        style?.item_spacing ? style?.item_spacing + 'px' : ''
                     "
-                    [style.border-radius]="
-                        style?.corner_radius ? style?.corner_radius + 'px' : ''
+                    [style.width]="
+                        style?.item_width ? style?.item_width + 'px' : ''
                     "
-                    style="width: 100%; height: auto; vertical-align: top"
-                />
-                <div class="vertical-spacing-image"></div>
-                <h5
-                    class="headline-xs"
-                    [style.color]="
-                        style?.title?.color ? style?.title?.color : ''
-                    "
-                    [style.fontFamily]="
-                        style?.title?.font ? style?.title?.font : ''
-                    "
-                    [style.fontSize]="
-                        style?.title?.size ? style?.title?.size + 'px' : ''
-                    "
-                    [style.fontWeight]="
-                        style?.title?.weight ? style?.title?.weight : ''
-                    "
-                    [style.lineHeight]="
-                        style?.title?.line_height
-                            ? style?.title?.line_height + 'px'
-                            : ''
-                    "
-                    [style.letter-spacing]="
-                        style?.title?.letter_spacing
-                            ? style?.title?.letter_spacing + 'px'
-                            : ''
+                    [style.text-align]="
+                        alignment == carouselAlignmentValue.center
+                            ? 'center'
+                            : alignment == carouselAlignmentValue.right
+                            ? 'right'
+                            : 'left'
                     "
                 >
-                    {{ item.title }}
-                </h5>
-                <div class="vertical-spacing-title"></div>
-                <p
-                    class="body-m"
-                    [style.color]="
-                        style?.subtitle?.color ? style?.subtitle?.color : ''
-                    "
-                    [style.fontFamily]="
-                        style?.subtitle?.font ? style?.subtitle?.font : ''
-                    "
-                    [style.fontSize]="
-                        style?.subtitle?.size
-                            ? style?.subtitle?.size + 'px'
-                            : ''
-                    "
-                    [style.fontWeight]="
-                        style?.subtitle?.weight ? style?.subtitle?.weight : ''
-                    "
-                    [style.lineHeight]="
-                        style?.subtitle?.line_height
-                            ? style?.subtitle?.line_height + 'px'
-                            : ''
-                    "
-                    [style.letter-spacing]="
-                        style?.subtitle?.letter_spacing
-                            ? style?.subtitle?.letter_spacing + 'px'
-                            : ''
-                    "
-                >
-                    {{ item.subtitle }}
-                </p>
+                    <img
+                        [src]="item.image"
+                        [style.height]="
+                            style?.image_height
+                                ? style?.image_height + 'px'
+                                : 'auto'
+                        "
+                        [style.border-radius]="
+                            style?.corner_radius
+                                ? style?.corner_radius + 'px'
+                                : ''
+                        "
+                        style="width: 100%; height: auto; vertical-align: top"
+                    />
+                    <div class="vertical-spacing-image"></div>
+                    <h5
+                        class="headline-xs"
+                        [style.color]="
+                            style?.title?.color ? style?.title?.color : ''
+                        "
+                        [style.fontFamily]="
+                            style?.title?.font ? style?.title?.font : ''
+                        "
+                        [style.fontSize]="
+                            style?.title?.size ? style?.title?.size + 'px' : ''
+                        "
+                        [style.fontWeight]="
+                            style?.title?.weight ? style?.title?.weight : ''
+                        "
+                        [style.lineHeight]="
+                            style?.title?.line_height
+                                ? style?.title?.line_height + 'px'
+                                : ''
+                        "
+                        [style.letter-spacing]="
+                            style?.title?.letter_spacing
+                                ? style?.title?.letter_spacing + 'px'
+                                : ''
+                        "
+                    >
+                        {{ item.title }}
+                    </h5>
+                    <div class="vertical-spacing-title"></div>
+                    <p
+                        class="body-m"
+                        [style.color]="
+                            style?.subtitle?.color ? style?.subtitle?.color : ''
+                        "
+                        [style.fontFamily]="
+                            style?.subtitle?.font ? style?.subtitle?.font : ''
+                        "
+                        [style.fontSize]="
+                            style?.subtitle?.size
+                                ? style?.subtitle?.size + 'px'
+                                : ''
+                        "
+                        [style.fontWeight]="
+                            style?.subtitle?.weight
+                                ? style?.subtitle?.weight
+                                : ''
+                        "
+                        [style.lineHeight]="
+                            style?.subtitle?.line_height
+                                ? style?.subtitle?.line_height + 'px'
+                                : ''
+                        "
+                        [style.letter-spacing]="
+                            style?.subtitle?.letter_spacing
+                                ? style?.subtitle?.letter_spacing + 'px'
+                                : ''
+                        "
+                    >
+                        {{ item.subtitle }}
+                    </p>
+                </div>
             </div>
         </div>
     </div>

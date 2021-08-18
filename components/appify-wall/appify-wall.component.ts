@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from "@angular/core";
-
+import { Animations } from "../../models/styles.model";
 export enum WallAlignment {
     left = "left",
     right = "right",
@@ -9,9 +9,7 @@ export class WallModel {
     image: string;
     url: string;
 }
-export enum Animations {
-    scrollUp = "scrollUp",
-}
+
 @Component({
     selector: "appify-wall",
     templateUrl: "./appify-wall.component.html",
@@ -27,7 +25,7 @@ export class AppifyWallComponent implements OnInit {
     @Input() alignment: WallAlignment = WallAlignment.left;
     @Input() items: Array<WallModel> = [];
     @Input() style: any = {};
-    @Input() animation: Animations = Animations.scrollUp;
+    @Input() animation: Animations = Animations.none;
     @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
 
     /// Return the heroAlignment value computed in the component since enum is not
@@ -38,13 +36,35 @@ export class AppifyWallComponent implements OnInit {
 
     constructor() {}
     ngOnInit() {
-        function callbackFunc(entries, _) {
+        const animation = this.animation;
+        if (animation === Animations.none) {
+            return;
+        }
+
+        const callbackFunc = (entries, _) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    entry.target.setAttribute("id", "isInViewport");
+                    console.log(entry.target);
+                    let element = entry.target.children[0].children[0].children;
+                    for (let i = 0; i < element.length; i++) {
+                        element[i].classList.add(animation);
+                    }
+                    if (!entry.target.children[0].children[1].children.length) {
+                        return;
+                    }
+                    for (
+                        let i = 0;
+                        i <
+                        entry.target.children[0].children[1].children.length;
+                        i++
+                    ) {
+                        entry.target.children[0].children[1].children[
+                            i
+                        ].classList.add(animation);
+                    }
                 }
             });
-        }
+        };
 
         let observer = new IntersectionObserver(callbackFunc);
 

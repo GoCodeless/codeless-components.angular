@@ -1,16 +1,37 @@
-.container-slider {
+#container {
     position: relative;
     width: 100%;
     color: white;
+}
+
+.initial-slideupfadein-state {
     transform: translate3d(0px, 150px, 0px);
     opacity: 0;
 }
+.initial-slideup-state {
+    transform: translate3d(0px, 150px, 0px);
+}
+.initial-fadein-state {
+    opacity: 0;
+}
 
-#isInViewport {
-    transition-duration: 0.6s;
+.slideUp {
+    transition-duration: 1s;
+
+    transform: translate3d(0px, 0px, 0px) !important;
+}
+.slideUpFadeIn {
+    transition-duration: 1s;
+
     transform: translate3d(0px, 0px, 0px) !important;
     opacity: 1 !important;
 }
+.fadeIn {
+    transition-duration: 1s;
+
+    opacity: 1 !important;
+}
+
 #inner {
     position: relative;
     width: 100%;

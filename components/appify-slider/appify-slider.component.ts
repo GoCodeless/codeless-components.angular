@@ -11,6 +11,7 @@ import {
     StyleButton,
     StyleFont,
     StylePadding,
+    Animations,
 } from "../../models/styles.model";
 
 export enum SliderWidth {
@@ -29,9 +30,7 @@ export enum SliderVerticalAlignment {
     middle = "middle",
     bottom = "bottom",
 }
-export enum Animations {
-    scrollUp = "scrollUp",
-}
+
 export class SliderModel {
     image: string;
     header: string;
@@ -61,9 +60,9 @@ export class AppifySliderComponent implements OnInit {
     @Input() verticalAlignment: SliderVerticalAlignment =
         SliderVerticalAlignment.middle;
     @Input() width: SliderWidth = SliderWidth.full;
-    @Input() animation: Animations = Animations.scrollUp;
     @Input() items: Array<SliderModel> = [];
     @Input() style: SliderStyle = new SliderStyle();
+    @Input() animation: Animations = Animations.none;
     @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
 
     headline: string = "";
@@ -98,10 +97,15 @@ export class AppifySliderComponent implements OnInit {
         this.buttonPadding.bottom = 0;
         this.buttonPadding.left = 0;
         this.buttonPadding.right = 0;
+        const animation = this.animation;
+        if (animation == Animations.none) {
+            return;
+        }
+
         function callbackFunc(entries, _) {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    entry.target.setAttribute("id", "isInViewport");
+                    entry.target.classList.add(animation);
                 }
             });
         }

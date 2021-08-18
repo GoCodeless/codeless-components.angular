@@ -1,4 +1,12 @@
-<div class="container-slider" #animate>
+<div
+    id="container"
+    #animate
+    [class.initial-slideup-state]="animation == 'slideUp' ? true : false"
+    [class.initial-slideupfadein-state]="
+        animation == 'slideUpFadeIn' ? true : false
+    "
+    [class.initial-fadein-state]="animation == 'fadeIn' ? true : false"
+>
     <div
         id="inner"
         [ngStyle]="{
