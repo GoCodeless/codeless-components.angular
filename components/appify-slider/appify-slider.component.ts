@@ -2,6 +2,8 @@ import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { CodelessComponentsService } from '../../services/codeless-components.service'
 import { StyleButton, StyleFont, StylePadding } from '../../models/styles.model'
 
+import { PageService } from '@platform-services/page/page.service'
+
 export enum SliderWidth {
     full = 'full',
     margin = 'margin'
@@ -63,7 +65,7 @@ export class AppifySliderComponent implements OnInit {
     get sliderVerticalAlignmentValue() { return SliderVerticalAlignment; }
     get sliderWidthValue() { return SliderWidth; }
 
-    constructor(private codelessService: CodelessComponentsService) {
+    constructor(private codelessService: CodelessComponentsService, public pageService: PageService) {
         this.setupView()
     }
 

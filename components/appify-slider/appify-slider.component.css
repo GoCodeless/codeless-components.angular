@@ -1,7 +1,21 @@
+#vid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+
 #container {
     position: relative;
     width: 100%;
     color: white;
+    overflow: hidden;
 }
 
 #inner {
