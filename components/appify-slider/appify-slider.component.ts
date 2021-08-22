@@ -34,6 +34,7 @@ export class SliderStyle {
     subtitle: StyleFont;
     button: StyleButton;
     padding: StylePadding;
+    corner_radius: number;
 }
 
 @Component({
