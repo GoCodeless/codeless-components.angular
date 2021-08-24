@@ -12,9 +12,11 @@
             ? 'center'
             : 'left'
     "
+    [class.full-width]="width == containerWidthValue.full"
     [class.margin-width]="width == containerWidthValue.margin"
 >
     <button
+        [class.full-width]="width == containerWidthValue.full"
         [style.padding-top]="padding?.top ? padding?.top + 'px' : ''"
         [style.padding-bottom]="padding?.bottom ? padding?.bottom + 'px' : ''"
         [style.padding-left]="padding?.left ? padding?.left + 'px' : ''"

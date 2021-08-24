@@ -79,7 +79,6 @@ export class AppifyGridComponent implements OnInit {
 
     constructor(private sanitizer: DomSanitizer) {}
     sanitize(val) {
-        console.log(val);
         return this.sanitizer.bypassSecurityTrustStyle(val);
     }
     ngOnInit() {

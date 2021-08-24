@@ -17,18 +17,18 @@
 
 .staggerSlideUp {
     transition-duration: 2s;
-    transition-delay: calc(0.05s * var(--index));
+    transition-delay: calc(0.5s * var(--index));
     transform: translate3d(0px, 0px, 0px) !important;
 }
 .staggerSlideUpFadeIn {
     transition-duration: 2s;
-    transition-delay: calc(0.05s * var(--index));
+    transition-delay: calc(0.5s * var(--index));
     transform: translate3d(0px, 0px, 0px) !important;
     opacity: 1 !important;
 }
 .staggerFadeIn {
     transition-duration: 2s;
-    transition-delay: calc(0.05s * var(--index));
+    transition-delay: calc(0.5s * var(--index));
     opacity: 1 !important;
 }
 #inner-container {

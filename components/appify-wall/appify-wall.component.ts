@@ -44,7 +44,6 @@ export class AppifyWallComponent implements OnInit {
         const callbackFunc = (entries, _) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    console.log(entry.target);
                     let element = entry.target.children[0].children[0].children;
                     for (let i = 0; i < element.length; i++) {
                         element[i].classList.add(animation);
