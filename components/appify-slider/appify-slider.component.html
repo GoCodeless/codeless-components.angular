@@ -10,7 +10,7 @@
     </video>
 
     <div id="inner"
-        [ngStyle]="{'background-image': 'url(' + items[selectedIndex].image + ')'}"
+        [ngStyle]="{'background-image': 'url(' + pageService.getImageMapResource(items[selectedIndex].image) + ')'}"
         [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
         [class.margin-width]="width == sliderWidthValue.margin"
         [style.text-align]="alignment == sliderAlignmentValue.center ? 'center' :

@@ -5,7 +5,7 @@
         style?.background_color ? style?.background_color : ''
     "
     [style.backgroundImage]="
-        style?.background_image ? 'url(' + style?.background_image + ')' : ''
+        style?.background_image ? 'url(' + pageService.getImageMapResource(style?.background_image) + ')' : ''
     "
     [style.backgroundSize]="
         style?.background_size ? style?.background_size : ''

@@ -66,7 +66,8 @@ export class AppifySliderComponent implements OnInit {
     get sliderVerticalAlignmentValue() { return SliderVerticalAlignment; }
     get sliderWidthValue() { return SliderWidth; }
 
-    constructor(private codelessService: CodelessComponentsService, public pageService: PageService) {
+    constructor(private codelessService: CodelessComponentsService,
+                public pageService: PageService) {
         this.setupView()
     }
 

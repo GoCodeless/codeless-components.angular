@@ -5,7 +5,7 @@
         [style.border-radius]="
             style?.corner_radius ? style?.corner_radius + 'px' : ''
         "
-        [style.backgroundImage]="item.image ? 'url(' + item.image + ')' : ''"
+        [style.backgroundImage]="item.image ? 'url(' + pageService.getImageMapResource(item.image) + ')' : ''"
         [style.backgroundSize]="
             style?.background_size ? style?.background_size : ''
         "

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { StyleButton, StyleFont, StylePadding } from '../../models/styles.model'
 
+import { PageService } from '@platform-services/page/page.service'
+
 export class CarouselModel {
     image: string;
     title: string;
@@ -46,6 +48,6 @@ export class AppifyCarouselComponent implements OnInit {
     get carouselWidthValue() { return CarouselWidth; }
     get carouselAlignmentValue() { return CarouselAlignment; }
 
-    constructor() { }
+    constructor(public pageService: PageService) { }
     ngOnInit() { }
 }

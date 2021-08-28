@@ -1,7 +1,7 @@
 <div id="container"
     [class.margin-width]="width == featureWidthValue.margin"
     [style.backgroundColor]="style?.background_color ? style?.background_color : ''"
-    [style.backgroundImage]="style?.background_image ? 'url(' + style?.background_image + ')' : ''"
+    [style.backgroundImage]="style?.background_image ? 'url(' + pageService.getImageMapResource(style?.background_image) + ')' : ''"
     [style.backgroundSize]="style?.background_size ? style?.background_size : ''"
     [style.backgroundRepeat]="style?.background_repeat ? style?.background_repeat : ''"
     [style.backgroundPosition]="style?.background_position ? style?.background_position : ''">
@@ -16,7 +16,7 @@
         <div *ngIf="featureAlignment == featureAlignmentValue.left"
             class="col-md-6 col-sm-12 col-12 left-align-inner"
             [class.full-width]="width == featureWidthValue.full">
-            <img [src]="imageURL"
+            <img [src]="pageService.getImageMapResource(imageURL)"
                  [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
                  [style.minHeight]="minimumHeight + 'px'" />
         </div>
@@ -68,7 +68,7 @@
         <div *ngIf="featureAlignment == featureAlignmentValue.right"
             class="col-md-6 col-sm-12 col-12 right-align-inner"
             [class.full-width]="width == featureWidthValue.full">
-            <img [src]="imageURL"
+            <img [src]="pageService.getImageMapResource(imageURL)"
                  [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
                  [style.minHeight]="minimumHeight + 'px'" />
         </div>

@@ -5,6 +5,8 @@ import {
     StylePadding,
 } from "../../models/styles.model";
 
+import { PageService } from '@platform-services/page/page.service'
+
 export class GridModel {
     image: string;
     title: string;
@@ -72,7 +74,7 @@ export class AppifyGridComponent implements OnInit {
         return GridAlignment;
     }
 
-    constructor() {}
+    constructor(public pageService: PageService) {}
 
     ngOnInit() {
         this.buttonPadding.top = 0;

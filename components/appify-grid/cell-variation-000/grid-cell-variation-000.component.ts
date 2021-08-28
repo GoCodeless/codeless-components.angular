@@ -6,6 +6,7 @@ import {
 } from "../../../models/styles.model";
 
 import { GridAlignment, GridStyle, GridModel } from "../appify-grid.component";
+import { PageService } from '@platform-services/page/page.service'
 
 @Component({
     selector: "appify-grid-cell-variation-000",
@@ -19,7 +20,7 @@ export class AppifyGridCellVariation000Component implements OnInit {
 
     buttonPadding: StylePadding = new StylePadding();
 
-    constructor() {}
+    constructor(public pageService: PageService) {}
 
     ngOnInit() {
         this.buttonPadding.top = 0;

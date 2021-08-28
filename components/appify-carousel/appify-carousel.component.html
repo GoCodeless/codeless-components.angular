@@ -3,7 +3,7 @@
 <div id="container"
     [class.margin-width]="width == carouselWidthValue.margin"
     [style.backgroundColor]="style?.background_color ? style?.background_color : ''"
-    [style.backgroundImage]="style?.background_image ? 'url(' + style?.background_image + ')' : ''"
+    [style.backgroundImage]="style?.background_image ? 'url(' + pageService.getImageMapResource(style?.background_image) + ')' : ''"
     [style.backgroundSize]="style?.background_size ? style?.background_size : ''">
     <div id="inner-container"
         [style.padding-top]="style?.padding?.top ? style?.padding?.top + 'px' : ''"
@@ -17,7 +17,7 @@
             [style.width]="style?.item_width ? style?.item_width + 'px' : ''"
             [style.text-align]="alignment == carouselAlignmentValue.center ? 'center' :
                                 alignment == carouselAlignmentValue.right ? 'right' : 'left'">
-                <img [src]="item.image"
+                <img [src]="pageService.getImageMapResource(item.image)"
                      [style.height]="style?.image_height ? style?.image_height + 'px' : 'auto'"
                      [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
                      style="width: 100%; height: auto; vertical-align: top;" />
