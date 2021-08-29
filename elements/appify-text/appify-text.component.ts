@@ -63,6 +63,16 @@ export class AppifyTextComponent implements OnInit {
         return string.replace(/px/g, "");
     }
 
+    getLineHeight() {
+        let height: string = this.style.text.line_height ? this.style.text.line_height + '' : ''
+
+        if (!height.includes('px') && height.length > 0) {
+            height += 'px'
+        }
+
+        return height
+    }
+
     emitBlockSelect(index, type) {
         let item: EditBlockElementItem = new EditBlockElementItem();
         item.identifier = this.identifier;
