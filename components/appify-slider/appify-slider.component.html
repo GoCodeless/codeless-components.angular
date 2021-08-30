@@ -1,3 +1,9 @@
+<!-- <div class="hero-container" style="overflow: hidden;">
+    <video id="vid" [src]="pageService.getVideoMapResource(items[selectedIndex].image)" video autobuffer autoplay muted loop>
+
+    </video>
+</div> -->
+
 <div
     id="container"
     #animate
@@ -7,10 +13,24 @@
     "
     [class.initial-fadein-state]="animation == 'fadeIn' ? true : false"
 >
+    <video
+        *ngIf="pageService.getVideoMapResource(items[selectedIndex].image)"
+        id="vid"
+        [src]="pageService.getVideoMapResource(items[selectedIndex].image)"
+        video
+        autobuffer
+        autoplay
+        muted
+        loop
+    ></video>
+
     <div
         id="inner"
         [ngStyle]="{
-            'background-image': 'url(' + items[selectedIndex].image + ')'
+            'background-image':
+                'url(' +
+                pageService.getImageMapResource(items[selectedIndex].image) +
+                ')'
         }"
         [style.border-radius]="
             style?.corner_radius ? style?.corner_radius + 'px' : ''

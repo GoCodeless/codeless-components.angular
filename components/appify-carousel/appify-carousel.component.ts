@@ -1,11 +1,4 @@
-import {
-    Component,
-    OnInit,
-    Input,
-    ViewChild,
-    ElementRef,
-    ɵbypassSanitizationTrustStyle,
-} from "@angular/core";
+import { Component, OnInit, Input, ViewChild, ElementRef } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Animations } from "../../models/styles.model";
 import {
@@ -13,6 +6,8 @@ import {
     StyleFont,
     StylePadding,
 } from "../../models/styles.model";
+
+import { PageService } from "@platform-services/page/page.service";
 
 export class CarouselModel {
     image: string;

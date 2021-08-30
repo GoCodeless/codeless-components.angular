@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from "@angular/core";
 
 import { DomSanitizer } from "@angular/platform-browser";
+import { PageService } from "@platform-services/page/page.service";
 import {
     StyleButton,
     StyleFont,
@@ -77,7 +78,11 @@ export class AppifyGridComponent implements OnInit {
         return GridAlignment;
     }
 
-    constructor(private sanitizer: DomSanitizer) {}
+    constructor(
+        public pageService: PageService,
+        private sanitizer: DomSanitizer
+    ) {}
+
     sanitize(val) {
         return this.sanitizer.bypassSecurityTrustStyle(val);
     }

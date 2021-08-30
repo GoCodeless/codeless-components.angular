@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { StyleButton, StyleFont, StylePadding } from '../../models/styles.model'
 
+import { PageService } from '@platform-services/page/page.service'
+
 export enum FeatureAlignment {
     left = 'left',
     center = 'center',
@@ -57,7 +59,7 @@ export class AppifyFeatureComponent implements OnInit {
     get featureVerticalAlignmentValue() { return FeatureVerticalAlignment; }
     get featureWidthValue() { return FeatureWidth; }
 
-    constructor() { }
+    constructor(public pageService: PageService) { }
 
     ngOnInit() {
         this.buttonPadding.top = 0

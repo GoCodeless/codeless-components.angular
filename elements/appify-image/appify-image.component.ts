@@ -18,7 +18,7 @@ export class ImageStyle {
     height: number;
     padding: StylePadding;
     background_size: string;
-    corner_radius: string;
+    corner_radius: number;
 }
 
 @Component({

@@ -4,7 +4,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    margin-bottom: var(--spacing-small);
+    margin-bottom: var(--spacing-xSmall);
 }
 
 .subtitle  {
@@ -12,5 +12,5 @@
 }
 
 .vertical-item-spacer {
-    height: var(--spacing-small);
+    height: var(--spacing-xSmall);
 }

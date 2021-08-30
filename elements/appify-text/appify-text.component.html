@@ -33,9 +33,7 @@
         [style.font-family]="style?.text?.font ? style?.text?.font : ''"
         [style.font-size]="style?.text?.size ? style?.text?.size : ''"
         [style.font-weight]="style?.text?.weight ? style?.text?.weight : ''"
-        [style.line-height]="
-            style?.text?.line_height ? style?.text?.line_height : ''
-        "
+        [style.line-height]="getLineHeight()"
         [style.text-align]="
             alignment == alignmentValue.right
                 ? 'right'

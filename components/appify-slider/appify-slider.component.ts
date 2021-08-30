@@ -14,6 +14,8 @@ import {
     Animations,
 } from "../../models/styles.model";
 
+import { PageService } from "@platform-services/page/page.service";
+
 export enum SliderWidth {
     full = "full",
     margin = "margin",
@@ -44,7 +46,7 @@ export class SliderStyle {
     subtitle: StyleFont;
     button: StyleButton;
     padding: StylePadding;
-    corner_radius: string;
+    corner_radius: number;
 }
 
 @Component({
@@ -88,7 +90,10 @@ export class AppifySliderComponent implements OnInit {
         return SliderWidth;
     }
 
-    constructor(private codelessService: CodelessComponentsService) {
+    constructor(
+        private codelessService: CodelessComponentsService,
+        public pageService: PageService
+    ) {
         this.setupView();
     }
 

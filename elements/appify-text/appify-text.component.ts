@@ -88,6 +88,20 @@ export class AppifyTextComponent implements OnInit {
     cleanPixelText(string) {
         return string.replace(/px/g, "");
     }
+    getLineHeight() {
+        if (!this.style || !this.style.text || !this.style.text.line_height) {
+            return;
+        }
+        let height: string = this.style.text.line_height
+            ? this.style.text.line_height + ""
+            : "";
+
+        if (!height.includes("px") && height.length > 0) {
+            height += "px";
+        }
+
+        return height;
+    }
 
     emitBlockSelect(index, type) {
         let item: EditBlockElementItem = new EditBlockElementItem();
