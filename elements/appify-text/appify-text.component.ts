@@ -64,6 +64,7 @@ export class AppifyTextComponent implements OnInit {
     }
 
     getLineHeight() {
+        if (!this.style || !this.style.text || !this.style.text.line_height) { return }
         let height: string = this.style.text.line_height ? this.style.text.line_height + '' : ''
 
         if (!height.includes('px') && height.length > 0) {
