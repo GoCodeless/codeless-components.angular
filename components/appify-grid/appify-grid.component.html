@@ -85,18 +85,23 @@
                         animation == 'staggerFadeIn' ? true : false
                     "
                 >
-                    <appify-grid-cell-variation-000
-                        *ngIf="style?.variation == '000'"
-                        [alignment]="alignment"
-                        [style]="style"
-                        [item]="item"
-                    ></appify-grid-cell-variation-000>
-                    <appify-grid-cell-variation-001
-                        *ngIf="style?.variation == '001'"
-                        [alignment]="alignment"
-                        [style]="style"
-                        [item]="item"
-                    ></appify-grid-cell-variation-001>
+                    <div style="position: relative">
+                        <div class="fade-in-grid"></div>
+                        <div>
+                            <appify-grid-cell-variation-000
+                                *ngIf="style?.variation == '000'"
+                                [alignment]="alignment"
+                                [style]="style"
+                                [item]="item"
+                            ></appify-grid-cell-variation-000>
+                            <appify-grid-cell-variation-001
+                                *ngIf="style?.variation == '001'"
+                                [alignment]="alignment"
+                                [style]="style"
+                                [item]="item"
+                            ></appify-grid-cell-variation-001>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

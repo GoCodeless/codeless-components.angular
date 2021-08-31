@@ -43,6 +43,7 @@
                 "
                 [style]="sanitize('--index:' + i)"
             >
+                <div class="fade-in-carousel"></div>
                 <div
                     class="col-6 col-md-3"
                     style="max-width: 9999px; padding-left: 0; padding-right: 0"
@@ -60,20 +61,28 @@
                             : 'left'
                     "
                 >
-                    <img
-                        [src]="item.image"
-                        [style.height]="
-                            style?.image_height
-                                ? style?.image_height + 'px'
-                                : 'auto'
-                        "
-                        [style.border-radius]="
-                            style?.corner_radius
-                                ? style?.corner_radius + 'px'
-                                : ''
-                        "
-                        style="width: 100%; height: auto; vertical-align: top"
-                    />
+                    <div style="overflow: hidden">
+                        <img
+                            [src]="item.image"
+                            [style.height]="
+                                style?.image_height
+                                    ? style?.image_height + 'px'
+                                    : 'auto'
+                            "
+                            [style.border-radius]="
+                                style?.corner_radius
+                                    ? style?.corner_radius + 'px'
+                                    : ''
+                            "
+                            style="
+                                width: 100%;
+                                height: auto;
+                                vertical-align: top;
+                            "
+                            class="carousel-item-container"
+                        />
+                    </div>
+
                     <div class="vertical-spacing-image"></div>
                     <h5
                         class="headline-xs"

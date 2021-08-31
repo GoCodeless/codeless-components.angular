@@ -33,8 +33,10 @@
                 [style.border-radius]="
                     style?.corner_radius ? style?.corner_radius + 'px' : ''
                 "
-                [style.background]="'url(' + items[0].image + ')'"
-            ></div>
+            >
+                <img [src]="items[0].image" />
+                <div class="fade-in-wall"></div>
+            </div>
             <div
                 *ngIf="items.length > 2"
                 [class.initial-slideup-state]="
@@ -51,9 +53,11 @@
                 [style.border-radius]="
                     style?.corner_radius ? style?.corner_radius + 'px' : ''
                 "
-                [style.background]="'url(' + items[2].image + ')'"
                 style="--index: 1; margin-top: 8px"
-            ></div>
+            >
+                <img [src]="items[2].image" />
+                <div class="fade-in-wall"></div>
+            </div>
         </div>
 
         <div
@@ -78,8 +82,10 @@
                 [style.border-radius]="
                     style?.corner_radius ? style?.corner_radius + 'px' : ''
                 "
-                [style.background]="'url(' + items[1].image + ')'"
-            ></div>
+            >
+                <img [src]="items[1].image" />
+                <div class="fade-in-wall"></div>
+            </div>
         </div>
     </div>
 </div>
