@@ -1,58 +1,186 @@
-<div id="container"
+<div
+    id="container"
     [class.margin-width]="width == featureWidthValue.margin"
-    [style.backgroundColor]="style?.background_color ? style?.background_color : ''"
-    [style.backgroundImage]="style?.background_image ? 'url(' + pageService.getImageMapResource(style?.background_image) + ')' : ''"
-    [style.backgroundSize]="style?.background_size ? style?.background_size : ''"
-    [style.backgroundRepeat]="style?.background_repeat ? style?.background_repeat : ''"
-    [style.backgroundPosition]="style?.background_position ? style?.background_position : ''">
-    <div class="row feature-container"
-        [style.padding-left]="width == featureWidthValue.margin ? style?.padding?.left ? style?.padding?.left + 'px' : '' : '0'"
-        [style.padding-right]="width == featureWidthValue.margin ? style?.padding?.right ? style?.padding?.right + 'px' : '' : '0'"
-        [style.padding-top]="style?.padding?.top ? style?.padding?.top + 'px' : ''"
-        [style.padding-bottom]="style?.padding?.bottom ? style?.padding?.bottom + 'px' : ''"
-        [class.vertical-align-top]="verticalAlignment == featureVerticalAlignmentValue.top"
-        [class.vertical-align-middle]="verticalAlignment == featureVerticalAlignmentValue.middle"
-        [class.vertical-align-bottom]="verticalAlignment == featureVerticalAlignmentValue.bottom">
-        <div *ngIf="featureAlignment == featureAlignmentValue.left"
+    [style.backgroundColor]="
+        style?.background_color ? style?.background_color : ''
+    "
+    [style.backgroundImage]="
+        style?.background_image
+            ? 'url(' +
+              pageService.getImageMapResource(style?.background_image) +
+              ')'
+            : ''
+    "
+    [style.backgroundSize]="
+        style?.background_size ? style?.background_size : ''
+    "
+    [style.backgroundRepeat]="
+        style?.background_repeat ? style?.background_repeat : ''
+    "
+    [style.backgroundPosition]="
+        style?.background_position ? style?.background_position : ''
+    "
+    #animate
+    [class.initial-slideup-state]="animation.type == 'slideUp' ? true : false"
+    [class.initial-slideupfadein-state]="
+        animation.type == 'glide_up' ? true : false
+    "
+    [class.initial-fadein-state]="animation.type == 'fade_in' ? true : false"
+>
+    <div
+        class="row feature-container"
+        [style.padding-left]="
+            width == featureWidthValue.margin
+                ? style?.padding?.left
+                    ? style?.padding?.left + 'px'
+                    : ''
+                : '0'
+        "
+        [style.padding-right]="
+            width == featureWidthValue.margin
+                ? style?.padding?.right
+                    ? style?.padding?.right + 'px'
+                    : ''
+                : '0'
+        "
+        [style.padding-top]="
+            style?.padding?.top ? style?.padding?.top + 'px' : ''
+        "
+        [style.padding-bottom]="
+            style?.padding?.bottom ? style?.padding?.bottom + 'px' : ''
+        "
+        [class.vertical-align-top]="
+            verticalAlignment == featureVerticalAlignmentValue.top
+        "
+        [class.vertical-align-middle]="
+            verticalAlignment == featureVerticalAlignmentValue.middle
+        "
+        [class.vertical-align-bottom]="
+            verticalAlignment == featureVerticalAlignmentValue.bottom
+        "
+    >
+        <div
+            *ngIf="featureAlignment == featureAlignmentValue.left"
             class="col-md-6 col-sm-12 col-12 left-align-inner"
-            [class.full-width]="width == featureWidthValue.full">
-            <img [src]="pageService.getImageMapResource(imageURL)"
-                 [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
-                 [style.minHeight]="minimumHeight + 'px'" />
+            [class.full-width]="width == featureWidthValue.full"
+        >
+            <img
+                [src]="pageService.getImageMapResource(imageURL)"
+                [style.border-radius]="
+                    style?.corner_radius ? style?.corner_radius + 'px' : ''
+                "
+                [style.minHeight]="minimumHeight + 'px'"
+            />
         </div>
 
-        <div class="text-container col-md-6 col-sm-12"
-             [class.left-align-inner]="featureAlignment == featureAlignmentValue.left"
-             [class.right-align-inner]="featureAlignment == featureAlignmentValue.right"
-             [style.padding-left]="width == featureWidthValue.full ? style?.padding?.left ? style?.padding?.left + 'px' : '' : '0'"
-             [style.padding-right]="width == featureWidthValue.full ? style?.padding?.right ? style?.padding?.right + 'px' : '' : '0'"
-             >
-            <caption class="label-s"
-                [style.color]="style?.heading?.color ? style?.heading?.color : ''"
-                [style.fontFamily]="style?.heading?.font ? style?.heading?.font : ''"
-                [style.fontSize]="style?.heading?.size ? style?.heading?.size + 'px' : ''"
-                [style.fontWeight]="style?.heading?.weight ? style?.heading?.weight : ''"
-                [style.lineHeight]="style?.heading?.line_height ? style?.heading?.line_height + 'px' : ''"
-                [style.letter-spacing]="style?.heading?.letter_spacing ? style?.heading?.letter_spacing + 'px' : ''"
-            >{{ title }}</caption>
+        <div
+            class="text-container col-md-6 col-sm-12"
+            [class.left-align-inner]="
+                featureAlignment == featureAlignmentValue.left
+            "
+            [class.right-align-inner]="
+                featureAlignment == featureAlignmentValue.right
+            "
+            [style.padding-left]="
+                width == featureWidthValue.full
+                    ? style?.padding?.left
+                        ? style?.padding?.left + 'px'
+                        : ''
+                    : '0'
+            "
+            [style.padding-right]="
+                width == featureWidthValue.full
+                    ? style?.padding?.right
+                        ? style?.padding?.right + 'px'
+                        : ''
+                    : '0'
+            "
+        >
+            <caption
+                class="label-s"
+                [style.color]="
+                    style?.heading?.color ? style?.heading?.color : ''
+                "
+                [style.fontFamily]="
+                    style?.heading?.font ? style?.heading?.font : ''
+                "
+                [style.fontSize]="
+                    style?.heading?.size ? style?.heading?.size + 'px' : ''
+                "
+                [style.fontWeight]="
+                    style?.heading?.weight ? style?.heading?.weight : ''
+                "
+                [style.lineHeight]="
+                    style?.heading?.line_height
+                        ? style?.heading?.line_height + 'px'
+                        : ''
+                "
+                [style.letter-spacing]="
+                    style?.heading?.letter_spacing
+                        ? style?.heading?.letter_spacing + 'px'
+                        : ''
+                "
+            >
+                {{
+                    title
+                }}
+            </caption>
             <div class="vertical-item-spacing-small"></div>
-            <h3 class="headline-m"
-                [style.color]="style?.subtitle?.color ? style?.subtitle?.color : ''"
-                [style.fontFamily]="style?.subtitle?.font ? style?.subtitle?.font : ''"
-                [style.fontSize]="style?.subtitle?.size ? style?.subtitle?.size + 'px' : ''"
-                [style.fontWeight]="style?.subtitle?.weight ? style?.subtitle?.weight : ''"
-                [style.lineHeight]="style?.subtitle?.line_height ? style?.subtitle?.line_height + 'px' : ''"
-                [style.letter-spacing]="style?.subtitle?.letter_spacing ? style?.subtitle?.letter_spacing + 'px' : ''"
-            >{{ subtitle }}</h3>
+            <h3
+                class="headline-m"
+                [style.color]="
+                    style?.subtitle?.color ? style?.subtitle?.color : ''
+                "
+                [style.fontFamily]="
+                    style?.subtitle?.font ? style?.subtitle?.font : ''
+                "
+                [style.fontSize]="
+                    style?.subtitle?.size ? style?.subtitle?.size + 'px' : ''
+                "
+                [style.fontWeight]="
+                    style?.subtitle?.weight ? style?.subtitle?.weight : ''
+                "
+                [style.lineHeight]="
+                    style?.subtitle?.line_height
+                        ? style?.subtitle?.line_height + 'px'
+                        : ''
+                "
+                [style.letter-spacing]="
+                    style?.subtitle?.letter_spacing
+                        ? style?.subtitle?.letter_spacing + 'px'
+                        : ''
+                "
+            >
+                {{ subtitle }}
+            </h3>
             <div class="vertical-item-spacing"></div>
-            <p class="body-m"
-                [style.color]="style?.paragraph?.color ? style?.paragraph?.color : ''"
-                [style.fontFamily]="style?.paragraph?.font ? style?.paragraph?.font : ''"
-                [style.fontSize]="style?.paragraph?.size ? style?.paragraph?.size + 'px' : ''"
-                [style.fontWeight]="style?.paragraph?.weight ? style?.paragraph?.weight : ''"
-                [style.lineHeight]="style?.paragraph?.line_height ? style?.paragraph?.line_height + 'px' : ''"
-                [style.letter-spacing]="style?.paragraph?.letter_spacing ? style?.paragraph?.letter_spacing + 'px' : ''"
-            >{{ body }}</p>
+            <p
+                class="body-m"
+                [style.color]="
+                    style?.paragraph?.color ? style?.paragraph?.color : ''
+                "
+                [style.fontFamily]="
+                    style?.paragraph?.font ? style?.paragraph?.font : ''
+                "
+                [style.fontSize]="
+                    style?.paragraph?.size ? style?.paragraph?.size + 'px' : ''
+                "
+                [style.fontWeight]="
+                    style?.paragraph?.weight ? style?.paragraph?.weight : ''
+                "
+                [style.lineHeight]="
+                    style?.paragraph?.line_height
+                        ? style?.paragraph?.line_height + 'px'
+                        : ''
+                "
+                [style.letter-spacing]="
+                    style?.paragraph?.letter_spacing
+                        ? style?.paragraph?.letter_spacing + 'px'
+                        : ''
+                "
+            >
+                {{ body }}
+            </p>
             <div class="vertical-item-spacing"></div>
             <div>
                 <appify-button
@@ -60,16 +188,23 @@
                     [style]="style?.button"
                     [padding]="buttonPadding"
                     [alignment]="featureAlignment"
-                    (selected)="clickButton()"></appify-button>
+                    (selected)="clickButton()"
+                ></appify-button>
             </div>
         </div>
 
-        <div *ngIf="featureAlignment == featureAlignmentValue.right"
+        <div
+            *ngIf="featureAlignment == featureAlignmentValue.right"
             class="col-md-6 col-sm-12 col-12 right-align-inner"
-            [class.full-width]="width == featureWidthValue.full">
-            <img [src]="pageService.getImageMapResource(imageURL)"
-                 [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
-                 [style.minHeight]="minimumHeight + 'px'" />
+            [class.full-width]="width == featureWidthValue.full"
+        >
+            <img
+                [src]="pageService.getImageMapResource(imageURL)"
+                [style.border-radius]="
+                    style?.corner_radius ? style?.corner_radius + 'px' : ''
+                "
+                [style.minHeight]="minimumHeight + 'px'"
+            />
         </div>
     </div>
 </div>

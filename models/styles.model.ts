@@ -16,7 +16,9 @@ export enum Animations {
     staggerSlideUpFadeIn = "staggerSlideUpFadeIn",
     fadeIn = "fadeIn",
     staggerFadeIn = "staggerFadeIn",
-    none = "",
+    none = "none",
+    glide_up = "slideUp",
+    fade_in = "fadeIn",
 }
 export class StyleButton {
     /// Example: 9999px, 0, or any pixel string

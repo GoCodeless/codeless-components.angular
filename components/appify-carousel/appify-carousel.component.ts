@@ -54,7 +54,9 @@ export class AppifyCarouselComponent implements OnInit {
     @Input() width: CarouselWidth = CarouselWidth.margin;
     @Input() alignment: CarouselAlignment = CarouselAlignment.center;
     @Input() style: CarouselStyle = new CarouselStyle();
-    @Input() animation: Animations = Animations.none;
+    @Input() animation: { type: string } = {
+        type: "none",
+    };
     @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
 
     get carouselWidthValue() {
@@ -70,9 +72,6 @@ export class AppifyCarouselComponent implements OnInit {
     }
     ngOnInit() {
         const animation = this.animation;
-        if (animation === Animations.none) {
-            return;
-        }
 
         const callbackFunc = (entries, _) => {
             entries.forEach((entry) => {
@@ -80,7 +79,7 @@ export class AppifyCarouselComponent implements OnInit {
                     const element =
                         entry.target.children[0].children[0].children;
                     for (let i = 0; i < element.length; i++) {
-                        element[i].classList.add(animation);
+                        element[i].classList.add(Animations[animation.type]);
                     }
                 }
             });

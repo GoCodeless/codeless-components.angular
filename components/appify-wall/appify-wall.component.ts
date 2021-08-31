@@ -25,7 +25,7 @@ export class AppifyWallComponent implements OnInit {
     @Input() alignment: WallAlignment = WallAlignment.left;
     @Input() items: Array<WallModel> = [];
     @Input() style: any = {};
-    @Input() animation: Animations = Animations.none;
+    @Input() animation: { type: string } = { type: "none" };
     @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
 
     /// Return the heroAlignment value computed in the component since enum is not
@@ -37,7 +37,7 @@ export class AppifyWallComponent implements OnInit {
     constructor() {}
     ngOnInit() {
         const animation = this.animation;
-        if (animation === Animations.none) {
+        if (animation.type === Animations.none) {
             return;
         }
 
@@ -46,7 +46,7 @@ export class AppifyWallComponent implements OnInit {
                 if (entry.isIntersecting) {
                     let element = entry.target.children[0].children[0].children;
                     for (let i = 0; i < element.length; i++) {
-                        element[i].classList.add(animation);
+                        element[i].classList.add(Animations[animation.type]);
                     }
                     if (!entry.target.children[0].children[1].children.length) {
                         return;
@@ -59,7 +59,7 @@ export class AppifyWallComponent implements OnInit {
                     ) {
                         entry.target.children[0].children[1].children[
                             i
-                        ].classList.add(animation);
+                        ].classList.add(Animations[animation.type]);
                     }
                 }
             });

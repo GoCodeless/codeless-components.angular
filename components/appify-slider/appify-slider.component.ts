@@ -64,7 +64,7 @@ export class AppifySliderComponent implements OnInit {
     @Input() width: SliderWidth = SliderWidth.full;
     @Input() items: Array<SliderModel> = [];
     @Input() style: SliderStyle = new SliderStyle();
-    @Input() animation: Animations = Animations.none;
+    @Input() animation: { type: string } = { type: "none" };
     @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
 
     headline: string = "";
@@ -103,14 +103,14 @@ export class AppifySliderComponent implements OnInit {
         this.buttonPadding.left = 0;
         this.buttonPadding.right = 0;
         const animation = this.animation;
-        if (animation == Animations.none) {
+        if (animation.type == Animations.none) {
             return;
         }
 
         function callbackFunc(entries, _) {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add(animation);
+                    entry.target.classList.add(Animations[animation.type]);
                 }
             });
         }

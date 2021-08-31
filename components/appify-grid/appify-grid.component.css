@@ -29,11 +29,11 @@
     transition: 0.5s;
 }
 
-.row:hover div > div > div.fade-in-grid {
+#inner-container:hover .row div > div > div.fade-in-grid {
     background: white;
     opacity: 0.7;
 }
-.row:hover div > div:hover > div.fade-in-grid {
+#inner-container:hover .row div > div:hover > div.fade-in-grid {
     opacity: 0;
 
     display: none;

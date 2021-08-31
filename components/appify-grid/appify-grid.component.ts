@@ -64,7 +64,7 @@ export class AppifyGridComponent implements OnInit {
     @Input() alignment: GridAlignment = GridAlignment.left;
     @Input() style: GridStyle = new GridStyle();
     @Input() items: Array<GridModel> = [];
-    @Input() animation: Animations = Animations.none;
+    @Input() animation: { type: string } = { type: Animations.none };
     @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
 
     buttonPadding: StylePadding = new StylePadding();
@@ -92,7 +92,7 @@ export class AppifyGridComponent implements OnInit {
         this.buttonPadding.left = 0;
         this.buttonPadding.right = 0;
         const animation = this.animation;
-        if (animation === Animations.none) {
+        if (animation.type === Animations.none) {
             return;
         }
 
@@ -103,7 +103,7 @@ export class AppifyGridComponent implements OnInit {
                     for (let i = 0; i < element.length; i++) {
                         for (let j = 0; j < element[i].children.length; j++) {
                             element[i].children[j].children[0].classList.add(
-                                animation
+                                Animations[animation.type]
                             );
                         }
                     }
