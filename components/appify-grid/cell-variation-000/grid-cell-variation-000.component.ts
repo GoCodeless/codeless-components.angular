@@ -17,7 +17,7 @@ export class AppifyGridCellVariation000Component implements OnInit {
     @Input() alignment: GridAlignment = GridAlignment.left;
     @Input() style: GridStyle = new GridStyle();
     @Input() item: GridModel;
-
+    @Input() zoom: boolean = false;
     buttonPadding: StylePadding = new StylePadding();
 
     constructor(public pageService: PageService) {}

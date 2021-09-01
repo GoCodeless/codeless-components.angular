@@ -64,6 +64,7 @@ export class AppifyGridComponent implements OnInit {
     @Input() alignment: GridAlignment = GridAlignment.left;
     @Input() style: GridStyle = new GridStyle();
     @Input() items: Array<GridModel> = [];
+    @Input() hoverAnimation: { type: string } = { type: Animations.none };
     @Input() animation: { type: string } = { type: Animations.none };
     @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
 

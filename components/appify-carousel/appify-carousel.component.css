@@ -76,7 +76,7 @@
     opacity: 0;
     transition: 0.5s;
 }
-.carousel-container > div:hover .carousel-item-container {
+.zoom-on-hover:hover .carousel-item-container {
     transform: scale(1.2);
 }
 

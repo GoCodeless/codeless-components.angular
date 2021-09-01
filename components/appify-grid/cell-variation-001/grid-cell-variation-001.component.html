@@ -1,73 +1,91 @@
-<div
-    class="item-container"
-    *ngIf="item.image && item.image.length > 0"
-    [style.border-radius]="
-        style?.corner_radius ? style?.corner_radius + 'px' : ''
-    "
->
-    <img
-        class="item-image"
-        [style.margin-bottom]="
-            item.title.length == 0 &&
-            item.subtitle.length == 0 &&
-            item.button_title.length == 0
-                ? '0'
-                : ''
-        "
-        [src]="item.image ? pageService.getImageMapResource(item.image) : ''"
-    />
-</div>
-<div class="inner-container">
-    <h5
-        *ngIf="item.title?.length"
-        class="headline-xs"
-        [style.color]="style?.title?.color ? style?.title?.color : ''"
-        [style.fontFamily]="style?.title?.font ? style?.title?.font : ''"
-        [style.fontSize]="style?.title?.size ? style?.title?.size + 'px' : ''"
-        [style.fontWeight]="style?.title?.weight ? style?.title?.weight : ''"
-        [style.lineHeight]="
-            style?.title?.line_height ? style?.title?.line_height + 'px' : ''
-        "
-        [style.letter-spacing]="
-            style?.title?.letter_spacing
-                ? style?.title?.letter_spacing + 'px'
-                : ''
+<div [class.zoom-on-hover]="zoom">
+    <div
+        class="item-container"
+        *ngIf="item.image && item.image.length > 0"
+        [style.border-radius]="
+            style?.corner_radius ? style?.corner_radius + 'px' : ''
         "
     >
-        {{ item.title }}
-    </h5>
-    <div *ngIf="item.subtitle?.length" class="vertical-item-spacer"></div>
-    <p
-        *ngIf="item.subtitle?.length"
-        class="body-m subtitle"
-        [style.color]="style?.subtitle?.color ? style?.subtitle?.color : ''"
-        [style.fontFamily]="style?.subtitle?.font ? style?.subtitle?.font : ''"
-        [style.fontSize]="
-            style?.subtitle?.size ? style?.subtitle?.size + 'px' : ''
-        "
-        [style.fontWeight]="
-            style?.subtitle?.weight ? style?.subtitle?.weight : ''
-        "
-        [style.lineHeight]="
-            style?.subtitle?.line_height
-                ? style?.subtitle?.line_height + 'px'
-                : ''
-        "
-        [style.letter-spacing]="
-            style?.subtitle?.letter_spacing
-                ? style?.subtitle?.letter_spacing + 'px'
-                : ''
-        "
-    >
-        {{ item.subtitle }}
-    </p>
-    <div *ngIf="item.button_title?.length" class="vertical-item-spacer"></div>
-    <appify-button
-        *ngIf="item.button_title?.length"
-        [title]="item.button_title"
-        [url]="item.button_url"
-        [padding]="buttonPadding"
-        [alignment]="alignment"
-        [style]="style?.button"
-    ></appify-button>
+        <img
+            class="item-image"
+            [style.margin-bottom]="
+                item.title.length == 0 &&
+                item.subtitle.length == 0 &&
+                item.button_title.length == 0
+                    ? '0'
+                    : ''
+            "
+            [style.objectFit]="
+                style?.background_size ? style?.background_size : ''
+            "
+            [src]="
+                item.image ? pageService.getImageMapResource(item.image) : ''
+            "
+        />
+    </div>
+    <div class="inner-container">
+        <h5
+            *ngIf="item.title?.length"
+            class="headline-xs"
+            [style.color]="style?.title?.color ? style?.title?.color : ''"
+            [style.fontFamily]="style?.title?.font ? style?.title?.font : ''"
+            [style.fontSize]="
+                style?.title?.size ? style?.title?.size + 'px' : ''
+            "
+            [style.fontWeight]="
+                style?.title?.weight ? style?.title?.weight : ''
+            "
+            [style.lineHeight]="
+                style?.title?.line_height
+                    ? style?.title?.line_height + 'px'
+                    : ''
+            "
+            [style.letter-spacing]="
+                style?.title?.letter_spacing
+                    ? style?.title?.letter_spacing + 'px'
+                    : ''
+            "
+        >
+            {{ item.title }}
+        </h5>
+        <div *ngIf="item.subtitle?.length" class="vertical-item-spacer"></div>
+        <p
+            *ngIf="item.subtitle?.length"
+            class="body-m subtitle"
+            [style.color]="style?.subtitle?.color ? style?.subtitle?.color : ''"
+            [style.fontFamily]="
+                style?.subtitle?.font ? style?.subtitle?.font : ''
+            "
+            [style.fontSize]="
+                style?.subtitle?.size ? style?.subtitle?.size + 'px' : ''
+            "
+            [style.fontWeight]="
+                style?.subtitle?.weight ? style?.subtitle?.weight : ''
+            "
+            [style.lineHeight]="
+                style?.subtitle?.line_height
+                    ? style?.subtitle?.line_height + 'px'
+                    : ''
+            "
+            [style.letter-spacing]="
+                style?.subtitle?.letter_spacing
+                    ? style?.subtitle?.letter_spacing + 'px'
+                    : ''
+            "
+        >
+            {{ item.subtitle }}
+        </p>
+        <div
+            *ngIf="item.button_title?.length"
+            class="vertical-item-spacer"
+        ></div>
+        <appify-button
+            *ngIf="item.button_title?.length"
+            [title]="item.button_title"
+            [url]="item.button_url"
+            [padding]="buttonPadding"
+            [alignment]="alignment"
+            [style]="style?.button"
+        ></appify-button>
+    </div>
 </div>

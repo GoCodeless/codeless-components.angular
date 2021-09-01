@@ -7,7 +7,11 @@
         "
     >
         <img
+            [class.zoom-on-hover]="zoom"
             class="item-image"
+            [style.objectFit]="
+                style?.background_size ? style?.background_size : ''
+            "
             [style.margin-bottom]="
                 item.title.length == 0 &&
                 item.subtitle.length == 0 &&

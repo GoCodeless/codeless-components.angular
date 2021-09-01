@@ -47,7 +47,7 @@ export class AppifyTextComponent implements OnInit {
     @Input() alignment: Alignment = Alignment.left;
     @Input() width: TextWidth = TextWidth.full;
     @Input() style: TextStyle = new TextStyle();
-    @Input() animation: Animations = Animations.none;
+    @Input() animation: { type: string } = { type: Animations.none };
     @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
     @Output() editBlockElement = new EventEmitter<EditBlockElementItem>();
     hoveringElement: string = null;
@@ -68,14 +68,14 @@ export class AppifyTextComponent implements OnInit {
     constructor(public componentsService: CodelessComponentsService) {}
     ngOnInit() {
         const animation = this.animation;
-        if (animation == Animations.none) {
+        if (animation.type == Animations.none) {
             return;
         }
 
         function callbackFunc(entries, _) {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add(animation);
+                    entry.target.classList.add(Animations[animation.type]);
                 }
             });
         }

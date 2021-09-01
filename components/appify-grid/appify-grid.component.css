@@ -27,16 +27,17 @@
     height: 100%;
     z-index: 1;
     transition: 0.5s;
+    visibility: visible;
 }
 
-#inner-container:hover .row div > div > div.fade-in-grid {
+.focus-on-hover:hover .row div > div > div.fade-in-grid {
     background: white;
     opacity: 0.7;
 }
 #inner-container:hover .row div > div:hover > div.fade-in-grid {
     opacity: 0;
 
-    display: none;
+    visibility: hidden;
 }
 
 #headings-spacer {
@@ -89,13 +90,13 @@ img {
     transition-delay: calc(0.5s * var(--index));
     transform: translate3d(0px, 0px, 0px) !important;
 }
-.staggerSlideUpFadeIn {
-    transition-duration: 2s;
-    transition-delay: calc(0.5s * var(--index));
+.slideUp {
+    transition-duration: 1.5s;
+    transition-delay: calc(0.1s * var(--index));
     transform: translate3d(0px, 0px, 0px) !important;
     opacity: 1 !important;
 }
-.staggerFadeIn {
+.fadeIn {
     transition-duration: 2s;
     transition-delay: calc(0.5s * var(--index));
     opacity: 1 !important;

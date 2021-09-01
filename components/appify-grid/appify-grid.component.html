@@ -20,6 +20,7 @@
 >
     <div
         id="inner-container"
+        [class.focus-on-hover]="hoverAnimation.type == 'focus'"
         [style.text-align]="
             alignment == gridAlignmentValue.center
                 ? 'center'
@@ -79,11 +80,9 @@
                         animation == 'staggerSlideUp' ? true : false
                     "
                     [class.initial-slideupfadein-state]="
-                        animation == 'staggerSlideUpFadeIn' ? true : false
+                        animation.type == 'glide_up'
                     "
-                    [class.initial-fadein-state]="
-                        animation == 'staggerFadeIn' ? true : false
-                    "
+                    [class.initial-fadein-state]="animation.type == 'fade_in'"
                 >
                     <div style="position: relative">
                         <div class="fade-in-grid"></div>
@@ -93,12 +92,14 @@
                                 [alignment]="alignment"
                                 [style]="style"
                                 [item]="item"
+                                [zoom]="hoverAnimation.type == 'zoom'"
                             ></appify-grid-cell-variation-000>
                             <appify-grid-cell-variation-001
                                 *ngIf="style?.variation == '001'"
                                 [alignment]="alignment"
                                 [style]="style"
                                 [item]="item"
+                                [zoom]="hoverAnimation.type == 'zoom'"
                             ></appify-grid-cell-variation-001>
                         </div>
                     </div>

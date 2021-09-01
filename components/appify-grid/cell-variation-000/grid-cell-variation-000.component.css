@@ -3,16 +3,15 @@
     top: 0;
     bottom: 0;
     left: 0;
-    right: 0; /* Make the picture taking the size of it's parent */
-    width: 100%; /* This if for the object-fit */
-    height: 100%; /* This if for the object-fit */
-    object-fit: cover; /* Equivalent of the background-size: cover; of a background-image */
+    right: 0;
+    width: 100%;
+    height: 100%;
     object-position: center;
     transition: 0.5s;
 
     margin-bottom: var(--spacing-xSmall);
 }
-.item-image:hover {
+.zoom-on-hover:hover {
     z-index: 1;
     transform: scale(1.2);
 }
