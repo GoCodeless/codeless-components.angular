@@ -1,29 +1,91 @@
-<div id="container" class="margin-width">
-    <div id="inner-container"
+.
+<div
+    #animate
+    class="margin-width container"
+    [class.initial-animation-state]="animation ? true : false"
+>
+    <div
+        id="inner-container"
         [class.left-align-inner]="alignment == alignmentValue.left"
         [class.right-align-inner]="alignment == alignmentValue.right"
-        [style.height]="height + 'px'">
+        [style.height]="height + 'px'"
+    >
         <!-- [style.max-width]="(maxWidth + 8) + 'px'"> -->
 
-        <div [class.left-padding]="alignment == alignmentValue.right"
-            [class.right-padding]="alignment == alignmentValue.left">
-            <div *ngIf="items.length > 0" class="image-container image-container-small"
+        <div
+            [class.left-padding]="alignment == alignmentValue.right"
+            [class.right-padding]="alignment == alignmentValue.left"
+        >
+            <div
+                *ngIf="items.length > 0"
+                [class.initial-slideup-state]="
+                    animation.type == 'staggerSlideUp' ? true : false
+                "
+                [class.initial-slideupfadein-state]="
+                    animation.type == 'glide_up' ? true : false
+                "
+                [class.initial-fadein-state]="
+                    animation.type == 'fade_in' ? true : false
+                "
+                style="--index: 0"
+                class="image-container image-container-small"
                 (click)="selectedItem(items[0].url)"
-                [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
-                [style.background]="'url(' + items[0].image + ')'"></div>
-            <div *ngIf="items.length > 2" class="image-container image-container-small" style="margin-top: 8px;"
+                [style.border-radius]="
+                    style?.corner_radius ? style?.corner_radius + 'px' : ''
+                "
+            >
+                <img [src]="items[0].image" />
+                <div class="fade-in-wall"></div>
+            </div>
+            <div
+                *ngIf="items.length > 2"
+                [class.initial-slideup-state]="
+                    animation.type == 'staggerSlideUp' ? true : false
+                "
+                [class.initial-slideupfadein-state]="
+                    animation.type == 'glide_up' ? true : false
+                "
+                [class.initial-fadein-state]="
+                    animation.type == 'fade_in' ? true : false
+                "
+                class="image-container image-container-small"
                 (click)="selectedItem(items[2].url)"
-                [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
-                [style.background]="'url(' + items[2].image + ')'"></div>
+                [style.border-radius]="
+                    style?.corner_radius ? style?.corner_radius + 'px' : ''
+                "
+                style="--index: 1; margin-top: 8px"
+            >
+                <img [src]="items[2].image" />
+                <div class="fade-in-wall"></div>
+            </div>
         </div>
 
-        <div [class.left-padding]="alignment == alignmentValue.left"
+        <div
+            [class.left-padding]="alignment == alignmentValue.left"
             [class.right-padding]="alignment == alignmentValue.right"
-            [style.height]="(height - 8) + 'px'">
-            <div *ngIf="items.length > 1" class="image-container image-container-large"
+            [style.height]="height - 8 + 'px'"
+        >
+            <div
+                [class.initial-slideup-state]="
+                    animation.type == 'staggerSlideUp' ? true : false
+                "
+                [class.initial-slideupfadein-state]="
+                    animation.type == 'glide_up' ? true : false
+                "
+                [class.initial-fadein-state]="
+                    animation.type == 'fade_in' ? true : false
+                "
+                style="--index: 2"
+                *ngIf="items.length > 1"
+                class="image-container image-container-large"
                 (click)="selectedItem(items[1].url)"
-                [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
-                [style.background]="'url(' + items[1].image + ')'"></div>
+                [style.border-radius]="
+                    style?.corner_radius ? style?.corner_radius + 'px' : ''
+                "
+            >
+                <img [src]="items[1].image" />
+                <div class="fade-in-wall"></div>
+            </div>
         </div>
     </div>
 </div>

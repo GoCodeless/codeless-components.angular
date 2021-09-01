@@ -1,16 +1,33 @@
 <div [class.margin-width]="width == imageWidthValue.margin">
-    <div [style.padding-top]="style?.padding?.top ? style?.padding?.top + 'px' : ''"
-        [style.padding-bottom]="style?.padding?.bottom ? style?.padding?.bottom + 'px' : ''"
-        [style.padding-left]="style?.padding?.left ? style?.padding?.left + 'px' : ''"
-        [style.padding-right]="style?.padding?.right ? style?.padding?.right + 'px' : ''"
+    <div
+        [style.padding-top]="
+            style?.padding?.top ? style?.padding?.top + 'px' : ''
+        "
+        [style.padding-bottom]="
+            style?.padding?.bottom ? style?.padding?.bottom + 'px' : ''
+        "
+        [style.padding-left]="
+            style?.padding?.left ? style?.padding?.left + 'px' : ''
+        "
+        [style.padding-right]="
+            style?.padding?.right ? style?.padding?.right + 'px' : ''
+        "
     >
-        <img [src]="pageService.getImageMapResource(url)"
+        <img
+            [src]="pageService.getImageMapResource(url)"
             (click)="emitBlockSelect(0, 'image')"
-            (mouseover)="hoveringElement = 'image'; hoveringIndex = 0;"
+            (mouseover)="hoveringElement = 'image'; hoveringIndex = 0"
             (mouseout)="hoveringElement = null"
-            [class.selectable-image]="hoveringElement == 'image' && hoveringIndex == 0"
+            [class.selectable-image]="
+                hoveringElement == 'image' && hoveringIndex == 0
+            "
             [style.height]="style?.height ? style?.height + 'px' : ''"
-            [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
-            [style.object-fit]="style?.background_size ? style?.background_size : ''"/>
+            [style.border-radius]="
+                style?.corner_radius ? style?.corner_radius + 'px' : ''
+            "
+            [style.object-fit]="
+                style?.background_size ? style?.background_size : ''
+            "
+        />
     </div>
 </div>

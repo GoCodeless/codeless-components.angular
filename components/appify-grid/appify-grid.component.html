@@ -1,11 +1,12 @@
 <div
     id="container"
+    #animate
     [class.margin-width]="width == gridWidthValue.margin"
     [style.backgroundColor]="
         style?.background_color ? style?.background_color : ''
     "
     [style.backgroundImage]="
-        style?.background_image ? 'url(' + pageService.getImageMapResource(style?.background_image) + ')' : ''
+        style?.background_image ? 'url(' + style?.background_image + ')' : ''
     "
     [style.backgroundSize]="
         style?.background_size ? style?.background_size : ''
@@ -45,10 +46,14 @@
                 let i = index
             "
             class="row row-container"
+            [style.margin-bottom]="
+                style?.row_spacing ? style?.row_spacing + 'px' : ''
+            "
         >
             <div
                 *ngFor="
-                    let item of items.slice(columns * i, columns * i + columns)
+                    let item of items.slice(columns * i, columns * i + columns);
+                    let j = index
                 "
                 class="col col-12"
                 [class.col-12]="columns == 1"
@@ -68,18 +73,36 @@
                         : ''
                 "
             >
-                <appify-grid-cell-variation-000
-                    *ngIf="style?.variation == '000'"
-                    [alignment]="alignment"
-                    [style]="style"
-                    [item]="item"
-                ></appify-grid-cell-variation-000>
-                <appify-grid-cell-variation-001
-                    *ngIf="style?.variation == '001'"
-                    [alignment]="alignment"
-                    [style]="style"
-                    [item]="item"
-                ></appify-grid-cell-variation-001>
+                <div
+                    [style]="sanitize('--index:' + j)"
+                    [class.initial-slideup-state]="
+                        animation == 'staggerSlideUp' ? true : false
+                    "
+                    [class.initial-slideupfadein-state]="
+                        animation == 'staggerSlideUpFadeIn' ? true : false
+                    "
+                    [class.initial-fadein-state]="
+                        animation == 'staggerFadeIn' ? true : false
+                    "
+                >
+                    <div style="position: relative">
+                        <div class="fade-in-grid"></div>
+                        <div>
+                            <appify-grid-cell-variation-000
+                                *ngIf="style?.variation == '000'"
+                                [alignment]="alignment"
+                                [style]="style"
+                                [item]="item"
+                            ></appify-grid-cell-variation-000>
+                            <appify-grid-cell-variation-001
+                                *ngIf="style?.variation == '001'"
+                                [alignment]="alignment"
+                                [style]="style"
+                                [item]="item"
+                            ></appify-grid-cell-variation-001>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

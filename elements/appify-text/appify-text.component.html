@@ -1,8 +1,14 @@
 <div
+    #animate
     id="container"
     (click)="emitBlockSelect(0, 'text')"
     (mouseover)="hoveringElement = 'text'; hoveringIndex = 0"
     (mouseout)="hoveringElement = null"
+    [class.initial-slideup-state]="animation == 'slideUp' ? true : false"
+    [class.initial-slideupfadein-state]="
+        animation == 'slideUpFadeIn' ? true : false
+    "
+    [class.initial-fadein-state]="animation == 'fadeIn' ? true : false"
     [class.selectable]="hoveringElement == 'text' && hoveringIndex == 0"
     [class.margin-width]="width == textWidthValue.margin"
     [style.backgroundColor]="
@@ -20,15 +26,14 @@
     "
 >
     <p
+        #toggle
         [class.headline]="textType == textTypeValue.header"
         [class.body]="textType == textTypeValue.body"
         [style.color]="style?.text?.color ? style?.text?.color : ''"
         [style.font-family]="style?.text?.font ? style?.text?.font : ''"
         [style.font-size]="style?.text?.size ? style?.text?.size : ''"
         [style.font-weight]="style?.text?.weight ? style?.text?.weight : ''"
-        [style.line-height]="
-            getLineHeight()
-        "
+        [style.line-height]="getLineHeight()"
         [style.text-align]="
             alignment == alignmentValue.right
                 ? 'right'

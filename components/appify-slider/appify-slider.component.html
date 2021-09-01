@@ -4,45 +4,135 @@
     </video>
 </div> -->
 
-<div id="container">
-    <video *ngIf="pageService.getVideoMapResource(items[selectedIndex].image)" id="vid" [src]="pageService.getVideoMapResource(items[selectedIndex].image)" video autobuffer autoplay muted loop>
+<div
+    id="container"
+    #animate
+    [class.initial-slideup-state]="animation.type == 'slideUp' ? true : false"
+    [class.initial-slideupfadein-state]="
+        animation.type == 'glide_up' ? true : false
+    "
+    [class.initial-fadein-state]="animation.type == 'fade_in' ? true : false"
+>
+    <video
+        *ngIf="pageService.getVideoMapResource(items[selectedIndex].image)"
+        id="vid"
+        [src]="pageService.getVideoMapResource(items[selectedIndex].image)"
+        video
+        autobuffer
+        autoplay
+        muted
+        loop
+    ></video>
 
-    </video>
-
-    <div id="inner"
-        [ngStyle]="{'background-image': 'url(' + pageService.getImageMapResource(items[selectedIndex].image) + ')'}"
-        [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
+    <div
+        id="inner"
+        [ngStyle]="{
+            'background-image':
+                'url(' +
+                pageService.getImageMapResource(items[selectedIndex].image) +
+                ')'
+        }"
+        [style.border-radius]="
+            style?.corner_radius ? style?.corner_radius + 'px' : ''
+        "
         [class.margin-width]="width == sliderWidthValue.margin"
-        [style.text-align]="alignment == sliderAlignmentValue.center ? 'center' :
-                            alignment == sliderAlignmentValue.right ? 'right' : 'left'">
-        <div class="row row-container"
-            [class.vertical-align-top]="verticalAlignment == sliderVerticalAlignmentValue.top"
-            [class.vertical-align-middle]="verticalAlignment == sliderVerticalAlignmentValue.middle"
-            [class.vertical-align-bottom]="verticalAlignment == sliderVerticalAlignmentValue.bottom">
-            <div id="contents" style="display: inline-block;"
-                [style.padding-top]="style?.padding?.top ? style?.padding?.top + 'px' : ''"
-                [style.padding-bottom]="style?.padding?.bottom ? style?.padding?.bottom + 'px' : ''"
-                [style.padding-left]="style?.padding?.left ? style?.padding?.left + 'px' : ''"
-                [style.padding-right]="style?.padding?.right ? style?.padding?.right + 'px' : ''">
-                <h1 class="headline-l"
-                    [style.color]="style?.headline?.color ? style?.headline?.color : ''"
-                    [style.fontFamily]="style?.headline?.font ? style?.headline?.font : ''"
-                    [style.fontSize]="style?.headline?.size ? style?.headline?.size + 'px' : ''"
-                    [style.fontWeight]="style?.headline?.weight ? style?.headline?.weight : ''"
-                    [style.lineHeight]="style?.headline?.line_height ? style?.headline?.line_height + 'px' : ''"
-                    [style.letter-spacing]="style?.headline?.letter_spacing ? style?.headline?.letter_spacing + 'px' : ''"
-                >{{ headline }}</h1>
+        [style.text-align]="
+            alignment == sliderAlignmentValue.center
+                ? 'center'
+                : alignment == sliderAlignmentValue.right
+                ? 'right'
+                : 'left'
+        "
+    >
+        <div
+            class="row row-container"
+            [class.vertical-align-top]="
+                verticalAlignment == sliderVerticalAlignmentValue.top
+            "
+            [class.vertical-align-middle]="
+                verticalAlignment == sliderVerticalAlignmentValue.middle
+            "
+            [class.vertical-align-bottom]="
+                verticalAlignment == sliderVerticalAlignmentValue.bottom
+            "
+        >
+            <div
+                id="contents"
+                style="display: inline-block"
+                [style.padding-top]="
+                    style?.padding?.top ? style?.padding?.top + 'px' : ''
+                "
+                [style.padding-bottom]="
+                    style?.padding?.bottom ? style?.padding?.bottom + 'px' : ''
+                "
+                [style.padding-left]="
+                    style?.padding?.left ? style?.padding?.left + 'px' : ''
+                "
+                [style.padding-right]="
+                    style?.padding?.right ? style?.padding?.right + 'px' : ''
+                "
+            >
+                <h1
+                    class="headline-l"
+                    [style.color]="
+                        style?.headline?.color ? style?.headline?.color : ''
+                    "
+                    [style.fontFamily]="
+                        style?.headline?.font ? style?.headline?.font : ''
+                    "
+                    [style.fontSize]="
+                        style?.headline?.size
+                            ? style?.headline?.size + 'px'
+                            : ''
+                    "
+                    [style.fontWeight]="
+                        style?.headline?.weight ? style?.headline?.weight : ''
+                    "
+                    [style.lineHeight]="
+                        style?.headline?.line_height
+                            ? style?.headline?.line_height + 'px'
+                            : ''
+                    "
+                    [style.letter-spacing]="
+                        style?.headline?.letter_spacing
+                            ? style?.headline?.letter_spacing + 'px'
+                            : ''
+                    "
+                >
+                    {{ headline }}
+                </h1>
 
                 <div class="spacing-ms"></div>
 
-                <p class="body-l"
-                    [style.color]="style?.subtitle?.color ? style?.subtitle?.color : ''"
-                    [style.fontFamily]="style?.subtitle?.font ? style?.subtitle?.font : ''"
-                    [style.fontSize]="style?.subtitle?.size ? style?.subtitle?.size + 'px' : ''"
-                    [style.fontWeight]="style?.subtitle?.weight ? style?.subtitle?.weight : ''"
-                    [style.lineHeight]="style?.subtitle?.line_height ? style?.subtitle?.line_height + 'px' : ''"
-                    [style.letter-spacing]="style?.subtitle?.letter_spacing ? style?.subtitle?.letter_spacing + 'px' : ''"
-                >{{ subtitle }}</p>
+                <p
+                    class="body-l"
+                    [style.color]="
+                        style?.subtitle?.color ? style?.subtitle?.color : ''
+                    "
+                    [style.fontFamily]="
+                        style?.subtitle?.font ? style?.subtitle?.font : ''
+                    "
+                    [style.fontSize]="
+                        style?.subtitle?.size
+                            ? style?.subtitle?.size + 'px'
+                            : ''
+                    "
+                    [style.fontWeight]="
+                        style?.subtitle?.weight ? style?.subtitle?.weight : ''
+                    "
+                    [style.lineHeight]="
+                        style?.subtitle?.line_height
+                            ? style?.subtitle?.line_height + 'px'
+                            : ''
+                    "
+                    [style.letter-spacing]="
+                        style?.subtitle?.letter_spacing
+                            ? style?.subtitle?.letter_spacing + 'px'
+                            : ''
+                    "
+                >
+                    {{ subtitle }}
+                </p>
 
                 <div class="spacing-ms"></div>
 
@@ -52,13 +142,18 @@
                         [style]="style"
                         [padding]="buttonPadding"
                         [alignment]="style?.alignment"
-                        (didClick)="clickButton()"></appify-button>
+                        (didClick)="clickButton()"
+                    ></appify-button>
                 </div>
             </div>
         </div>
     </div>
 
     <div id="slider" *ngIf="items.length > 1">
-        <appify-indicators [count]="items.length" [selectedIndex]="selectedIndex" (didSelectIndex)="selectIndex($event)"></appify-indicators>
+        <appify-indicators
+            [count]="items.length"
+            [selectedIndex]="selectedIndex"
+            (didSelectIndex)="selectIndex($event)"
+        ></appify-indicators>
     </div>
 </div>

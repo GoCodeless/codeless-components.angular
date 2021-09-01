@@ -1,24 +1,36 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
-import { CodelessComponentsService } from '../../services/codeless-components.service'
-import { StyleButton, StyleFont, StylePadding } from '../../models/styles.model'
+import {
+    Component,
+    OnInit,
+    Input,
+    SimpleChanges,
+    ViewChild,
+    ElementRef,
+} from "@angular/core";
+import { CodelessComponentsService } from "../../services/codeless-components.service";
+import {
+    StyleButton,
+    StyleFont,
+    StylePadding,
+    Animations,
+} from "../../models/styles.model";
 
-import { PageService } from '@platform-services/page/page.service'
+import { PageService } from "@platform-services/page/page.service";
 
 export enum SliderWidth {
-    full = 'full',
-    margin = 'margin'
+    full = "full",
+    margin = "margin",
 }
 
 export enum SliderAlignment {
-    left = 'left',
-    center = 'center',
-    right = 'right'
+    left = "left",
+    center = "center",
+    right = "right",
 }
 
 export enum SliderVerticalAlignment {
-    top = 'top',
-    middle = 'middle',
-    bottom = 'bottom'
+    top = "top",
+    middle = "middle",
+    bottom = "bottom",
 }
 
 export class SliderModel {
@@ -38,44 +50,74 @@ export class SliderStyle {
 }
 
 @Component({
-  selector: 'appify-slider',
-  templateUrl: './appify-slider.component.html',
-  styleUrls: ['./appify-slider.component.css', './appify-slider.component.mobile.css']
+    selector: "appify-slider",
+    templateUrl: "./appify-slider.component.html",
+    styleUrls: [
+        "./appify-slider.component.css",
+        "./appify-slider.component.mobile.css",
+    ],
 })
 export class AppifySliderComponent implements OnInit {
-    @Input() alignment: SliderAlignment = SliderAlignment.left
-    @Input() verticalAlignment: SliderVerticalAlignment = SliderVerticalAlignment.middle
-    @Input() width: SliderWidth = SliderWidth.full
-    @Input() items: Array<SliderModel> = []
+    @Input() alignment: SliderAlignment = SliderAlignment.left;
+    @Input() verticalAlignment: SliderVerticalAlignment =
+        SliderVerticalAlignment.middle;
+    @Input() width: SliderWidth = SliderWidth.full;
+    @Input() items: Array<SliderModel> = [];
     @Input() style: SliderStyle = new SliderStyle();
+    @Input() animation: { type: string } = { type: "none" };
+    @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
 
-    headline: string = ''
-    subtitle: string = ''
-    buttonText: string = ''
-    buttonURL: string = ''
+    headline: string = "";
+    subtitle: string = "";
+    buttonText: string = "";
+    buttonURL: string = "";
 
-    selectedImage: string = ''
-    selectedIndex: number = 0
-    interval: any = null
-    intervalDuration: number = 6000
-    buttonPadding: StylePadding = new StylePadding()
+    selectedImage: string = "";
+    selectedIndex: number = 0;
+    interval: any = null;
+    intervalDuration: number = 6000;
+    buttonPadding: StylePadding = new StylePadding();
 
     /// Return the heroAlignment value computed in the component since enum is not
     /// accessible outside of this scope.
-    get sliderAlignmentValue() { return SliderAlignment; }
-    get sliderVerticalAlignmentValue() { return SliderVerticalAlignment; }
-    get sliderWidthValue() { return SliderWidth; }
+    get sliderAlignmentValue() {
+        return SliderAlignment;
+    }
+    get sliderVerticalAlignmentValue() {
+        return SliderVerticalAlignment;
+    }
+    get sliderWidthValue() {
+        return SliderWidth;
+    }
 
-    constructor(private codelessService: CodelessComponentsService,
-                public pageService: PageService) {
-        this.setupView()
+    constructor(
+        private codelessService: CodelessComponentsService,
+        public pageService: PageService
+    ) {
+        this.setupView();
     }
 
     ngOnInit() {
-        this.buttonPadding.top = 0
-        this.buttonPadding.bottom = 0
-        this.buttonPadding.left = 0
-        this.buttonPadding.right = 0
+        this.buttonPadding.top = 0;
+        this.buttonPadding.bottom = 0;
+        this.buttonPadding.left = 0;
+        this.buttonPadding.right = 0;
+        const animation = this.animation;
+        if (animation.type == Animations.none) {
+            return;
+        }
+
+        function callbackFunc(entries, _) {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add(Animations[animation.type]);
+                }
+            });
+        }
+
+        let observer = new IntersectionObserver(callbackFunc);
+
+        observer.observe(this.animateRef.nativeElement);
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -85,11 +127,11 @@ export class AppifySliderComponent implements OnInit {
     }
 
     clickButton() {
-        this.codelessService.route(this.buttonURL)
+        this.codelessService.route(this.buttonURL);
     }
 
     setupView() {
-        this.interval = setInterval(()=> {
+        this.interval = setInterval(() => {
             this.naturalIncrement();
         }, this.intervalDuration);
         this.updateView();
@@ -97,11 +139,11 @@ export class AppifySliderComponent implements OnInit {
 
     updateView() {
         if (this.items.length > this.selectedIndex) {
-            this.selectedImage = this.items[this.selectedIndex].image
-            this.headline = this.items[this.selectedIndex].header
-            this.subtitle = this.items[this.selectedIndex].subtitle
-            this.buttonText = this.items[this.selectedIndex].button_text
-            this.buttonURL = this.items[this.selectedIndex].button_url
+            this.selectedImage = this.items[this.selectedIndex].image;
+            this.headline = this.items[this.selectedIndex].header;
+            this.subtitle = this.items[this.selectedIndex].subtitle;
+            this.buttonText = this.items[this.selectedIndex].button_text;
+            this.buttonURL = this.items[this.selectedIndex].button_url;
         }
     }
 
@@ -115,12 +157,12 @@ export class AppifySliderComponent implements OnInit {
     }
 
     naturalIncrement() {
-        this.selectedIndex++
+        this.selectedIndex++;
 
-        if (this.selectedIndex > (this.items.length - 1)) {
-            this.selectedIndex = 0
+        if (this.selectedIndex > this.items.length - 1) {
+            this.selectedIndex = 0;
         }
 
-        this.updateView()
+        this.updateView();
     }
 }

@@ -5,7 +5,32 @@
     background-repeat: no-repeat !important;
     color: var(--color-foreground);
 }
+.initial-slideupfadein-state {
+    transform: translate3d(0px, 150px, 0px);
+    opacity: 0;
+}
+.initial-slideup-state {
+    transform: translate3d(0px, 150px, 0px);
+}
+.initial-fadein-state {
+    opacity: 0;
+}
 
+.slideUp {
+    transition-duration: 1s;
+    transform: translate3d(0px, 0px, 0px) !important;
+    opacity: 1 !important;
+}
+.slideUpFadeIn {
+    transition-duration: 1.5s;
+    transform: translate3d(0px, 0px, 0px) !important;
+    opacity: 1 !important;
+}
+.fadeIn {
+    transition-duration: 2s;
+
+    opacity: 1 !important;
+}
 .feature-container {
     padding: calc(var(--size-section-padding) / 2) var(--spacing-xxLarge);
     align-items: center;

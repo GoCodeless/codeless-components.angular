@@ -1,23 +1,36 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
-import { StyleButton, StyleFont, StylePadding } from '../../models/styles.model'
+import {
+    Component,
+    OnInit,
+    Input,
+    SimpleChanges,
+    ViewChild,
+    ElementRef,
+} from "@angular/core";
+import {
+    StyleButton,
+    StyleFont,
+    StylePadding,
+    Animations,
+} from "../../models/styles.model";
+import { DomSanitizer } from "@angular/platform-browser";
 
-import { PageService } from '@platform-services/page/page.service'
+import { PageService } from "@platform-services/page/page.service";
 
 export enum FeatureAlignment {
-    left = 'left',
-    center = 'center',
-    right = 'right'
+    left = "left",
+    center = "center",
+    right = "right",
 }
 
 export enum FeatureVerticalAlignment {
-    top = 'top',
-    middle = 'middle',
-    bottom = 'bottom'
+    top = "top",
+    middle = "middle",
+    bottom = "bottom",
 }
 
 export enum FeatureWidth {
-    full = 'full',
-    margin = 'margin'
+    full = "full",
+    margin = "margin",
 }
 
 export class FeatureStyle {
@@ -34,41 +47,73 @@ export class FeatureStyle {
 }
 
 @Component({
-  selector: 'appify-feature',
-  templateUrl: './appify-feature.component.html',
-  styleUrls: ['./appify-feature.component.css', './appify-feature.component.tablet.css', './appify-feature.component.mobile.css']
+    selector: "appify-feature",
+    templateUrl: "./appify-feature.component.html",
+    styleUrls: [
+        "./appify-feature.component.css",
+        "./appify-feature.component.tablet.css",
+        "./appify-feature.component.mobile.css",
+    ],
 })
 export class AppifyFeatureComponent implements OnInit {
-    @Input() featureAlignment: FeatureAlignment = FeatureAlignment.right
-    @Input() verticalAlignment: FeatureVerticalAlignment = FeatureVerticalAlignment.middle
-    @Input() imageURL: string = 'https://via.placeholder.com/400x400'
-    @Input() title: string = 'Title'
-    @Input() subtitle: string = 'Subtitle'
-    @Input() body: string = 'Body'
-    @Input() buttonText: string = 'Learn More'
-    @Input() buttonURL: string = ''
-    @Input() minimumHeight: number = 400
-    @Input() width: FeatureWidth = FeatureWidth.full
-    @Input() style: FeatureStyle = new FeatureStyle()
+    @Input() featureAlignment: FeatureAlignment = FeatureAlignment.right;
+    @Input() verticalAlignment: FeatureVerticalAlignment =
+        FeatureVerticalAlignment.middle;
+    @Input() imageURL: string = "https://via.placeholder.com/400x400";
+    @Input() title: string = "Title";
+    @Input() subtitle: string = "Subtitle";
+    @Input() body: string = "Body";
+    @Input() buttonText: string = "Learn More";
+    @Input() buttonURL: string = "";
+    @Input() minimumHeight: number = 400;
+    @Input() width: FeatureWidth = FeatureWidth.full;
+    @Input() style: FeatureStyle = new FeatureStyle();
+    @Input() animation: { type: string } = {
+        type: "none",
+    };
+    @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
 
-    buttonPadding: StylePadding = new StylePadding()
+    buttonPadding: StylePadding = new StylePadding();
 
     /// Return the heroAlignment value computed in the component since enum is not
     /// accessible outside of this scope.
-    get featureAlignmentValue() { return FeatureAlignment; }
-    get featureVerticalAlignmentValue() { return FeatureVerticalAlignment; }
-    get featureWidthValue() { return FeatureWidth; }
-
-    constructor(public pageService: PageService) { }
-
+    get featureAlignmentValue() {
+        return FeatureAlignment;
+    }
+    get featureVerticalAlignmentValue() {
+        return FeatureVerticalAlignment;
+    }
+    get featureWidthValue() {
+        return FeatureWidth;
+    }
+    constructor(
+        private sanitizer: DomSanitizer,
+        public pageService: PageService
+    ) {}
+    sanitize(val) {
+        return this.sanitizer.bypassSecurityTrustStyle(val);
+    }
     ngOnInit() {
-        this.buttonPadding.top = 0
-        this.buttonPadding.bottom = 32
-        this.buttonPadding.left = 0
-        this.buttonPadding.right = 0
+        this.buttonPadding.top = 0;
+        this.buttonPadding.bottom = 32;
+        this.buttonPadding.left = 0;
+        this.buttonPadding.right = 0;
+        const animation = this.animation;
+
+        const callbackFunc = (entries, _) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add(Animations[animation.type]);
+                }
+            });
+        };
+
+        let observer = new IntersectionObserver(callbackFunc);
+
+        observer.observe(this.animateRef.nativeElement);
     }
 
     clickButton() {
-        window.open(this.buttonURL, '_blank');
+        window.open(this.buttonURL, "_blank");
     }
 }

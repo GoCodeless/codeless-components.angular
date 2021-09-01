@@ -1,13 +1,29 @@
 .item-image {
-    width: 100%;
-    padding-bottom: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    position: absolute; /* Take your picture out of the flow */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; /* Make the picture taking the size of it's parent */
+    width: 100%; /* This if for the object-fit */
+    height: 100%; /* This if for the object-fit */
+    object-fit: cover; /* Equivalent of the background-size: cover; of a background-image */
+    object-position: center;
+    transition: 0.5s;
+
     margin-bottom: var(--spacing-xSmall);
 }
-
-.subtitle  {
+.item-image:hover {
+    z-index: 1;
+    transform: scale(1.2);
+}
+.item-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 100%;
+}
+.subtitle {
     flex: 1;
 }
 

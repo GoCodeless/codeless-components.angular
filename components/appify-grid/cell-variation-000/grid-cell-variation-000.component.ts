@@ -6,7 +6,7 @@ import {
 } from "../../../models/styles.model";
 
 import { GridAlignment, GridStyle, GridModel } from "../appify-grid.component";
-import { PageService } from '@platform-services/page/page.service'
+import { PageService } from "@platform-services/page/page.service";
 
 @Component({
     selector: "appify-grid-cell-variation-000",
