@@ -18,10 +18,13 @@
         id="vid"
         [src]="pageService.getVideoMapResource(items[selectedIndex].image)"
         video
-        autobuffer
-        autoplay
+
+        autoBuffer
+        autoPlay
         muted
         loop
+        playsinline
+
     ></video>
 
     <div
