@@ -4,11 +4,11 @@
     (click)="emitBlockSelect(0, 'text')"
     (mouseover)="hoveringElement = 'text'; hoveringIndex = 0"
     (mouseout)="hoveringElement = null"
-    [class.initial-slideup-state]="animation == 'slideUp' ? true : false"
+    [class.initial-slideup-state]="animation?.type == 'slideUp' ? true : false"
     [class.initial-slideupfadein-state]="
-        animation == 'slideUpFadeIn' ? true : false
+        animation?.type == 'slideUpFadeIn' ? true : false
     "
-    [class.initial-fadein-state]="animation == 'fadeIn' ? true : false"
+    [class.initial-fadein-state]="animation?.type == 'fadeIn' ? true : false"
     [class.selectable]="hoveringElement == 'text' && hoveringIndex == 0"
     [class.margin-width]="width == textWidthValue.margin"
     [style.backgroundColor]="
