@@ -1,4 +1,5 @@
 .item-image {
+
     position: absolute;
     top: 0;
     bottom: 0;
@@ -6,12 +7,15 @@
     right: 0;
 
     height: 100%;
+
     object-position: center;
     transition: 0.5s;
 
     margin-bottom: var(--spacing-xSmall);
 }
+
 .zoom-on-hover:hover > .item-container > img.item-image {
+
     transform: scale(1.2);
 }
 .item-container {

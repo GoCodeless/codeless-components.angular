@@ -57,9 +57,11 @@ export class AppifyCarouselComponent implements OnInit {
     @Input() animation: { type: string } = {
         type: "none",
     };
+
     @Input() hoverAnimation: { type: string } = {
         type: "none",
     };
+
     @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
 
     get carouselWidthValue() {
