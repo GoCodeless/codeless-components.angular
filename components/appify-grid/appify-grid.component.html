@@ -85,7 +85,10 @@
                     [class.initial-fadein-state]="animation.type == 'fade_in'"
                 >
                     <div style="position: relative">
-                        <div class="fade-in-grid"></div>
+                        <div
+                            *ngIf="hoverAnimation.type == 'focus'"
+                            class="fade-in-grid"
+                        ></div>
                         <div>
                             <appify-grid-cell-variation-000
                                 *ngIf="style?.variation == '000'"

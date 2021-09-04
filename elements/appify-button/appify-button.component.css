@@ -4,7 +4,7 @@ div {
 
 button {
     cursor: pointer;
-    padding: var(--spacing-xSmall) var(--spacing-small);
+    padding: 0px;
     box-sizing: border-box;
     border: var(--button-border-width) solid var(--button-border-color);
     color: var(--button-text-color);
