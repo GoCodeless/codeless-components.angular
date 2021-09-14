@@ -15,4 +15,8 @@
     .text-container {
         padding: var(--spacing-medium) var(--spacing-medium) !important;
     }
+
+    .feature-container {
+        padding: 0 !important;
+    }
 }

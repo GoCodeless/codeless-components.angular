@@ -11,8 +11,8 @@
 
     margin-bottom: var(--spacing-xSmall);
 }
-
 .zoom-on-hover:hover {
+    z-index: 1;
     transform: scale(1.2);
 }
 .item-container {

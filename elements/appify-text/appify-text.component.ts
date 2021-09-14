@@ -71,17 +71,14 @@ export class AppifyTextComponent implements OnInit {
     ngOnInit() {
         const animation = this.animation;
 
-        if (animation.type == Animations.none) {
-
+        if (animation && animation.type == Animations.none) {
             return;
         }
 
         function callbackFunc(entries, _) {
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-
+                if (entry.isIntersecting && animation) {
                     entry.target.classList.add(Animations[animation.type]);
-
                 }
             });
         }
