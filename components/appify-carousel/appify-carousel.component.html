@@ -89,7 +89,10 @@
                         />
                     </div>
 
-                    <div class="vertical-spacing-image"></div>
+                    <div
+                        *ngIf="item.title"
+                        class="vertical-spacing-image"
+                    ></div>
                     <h5
                         class="headline-xs"
                         [style.color]="
@@ -114,10 +117,14 @@
                                 ? style?.title?.letter_spacing + 'px'
                                 : ''
                         "
+                        *ngIf="item.title"
                     >
                         {{ item.title }}
                     </h5>
-                    <div class="vertical-spacing-title"></div>
+                    <div
+                        class="vertical-spacing-title"
+                        *ngIf="item.subtitle"
+                    ></div>
                     <p
                         class="body-m"
                         [style.color]="
@@ -146,6 +153,7 @@
                                 ? style?.subtitle?.letter_spacing + 'px'
                                 : ''
                         "
+                        *ngIf="item.subtitle"
                     >
                         {{ item.subtitle }}
                     </p>
