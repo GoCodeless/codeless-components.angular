@@ -63,7 +63,13 @@
                 >
                     <div style="overflow: hidden">
                         <img
-                            [src]="item.image"
+                            [src]="
+                                item.image
+                                    ? pageService.getImageMapResource(
+                                          item.image
+                                      )
+                                    : ''
+                            "
                             [style.height]="
                                 style?.image_height
                                     ? style?.image_height + 'px'

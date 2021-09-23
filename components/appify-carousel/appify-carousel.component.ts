@@ -71,7 +71,10 @@ export class AppifyCarouselComponent implements OnInit {
         return CarouselAlignment;
     }
 
-    constructor(private sanitizer: DomSanitizer) {}
+    constructor(
+        private sanitizer: DomSanitizer,
+        private pageService: PageService
+    ) {}
     sanitize(val) {
         return this.sanitizer.bypassSecurityTrustStyle(val);
     }
