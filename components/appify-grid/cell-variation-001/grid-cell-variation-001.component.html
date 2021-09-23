@@ -1,4 +1,3 @@
-
 <div [class.zoom-on-hover]="zoom">
     <div
         class="item-container"
@@ -25,6 +24,7 @@
         />
     </div>
     <div class="inner-container">
+        <div *ngIf="item.title?.length" class="vertical-item-spacer"></div>
         <h5
             *ngIf="item.title?.length"
             class="headline-xs"
@@ -89,5 +89,4 @@
             [style]="style?.button"
         ></appify-button>
     </div>
-
 </div>
