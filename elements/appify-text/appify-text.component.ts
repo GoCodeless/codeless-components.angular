@@ -105,6 +105,20 @@ export class AppifyTextComponent implements OnInit {
 
         return height;
     }
+    getFontSize() {
+        if (!this.style || !this.style.text || !this.style.text.size) {
+            return;
+        }
+        let size: string = this.style.text.size
+            ? this.style.text.size + ""
+            : "";
+
+        if (!size.includes("px") && size.length > 0) {
+            size += "px";
+        }
+
+        return size;
+    }
 
     emitBlockSelect(index, type) {
         let item: EditBlockElementItem = new EditBlockElementItem();
