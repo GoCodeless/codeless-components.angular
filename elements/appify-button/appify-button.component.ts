@@ -159,7 +159,9 @@ export class AppifyButtonComponent implements OnInit {
 
     click() {
         if (this.url.length > 0) {
-            window.location.href = this.url;
+            this.url.includes("telto") || this.url.includes("mailto")
+                ? window.open(this.url, "_blank")
+                : (window.location.href = this.url);
             return;
         }
 

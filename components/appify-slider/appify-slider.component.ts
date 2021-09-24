@@ -126,10 +126,6 @@ export class AppifySliderComponent implements OnInit {
         }
     }
 
-    clickButton() {
-        this.codelessService.route(this.buttonURL);
-    }
-
     setupView() {
         this.interval = setInterval(() => {
             this.naturalIncrement();

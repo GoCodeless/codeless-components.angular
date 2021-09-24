@@ -18,13 +18,11 @@
         id="vid"
         [src]="pageService.getVideoMapResource(items[selectedIndex].image)"
         video
-
         autoBuffer
         autoPlay
         muted
         loop
         playsinline
-
     ></video>
 
     <div
@@ -145,7 +143,7 @@
                         [style]="style"
                         [padding]="buttonPadding"
                         [alignment]="style?.alignment"
-                        (didClick)="clickButton()"
+                        [url]="buttonURL"
                     ></appify-button>
                 </div>
             </div>

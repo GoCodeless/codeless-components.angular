@@ -31,7 +31,7 @@
         [class.body]="textType == textTypeValue.body"
         [style.color]="style?.text?.color ? style?.text?.color : ''"
         [style.font-family]="style?.text?.font ? style?.text?.font : ''"
-        [style.font-size]="style?.text?.size ? style?.text?.size : ''"
+        [style.font-size]="getFontSize()"
         [style.font-weight]="style?.text?.weight ? style?.text?.weight : ''"
         [style.line-height]="getLineHeight()"
         [style.text-align]="
