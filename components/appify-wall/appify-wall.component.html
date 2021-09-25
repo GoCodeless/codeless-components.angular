@@ -34,7 +34,13 @@
                     style?.corner_radius ? style?.corner_radius + 'px' : ''
                 "
             >
-                <img [src]="items[0].image" />
+                <img [src]="
+                items[0].image
+                    ? pageService.getImageMapResource(
+                        items[0].image
+                      )
+                    : ''
+            " />
                 <div class="fade-in-wall"></div>
             </div>
             <div
@@ -55,7 +61,12 @@
                 "
                 style="--index: 1; margin-top: 8px"
             >
-                <img [src]="items[2].image" />
+                <img [src]="items[2].image
+                ? pageService.getImageMapResource(
+                    items[2].image
+                  )
+                : ''
+        "  />
                 <div class="fade-in-wall"></div>
             </div>
         </div>
@@ -83,7 +94,12 @@
                     style?.corner_radius ? style?.corner_radius + 'px' : ''
                 "
             >
-                <img [src]="items[1].image" />
+                <img [src]="items[1].image
+                ? pageService.getImageMapResource(
+                    items[1].image
+                  )
+                : ''
+        "  />
                 <div class="fade-in-wall"></div>
             </div>
         </div>

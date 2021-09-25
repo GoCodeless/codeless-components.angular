@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from "@angular/core";
 import { Animations } from "../../models/styles.model";
+import { PageService } from "@platform-services/page/page.service";
 export enum WallAlignment {
     left = "left",
     right = "right",
@@ -34,7 +35,7 @@ export class AppifyWallComponent implements OnInit {
         return WallAlignment;
     }
 
-    constructor() {}
+    constructor(private pageService:PageService) {}
     ngOnInit() {
         const animation = this.animation;
         if (animation.type === Animations.none) {
