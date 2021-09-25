@@ -89,6 +89,7 @@ export class AppifyGridComponent implements OnInit {
     sanitize(val) {
         return this.sanitizer.bypassSecurityTrustStyle(val);
     }
+
     ngOnInit() {
         this.buttonPadding.top = 0;
         this.buttonPadding.bottom = 32;
@@ -117,5 +118,13 @@ export class AppifyGridComponent implements OnInit {
         let observer = new IntersectionObserver(callbackFunc);
 
         observer.observe(this.animateRef.nativeElement);
+    }
+
+    getColumns() {
+        if (!this.columns || this.columns == 0) {
+            return 1
+        }
+
+        return this.columns
     }
 }
