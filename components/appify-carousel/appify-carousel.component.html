@@ -33,14 +33,14 @@
             <div
                 *ngFor="let item of items; let i = index"
                 [class.initial-slideupfadein-state]="
-                    animation.type == 'glide_up'
+                    animation?.type == 'glide_up'
                 "
-                [class.initial-fadein-state]="animation.type == 'fade_in'"
-                [class.zoom-on-hover]="hoverAnimation.type == 'zoom'"
+                [class.initial-fadein-state]="animation?.type == 'fade_in'"
+                [class.zoom-on-hover]="hoverAnimation?.type == 'zoom'"
                 [style]="sanitize('--index:' + i)"
             >
                 <div
-                    *ngIf="hoverAnimation.type == 'focus'"
+                    *ngIf="hoverAnimation?.type == 'focus'"
                     class="fade-in-carousel"
                 ></div>
 
