@@ -7,11 +7,11 @@
 <div
     id="container"
     #animate
-    [class.initial-slideup-state]="animation.type == 'slideUp' ? true : false"
+    [class.initial-slideup-state]="animation?.type == 'slideUp' ? true : false"
     [class.initial-slideupfadein-state]="
-        animation.type == 'glide_up' ? true : false
+        animation?.type == 'glide_up' ? true : false
     "
-    [class.initial-fadein-state]="animation.type == 'fade_in' ? true : false"
+    [class.initial-fadein-state]="animation?.type == 'fade_in' ? true : false"
 >
     <video
         *ngIf="pageService.getVideoMapResource(items[selectedIndex].image)"

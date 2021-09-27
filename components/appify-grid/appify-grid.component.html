@@ -43,7 +43,7 @@
     >
         <div
             *ngFor="
-                let t of temp(math.ceil(items.length / columns)).fill(0);
+                let t of temp(math.ceil(items.length / getColumns())).fill(0);
                 let i = index
             "
             class="row row-container"
@@ -53,7 +53,7 @@
         >
             <div
                 *ngFor="
-                    let item of items.slice(columns * i, columns * i + columns);
+                    let item of items.slice(getColumns() * i, getColumns() * i + getColumns());
                     let j = index
                 "
                 class="col col-12"
