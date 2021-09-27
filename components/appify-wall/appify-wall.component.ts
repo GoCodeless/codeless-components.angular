@@ -26,6 +26,7 @@ export class AppifyWallComponent implements OnInit {
     @Input() alignment: WallAlignment = WallAlignment.left;
     @Input() items: Array<WallModel> = [];
     @Input() style: any = {};
+    @Input() hoverAnimation: { type: string } = { type: "none" };
     @Input() animation: { type: string } = { type: "none" };
     @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
 

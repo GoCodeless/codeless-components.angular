@@ -34,14 +34,16 @@
                     style?.corner_radius ? style?.corner_radius + 'px' : ''
                 "
             >
-                <img [src]="
+                <img
+                [class.zoom-image]="hoverAnimation.type == 'zoom'"
+                 [src]="
                 items[0].image
                     ? pageService.getImageMapResource(
                         items[0].image
                       )
                     : ''
             " />
-                <div class="fade-in-wall"></div>
+                <div *ngIf="hoverAnimation.type == 'focus'" class="fade-in-wall"></div>
             </div>
             <div
                 *ngIf="items.length > 2"
@@ -61,13 +63,15 @@
                 "
                 style="--index: 1; margin-top: 8px"
             >
-                <img [src]="items[2].image
+                <img
+                [class.zoom-image]="hoverAnimation.type == 'zoom'"
+                 [src]="items[2].image
                 ? pageService.getImageMapResource(
                     items[2].image
                   )
                 : ''
         "  />
-                <div class="fade-in-wall"></div>
+                <div *ngIf="hoverAnimation.type == 'focus'" class="fade-in-wall"></div>
             </div>
         </div>
 
@@ -94,13 +98,16 @@
                     style?.corner_radius ? style?.corner_radius + 'px' : ''
                 "
             >
-                <img [src]="items[1].image
+                <img
+                [class.zoom-image]="hoverAnimation.type == 'zoom'"
+                 [src]="items[1].image
                 ? pageService.getImageMapResource(
                     items[1].image
                   )
                 : ''
+                
         "  />
-                <div class="fade-in-wall"></div>
+                <div *ngIf="hoverAnimation.type == 'focus'" class="fade-in-wall"></div>
             </div>
         </div>
     </div>
