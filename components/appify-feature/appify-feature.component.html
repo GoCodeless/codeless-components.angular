@@ -1,5 +1,20 @@
 <div
     id="container"
+    [style.padding-left]="
+    width == featureWidthValue.full
+        ? style?.padding?.left
+            ? style?.padding?.left + 'px'
+            : ''
+        : '0'
+"
+[style.padding-right]="
+    width == featureWidthValue.full
+        ? style?.padding?.right
+            ? style?.padding?.right + 'px'
+            : ''
+        : '0'
+" [style.padding-top]=" style?.padding?.top ? style?.padding?.top + 'px' : ''"
+    [style.padding-bottom]="style?.padding?.bottom ? style?.padding?.bottom + 'px' : '' "
     [class.margin-width]="width == featureWidthValue.margin"
     [style.backgroundColor]="
         style?.background_color ? style?.background_color : ''
@@ -29,26 +44,7 @@
 >
     <div
         class="row feature-container"
-        [style.padding-left]="
-            width == featureWidthValue.margin
-                ? style?.padding?.left
-                    ? style?.padding?.left + 'px'
-                    : ''
-                : '0'
-        "
-        [style.padding-right]="
-            width == featureWidthValue.margin
-                ? style?.padding?.right
-                    ? style?.padding?.right + 'px'
-                    : ''
-                : '0'
-        "
-        [style.padding-top]="
-            style?.padding?.top ? style?.padding?.top + 'px' : ''
-        "
-        [style.padding-bottom]="
-            style?.padding?.bottom ? style?.padding?.bottom + 'px' : ''
-        "
+        
         [class.vertical-align-top]="
             verticalAlignment == featureVerticalAlignmentValue.top
         "
