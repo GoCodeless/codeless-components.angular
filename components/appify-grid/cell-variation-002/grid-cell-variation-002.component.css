@@ -1,0 +1,36 @@
+.item-image {
+    position: absolute; /* Take your picture out of the flow */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: contain;
+    transition: 0.5s;
+    margin-bottom: var(--spacing-xSmall);
+}
+.zoom-on-hover:hover {
+    z-index: 1;
+    transform: scale(1.2);
+}
+.item-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 100%;
+}
+
+.subtitle {
+    flex: 1;
+}
+
+.vertical-item-spacer {
+    height: var(--spacing-xSmall);
+}
+.container{
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+}
