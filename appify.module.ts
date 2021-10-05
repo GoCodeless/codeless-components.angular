@@ -26,6 +26,7 @@ import { AppifyFormComponent } from "./components/appify-form/appify-form.compon
 import { AppifyGridComponent } from "./components/appify-grid/appify-grid.component";
 import { AppifyGridCellVariation000Component } from "./components/appify-grid/cell-variation-000/grid-cell-variation-000.component";
 import { AppifyGridCellVariation001Component } from "./components/appify-grid/cell-variation-001/grid-cell-variation-001.component";
+import { AppifyGridCellVariation002Component } from "./components/appify-grid/cell-variation-002/grid-cell-variation-002.component";
 import { AppifyListComponent } from "./components/appify-list/appify-list.component";
 import { AppifyNewsletterComponent } from "./components/appify-newsletter/appify-newsletter.component";
 import { AppifySliderComponent } from "./components/appify-slider/appify-slider.component";
@@ -53,6 +54,7 @@ import { AppifyVerticalStackComponent } from "./layouts/appify-vertical-stack/ap
         AppifyDropdownComponent,
         AppifyGridCellVariation000Component,
         AppifyGridCellVariation001Component,
+        AppifyGridCellVariation002Component,
         AppifyNavigationHeaderComponent,
         AppifyNavigationFooterComponent,
         AppifyImageComponent,

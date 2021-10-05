@@ -104,6 +104,13 @@
                                 [item]="item"
                                 [zoom]="hoverAnimation?.type == 'zoom'"
                             ></appify-grid-cell-variation-001>
+                            <appify-grid-cell-variation-002
+                            *ngIf="style?.variation == '002'"
+                            [alignment]="alignment"
+                            [style]="style"
+                            [item]="item"
+                            [zoom]="hoverAnimation.type == 'zoom'"
+                        ></appify-grid-cell-variation-002>
                         </div>
                     </div>
                 </div>

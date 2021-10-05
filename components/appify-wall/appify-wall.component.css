@@ -27,7 +27,7 @@
 .image-container:hover .fade-in-wall {
     opacity: 0;
 }
-.image-container:hover > img {
+.image-container:hover > .zoom-image {
     transform: scale(1.2) !important;
     transition: 0.5s !important;
     z-index: 1;
