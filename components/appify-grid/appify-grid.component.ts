@@ -96,13 +96,13 @@ export class AppifyGridComponent implements OnInit {
         this.buttonPadding.left = 0;
         this.buttonPadding.right = 0;
         const animation = this.animation;
-        if (animation.type === Animations.none) {
+        if (animation && animation.type === Animations.none) {
             return;
         }
 
         const callbackFunc = (entries, _) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting && animation) {
                     const element = entry.target.children[0].children;
                     for (let i = 0; i < element.length; i++) {
                         for (let j = 0; j < element[i].children.length; j++) {
