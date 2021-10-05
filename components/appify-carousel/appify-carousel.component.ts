@@ -83,7 +83,7 @@ export class AppifyCarouselComponent implements OnInit {
 
         const callbackFunc = (entries, _) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting && animation) {
                     const element =
                         entry.target.children[0].children[0].children;
                     for (let i = 0; i < element.length; i++) {

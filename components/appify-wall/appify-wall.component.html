@@ -19,13 +19,13 @@
             <div
                 *ngIf="items.length > 0"
                 [class.initial-slideup-state]="
-                    animation.type == 'staggerSlideUp' ? true : false
+                    animation?.type == 'staggerSlideUp' ? true : false
                 "
                 [class.initial-slideupfadein-state]="
-                    animation.type == 'glide_up' ? true : false
+                    animation?.type == 'glide_up' ? true : false
                 "
                 [class.initial-fadein-state]="
-                    animation.type == 'fade_in' ? true : false
+                    animation?.type == 'fade_in' ? true : false
                 "
                 style="--index: 0"
                 class="image-container image-container-small"
@@ -34,9 +34,11 @@
                     style?.corner_radius ? style?.corner_radius + 'px' : ''
                 "
             >
+
                 <img
                 [class.zoom-image]="hoverAnimation.type == 'zoom'"
                  [src]="
+
                 items[0].image
                     ? pageService.getImageMapResource(
                         items[0].image
@@ -44,17 +46,18 @@
                     : ''
             " />
                 <div *ngIf="hoverAnimation.type == 'focus'" class="fade-in-wall"></div>
+
             </div>
             <div
                 *ngIf="items.length > 2"
                 [class.initial-slideup-state]="
-                    animation.type == 'staggerSlideUp' ? true : false
+                    animation?.type == 'staggerSlideUp' ? true : false
                 "
                 [class.initial-slideupfadein-state]="
-                    animation.type == 'glide_up' ? true : false
+                    animation?.type == 'glide_up' ? true : false
                 "
                 [class.initial-fadein-state]="
-                    animation.type == 'fade_in' ? true : false
+                    animation?.type == 'fade_in' ? true : false
                 "
                 class="image-container image-container-small"
                 (click)="selectedItem(items[2].url)"
@@ -63,15 +66,19 @@
                 "
                 style="--index: 1; margin-top: 8px"
             >
+
                 <img
                 [class.zoom-image]="hoverAnimation.type == 'zoom'"
                  [src]="items[2].image
+
                 ? pageService.getImageMapResource(
                     items[2].image
                   )
                 : ''
         "  />
+
                 <div *ngIf="hoverAnimation.type == 'focus'" class="fade-in-wall"></div>
+
             </div>
         </div>
 
@@ -82,13 +89,13 @@
         >
             <div
                 [class.initial-slideup-state]="
-                    animation.type == 'staggerSlideUp' ? true : false
+                    animation?.type == 'staggerSlideUp' ? true : false
                 "
                 [class.initial-slideupfadein-state]="
-                    animation.type == 'glide_up' ? true : false
+                    animation?.type == 'glide_up' ? true : false
                 "
                 [class.initial-fadein-state]="
-                    animation.type == 'fade_in' ? true : false
+                    animation?.type == 'fade_in' ? true : false
                 "
                 style="--index: 2"
                 *ngIf="items.length > 1"
@@ -98,16 +105,20 @@
                     style?.corner_radius ? style?.corner_radius + 'px' : ''
                 "
             >
+
                 <img
                 [class.zoom-image]="hoverAnimation.type == 'zoom'"
                  [src]="items[1].image
+
                 ? pageService.getImageMapResource(
                     items[1].image
                   )
                 : ''
+
                 
         "  />
                 <div *ngIf="hoverAnimation.type == 'focus'" class="fade-in-wall"></div>
+
             </div>
         </div>
     </div>

@@ -39,13 +39,13 @@ export class AppifyWallComponent implements OnInit {
     constructor(private pageService:PageService) {}
     ngOnInit() {
         const animation = this.animation;
-        if (animation.type === Animations.none) {
+        if (animation && animation.type === Animations.none) {
             return;
         }
 
         const callbackFunc = (entries, _) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting && animation) {
                     let element = entry.target.children[0].children[0].children;
                     for (let i = 0; i < element.length; i++) {
                         element[i].classList.add(Animations[animation.type]);

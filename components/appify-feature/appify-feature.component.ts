@@ -102,7 +102,7 @@ export class AppifyFeatureComponent implements OnInit {
 
         const callbackFunc = (entries, _) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting && animation) {
                     entry.target.classList.add(Animations[animation.type]);
                 }
             });

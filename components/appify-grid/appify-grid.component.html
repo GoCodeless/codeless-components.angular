@@ -20,7 +20,7 @@
 >
     <div
         id="inner-container"
-        [class.focus-on-hover]="hoverAnimation.type == 'focus'"
+        [class.focus-on-hover]="hoverAnimation?.type == 'focus'"
         [style.text-align]="
             alignment == gridAlignmentValue.center
                 ? 'center'
@@ -80,13 +80,13 @@
                         animation == 'staggerSlideUp' ? true : false
                     "
                     [class.initial-slideupfadein-state]="
-                        animation.type == 'glide_up'
+                        animation?.type == 'glide_up'
                     "
-                    [class.initial-fadein-state]="animation.type == 'fade_in'"
+                    [class.initial-fadein-state]="animation?.type == 'fade_in'"
                 >
                     <div style="position: relative">
                         <div
-                            *ngIf="hoverAnimation.type == 'focus'"
+                            *ngIf="hoverAnimation?.type == 'focus'"
                             class="fade-in-grid"
                         ></div>
                         <div>
@@ -95,14 +95,14 @@
                                 [alignment]="alignment"
                                 [style]="style"
                                 [item]="item"
-                                [zoom]="hoverAnimation.type == 'zoom'"
+                                [zoom]="hoverAnimation?.type == 'zoom'"
                             ></appify-grid-cell-variation-000>
                             <appify-grid-cell-variation-001
                                 *ngIf="style?.variation == '001'"
                                 [alignment]="alignment"
                                 [style]="style"
                                 [item]="item"
-                                [zoom]="hoverAnimation.type == 'zoom'"
+                                [zoom]="hoverAnimation?.type == 'zoom'"
                             ></appify-grid-cell-variation-001>
                             <appify-grid-cell-variation-002
                             *ngIf="style?.variation == '002'"
