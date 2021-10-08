@@ -45,6 +45,7 @@ export class GridStyle {
     background_repeat: string;
     row_spacing: number;
     item_spacing: number;
+    corner_radius: number;
 }
 
 @Component({
