@@ -1,7 +1,7 @@
 <div (click)="emitBlockSelect(0, 'line')"
     (mouseover)="hoveringElement = 'line'; hoveringIndex = 0;"
     (mouseout)="hoveringElement = null"
-    [class.selectable]="hoveringElement == 'line' && hoveringIndex == 0">
+    [class.selectable]="hoveringElement == 'line' && hoveringIndex == 0 && isEditing == true">
     <div [style.width]="widthPercent + '%'"
          [style.height]="height + 'px'"
          [style.backgroundColor]="color">

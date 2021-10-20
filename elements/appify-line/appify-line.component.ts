@@ -14,6 +14,7 @@ export enum LineAlignment {
   styleUrls: ['./appify-line.component.css']
 })
 export class AppifyLineComponent implements OnInit {
+    @Input() isEditing: boolean = false;
     @Input() identifier: string = ''
     @Input() height: number = 1
     @Input() widthPercent: number = 100

@@ -19,7 +19,7 @@
             (mouseover)="hoveringElement = 'image'; hoveringIndex = 0"
             (mouseout)="hoveringElement = null"
             [class.selectable-image]="
-                hoveringElement == 'image' && hoveringIndex == 0
+                hoveringElement == 'image' && hoveringIndex == 0 && isEditing == true
             "
             [style.height]="style?.height ? style?.height + 'px' : ''"
             [style.border-radius]="

@@ -2,7 +2,7 @@
     (click)="emitBlockSelect(0, 'video')"
     (mouseover)="hoveringElement = 'video'; hoveringIndex = 0;"
     (mouseout)="hoveringElement = null"
-    [class.selectable]="hoveringElement == 'video' && hoveringIndex == 0"
+    [class.selectable]="hoveringElement == 'video' && hoveringIndex == 0 && isEditing == true"
     [class.margin-width]="width == videoWidthValue.margin">
     <div [style.text-align]="alignment == alignmentValue.right ? 'right' : alignment == alignmentValue.center ? 'center': 'left'"
         [style.padding-top]="style?.padding?.top ? style?.padding?.top + 'px' : ''"

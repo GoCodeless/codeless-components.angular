@@ -91,11 +91,11 @@ p {
 }
 
 .vertical-spacing-image {
-    height: var(--spacing-mediumSmall);
+    height: var(--spacing-small);
 }
 
 .vertical-spacing-title {
-    height: var(--spacing-small);
+    height: var(--spacing-xSmall);
 }
 
 .col {

@@ -2,5 +2,5 @@
     (click)="emitBlockSelect(0, 'spacer')"
     (mouseover)="hoveringElement = 'spacer'; hoveringIndex = 0;"
     (mouseout)="hoveringElement = null"
-    [class.selectable]="hoveringElement == 'spacer' && hoveringIndex == 0"
+    [class.selectable]="hoveringElement == 'spacer' && hoveringIndex == 0 && isEditing == true"
     [style.height]="space == 0 ? '' : space + 'px'"></div>

@@ -41,6 +41,7 @@ export class TextStyle {
     styleUrls: ["./appify-text.component.css"],
 })
 export class AppifyTextComponent implements OnInit {
+    @Input() isEditing: boolean = false;
     @Input() identifier: string = "";
     @Input() text: String = "";
     @Input() textType: TextType = TextType.header;

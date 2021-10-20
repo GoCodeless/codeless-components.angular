@@ -9,7 +9,7 @@
         animation?.type == 'slideUpFadeIn' ? true : false
     "
     [class.initial-fadein-state]="animation?.type == 'fadeIn' ? true : false"
-    [class.selectable]="hoveringElement == 'text' && hoveringIndex == 0"
+    [class.selectable]="hoveringElement == 'text' && hoveringIndex == 0 && isEditing == true"
     [class.margin-width]="width == textWidthValue.margin"
     [style.backgroundColor]="
         style?.background_color ? style?.background_color : ''

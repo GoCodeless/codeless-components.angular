@@ -8,6 +8,7 @@ import { EditBlockElementItem } from '../appify-image/appify-image.component'
   styleUrls: ['./appify-spacer.component.css']
 })
 export class AppifySpacerComponent implements OnInit {
+    @Input() isEditing: boolean = false;
     @Input() identifier: string = ''
     @Input() space: number = 0
 

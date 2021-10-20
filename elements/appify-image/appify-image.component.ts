@@ -27,6 +27,7 @@ export class ImageStyle {
     styleUrls: ["./appify-image.component.css"],
 })
 export class AppifyImageComponent implements OnInit {
+    @Input() isEditing: boolean = false;
     @Input() identifier: string = "";
     @Input() url: string = "";
     @Input() style: ImageStyle = new ImageStyle();

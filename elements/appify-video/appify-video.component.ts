@@ -26,6 +26,7 @@ export enum Alignment {
   styleUrls: ['./appify-video.component.css']
 })
 export class AppifyVideoComponent implements OnInit {
+    @Input() isEditing: boolean = false;
     @Input() identifier: string = ''
     @Input()
     set url(url: string) {
