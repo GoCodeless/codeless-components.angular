@@ -62,7 +62,7 @@ export class AppifyCarouselComponent implements OnInit {
         type: "none",
     };
 
-    @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
+    @ViewChild("animate", {static: true, read: ElementRef}) animateRef: ElementRef<HTMLElement>;
 
     get carouselWidthValue() {
         return CarouselWidth;
