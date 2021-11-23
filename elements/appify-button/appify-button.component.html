@@ -1,17 +1,10 @@
 <div
-    (click)="emitBlockSelect(0, 'button')"
+    id="container"
+    (click)="emitBlockSelect(0, 'button', null)"
     (mouseover)="hoveringElement = 'button'; hoveringIndex = 0"
     (mouseout)="hoveringElement = null"
-    [class.selectable]="
-        hoveringElement == 'button' && hoveringIndex == 0 && isEditing == true
-    "
-    [style.text-align]="
-        alignment == alignmentValue.right
-            ? 'right'
-            : alignment == alignmentValue.center
-            ? 'center'
-            : 'left'
-    "
+    [class.selectable]="hoveringElement == 'button' && hoveringIndex == 0 && isEditing == true"
+    [style.text-align]="alignment == alignmentValue.right ? 'right' : alignment == alignmentValue.center ? 'center' : 'left'"
     [class.margin-width]="width == containerWidthValue.margin"
     [style.padding-top]="padding?.top ? padding?.top + 'px' : ''"
     [style.padding-bottom]="padding?.bottom ? padding?.bottom + 'px' : ''"
@@ -20,7 +13,7 @@
     [style.borderRadius]="style?.border_radius ? style?.border_radius : ''"
 >
     <button
-        *ngIf="title?.length > 0"
+        *ngIf="title?.length > 0 && !isEditing"
         (click)="click()"
         (mouseover)="isHovering = true"
         (mouseleave)="isHovering = false"
@@ -33,4 +26,27 @@
     >
         {{ title }}
     </button>
+
+    <div *ngIf="isEditing" style="position: relative;">
+        <div *ngIf="isEditingValue" style="position: absolute; top: -26px; left: 0;">
+            <div class="editing-textarea-tag">
+                Button
+            </div>
+        </div>
+
+        <input type="text" 
+            *ngIf="isEditing"
+            class="editing-input"
+            [size]="title.length + 4"
+            [(ngModel)]="title" 
+            (input)="title = $event.target.value"
+            (focus)="isEditingValue = true;"
+            (blur)="emitBlockSelect(0, 'button_text', $event.target.value); isEditingValue = false;"
+            [ngStyle]="{ backgroundColor: backgroundColor() }"
+            [style.borderColor]="borderColor()"
+            [style.color]="color()"
+            [style.borderRadius]="style?.border_radius ? style.border_radius : ''"
+            [style.width]="width == containerWidthValue.margin ? '' : ''"
+        />
+    </div>
 </div>

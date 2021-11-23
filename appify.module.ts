@@ -1,9 +1,17 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
+import { FormsModule } from '@angular/forms';
 
 // Services
 import { CodelessComponentsService } from "./services/codeless-components.service";
+
+// Directives
+import { TextareaAutoresizeDirective } from "./directives/textarea-autoresize.directive";
+
+// Internal Components
+import { CodelessReplaceImageButton } from "./components/codeless-replace-image-button/codeless-replace-image-button.component";
+import { CodelessLoadingView } from "./components/codeless-loading-view/codeless-loading-view.component";
 
 // Elements
 import { AppifyButtonComponent } from "./elements/appify-button/appify-button.component";
@@ -33,12 +41,13 @@ import { AppifySliderComponent } from "./components/appify-slider/appify-slider.
 import { AppifyTestimonialComponent } from "./components/appify-testimonial/appify-testimonial.component";
 import { AppifyWallComponent } from "./components/appify-wall/appify-wall.component";
 import { AppifyDropdownComponent } from "./components/appify-dropdown/appify-dropdown.component";
+
 // Layouts
 import { AppifyHorizontalStackComponent } from "./layouts/appify-horizontal-stack/appify-horizontal-stack.component";
 import { AppifyVerticalStackComponent } from "./layouts/appify-vertical-stack/appify-vertical-stack.component";
 
 @NgModule({
-    imports: [CommonModule, RouterModule],
+    imports: [CommonModule, RouterModule, FormsModule],
     declarations: [
         AppifyButtonComponent,
         AppifyImageComponent,
@@ -71,6 +80,11 @@ import { AppifyVerticalStackComponent } from "./layouts/appify-vertical-stack/ap
         AppifyIndicatorsComponent,
         AppifyHorizontalStackComponent,
         AppifyVerticalStackComponent,
+
+        TextareaAutoresizeDirective,
+        
+        CodelessReplaceImageButton,
+        CodelessLoadingView
     ],
     providers: [CodelessComponentsService],
 
@@ -97,6 +111,11 @@ import { AppifyVerticalStackComponent } from "./layouts/appify-vertical-stack/ap
         AppifyWallComponent,
         AppifyHorizontalStackComponent,
         AppifyVerticalStackComponent,
+
+        TextareaAutoresizeDirective,
+
+        CodelessReplaceImageButton,
+        CodelessLoadingView
     ],
     entryComponents: [],
 })

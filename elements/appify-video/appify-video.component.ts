@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { StylePadding } from '../../models/styles.model'
-
-import { EditBlockElementItem } from '../appify-image/appify-image.component'
+import { EditBlockElementItem, StylePadding } from '../../models/styles.model'
 
 export enum VideoWidth {
     full = 'full',

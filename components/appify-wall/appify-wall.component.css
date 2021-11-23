@@ -119,3 +119,14 @@
     max-width: var(--size-default-margin);
     /* padding: 0 var(--spacing-small); */
 }
+
+.image-container:hover  > .replace-button {
+    display: block;
+}
+
+.replace-button {
+    display: none;
+    position: absolute; 
+    right: 8px; 
+    bottom: 8px;
+}

@@ -2,6 +2,8 @@ import {
     Component,
     OnInit,
     Input,
+    Output,
+    EventEmitter,
     SimpleChanges,
     ViewChild,
     ElementRef,
@@ -11,6 +13,7 @@ import {
     StyleFont,
     StylePadding,
     Animations,
+    EditBlockElementItem
 } from "../../models/styles.model";
 import { DomSanitizer } from "@angular/platform-browser";
 
@@ -56,6 +59,12 @@ export class FeatureStyle {
     ],
 })
 export class AppifyFeatureComponent implements OnInit {
+    @Input() isEditing: boolean = false;
+    isEditingHeadingValue: boolean = false;
+    isEditingSubtitleValue: boolean = false;
+    isEditingBodyValue: boolean = false;
+    @Input() identifier: string = "";
+
     @Input() featureAlignment: FeatureAlignment = FeatureAlignment.right;
     @Input() verticalAlignment: FeatureVerticalAlignment =
         FeatureVerticalAlignment.middle;
@@ -71,9 +80,13 @@ export class AppifyFeatureComponent implements OnInit {
     @Input() animation: { type: string } = {
         type: "none",
     };
+
+    @Output() editBlockElement = new EventEmitter<EditBlockElementItem>();
+
     @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
 
     buttonPadding: StylePadding = new StylePadding();
+    isUploadingImage: boolean = false;
 
     /// Return the heroAlignment value computed in the component since enum is not
     /// accessible outside of this scope.
@@ -115,5 +128,24 @@ export class AppifyFeatureComponent implements OnInit {
 
     clickButton() {
         window.open(this.buttonURL, "_blank");
+    }
+
+    emitBlockSelect(index, type, value) {
+        let item: EditBlockElementItem = new EditBlockElementItem();
+        item.identifier = this.identifier;
+        item.index = index;
+        item.selectedType = type;
+        item.value = value
+
+        this.editBlockElement.emit(item);
+    }
+
+    getHTMLFrom(value) {
+        return value.replace(new RegExp('\n', 'g'), "<br />")
+    }
+
+    changeImage(index, event) {
+        this.emitBlockSelect(index, 'image', event);
+        this.isUploadingImage = false;
     }
 }

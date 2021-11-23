@@ -1,0 +1,2 @@
+<input type="file" (change)="uploadImage($event.target.files)" accept="images/*" style="display: none;" #fileInputForm />
+<button (click)="fileInputForm.click(); $event.stopPropagation();">Replace</button>

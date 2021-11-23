@@ -53,40 +53,22 @@
                     [style.width]="
                         style?.item_width ? style?.item_width + 'px' : ''
                     "
-                    [style.text-align]="
-                        alignment == carouselAlignmentValue.center
-                            ? 'center'
-                            : alignment == carouselAlignmentValue.right
-                            ? 'right'
-                            : 'left'
-                    "
+                    [style.text-align]="alignment == carouselAlignmentValue.center ? 'center' : alignment == carouselAlignmentValue.right ? 'right' : 'left'"
                 >
-                    <div style="overflow: hidden">
+                    <div class="image-container" style="overflow: hidden">
                         <img
-                            [src]="
-                                item.image
-                                    ? pageService.getImageMapResource(
-                                          item.image
-                                      )
-                                    : ''
-                            "
-                            [style.height]="
-                                style?.image_height
-                                    ? style?.image_height + 'px'
-                                    : 'auto'
-                            "
-                            [style.border-radius]="
-                                style?.corner_radius
-                                    ? style?.corner_radius + 'px'
-                                    : ''
-                            "
-                            style="
-                                width: 100%;
-                                height: auto;
-                                vertical-align: top;
-                            "
+                            [src]="item.image ? pageService.getImageMapResource(item.image) : ''"
+                            [style.height]="style?.image_height ? style?.image_height + 'px' : 'auto'"
+                            [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
+                            style="width: 100%; height: auto; vertical-align: top;"
                             class="carousel-item-container"
                         />
+
+                        <div class="replace-button">
+                            <codeless-replace-image-button (didStartUpload)="isUploadingImage = true; selectedIndex = i;" (didUploadImage)="changeImage(i, $event)"></codeless-replace-image-button>
+                        </div>
+
+                        <codeless-loading-view *ngIf="isUploadingImage && selectedIndex == i"></codeless-loading-view>
                     </div>
 
                     <div
@@ -94,69 +76,82 @@
                         class="vertical-spacing-image"
                     ></div>
                     <h5
+                        *ngIf="item.title && !isEditing"
                         class="headline-xs"
-                        [style.color]="
-                            style?.title?.color ? style?.title?.color : ''
-                        "
-                        [style.fontFamily]="
-                            style?.title?.font ? style?.title?.font : ''
-                        "
-                        [style.fontSize]="
-                            style?.title?.size ? style?.title?.size + 'px' : ''
-                        "
-                        [style.fontWeight]="
-                            style?.title?.weight ? style?.title?.weight : ''
-                        "
-                        [style.lineHeight]="
-                            style?.title?.line_height
-                                ? style?.title?.line_height + 'px'
-                                : ''
-                        "
-                        [style.letter-spacing]="
-                            style?.title?.letter_spacing
-                                ? style?.title?.letter_spacing + 'px'
-                                : ''
-                        "
-                        *ngIf="item.title"
+                        [style.color]="style?.title?.color ? style?.title?.color : ''"
+                        [style.fontFamily]="style?.title?.font ? style?.title?.font : ''"
+                        [style.fontSize]="style?.title?.size ? style?.title?.size + 'px' : ''"
+                        [style.fontWeight]="style?.title?.weight ? style?.title?.weight : ''"
+                        [style.lineHeight]="style?.title?.line_height ? style?.title?.line_height + 'px' : ''"
+                        [style.letter-spacing]="style?.title?.letter_spacing ? style?.title?.letter_spacing + 'px' : ''"
                     >
                         {{ item.title }}
                     </h5>
-                    <div
-                        class="vertical-spacing-title"
-                        *ngIf="item.subtitle"
-                    ></div>
+
+                        <div *ngIf="isEditing" style="position: relative;">
+                            <div *ngIf="isEditingTitleValueIndex == i" style="position: absolute; top: -26px; left: 0;">
+                                <div class="editing-textarea-tag">
+                                    Title
+                                </div>
+                            </div>
+    
+                            <textarea type="text" 
+                                textareaAutoresize
+                                *ngIf="isEditing"
+                                [(ngModel)]="item.title" 
+                                (input)="title = $event.target.value"
+                                (focus)="isEditingTitleValueIndex = i;"
+                                (blur)="emitBlockSelect(i, 'title', $event.target.value); isEditingTitleValueIndex = -1;"
+                                class="headline-xs editing-textarea"
+                                [style.color]="style?.title?.color ? style?.title?.color : ''"
+                                [style.fontFamily]="style?.title?.font ? style?.title?.font : ''"
+                                [style.fontSize]="style?.title?.size ? style?.title?.size + 'px' : ''"
+                                [style.fontWeight]="style?.title?.weight ? style?.title?.weight : ''"
+                                [style.lineHeight]="style?.title?.line_height ? style?.title?.line_height + 'px' : ''"
+                                [style.letter-spacing]="style?.title?.letter_spacing ? style?.title?.letter_spacing + 'px' : ''"
+                                [style.text-align]="alignment == carouselAlignmentValue.center ? 'center' : alignment == carouselAlignmentValue.right ? 'right' : 'left'"
+                            ></textarea>
+                        </div>
+
+                    <div class="vertical-spacing-title" *ngIf="item.subtitle"></div>
+
                     <p
+                        *ngIf="item.subtitle && !isEditing"
                         class="body-m"
-                        [style.color]="
-                            style?.subtitle?.color ? style?.subtitle?.color : ''
-                        "
-                        [style.fontFamily]="
-                            style?.subtitle?.font ? style?.subtitle?.font : ''
-                        "
-                        [style.fontSize]="
-                            style?.subtitle?.size
-                                ? style?.subtitle?.size + 'px'
-                                : ''
-                        "
-                        [style.fontWeight]="
-                            style?.subtitle?.weight
-                                ? style?.subtitle?.weight
-                                : ''
-                        "
-                        [style.lineHeight]="
-                            style?.subtitle?.line_height
-                                ? style?.subtitle?.line_height + 'px'
-                                : ''
-                        "
-                        [style.letter-spacing]="
-                            style?.subtitle?.letter_spacing
-                                ? style?.subtitle?.letter_spacing + 'px'
-                                : ''
-                        "
-                        *ngIf="item.subtitle"
+                        [style.color]="style?.subtitle?.color ? style?.subtitle?.color : ''"
+                        [style.fontFamily]="style?.subtitle?.font ? style?.subtitle?.font : ''"
+                        [style.fontSize]="style?.subtitle?.size ? style?.subtitle?.size + 'px' : ''"
+                        [style.fontWeight]="style?.subtitle?.weight ? style?.subtitle?.weight : ''"
+                        [style.lineHeight]="style?.subtitle?.line_height ? style?.subtitle?.line_height + 'px' : ''"
+                        [style.letter-spacing]="style?.subtitle?.letter_spacing ? style?.subtitle?.letter_spacing + 'px' : ''"
                     >
                         {{ item.subtitle }}
                     </p>
+
+                        <div *ngIf="isEditing" style="position: relative;">
+                            <div *ngIf="isEditingSubtitleValueIndex == i" style="position: absolute; top: -26px; left: 0;">
+                                <div class="editing-textarea-tag">
+                                    Subtitle
+                                </div>
+                            </div>
+    
+                            <textarea type="text" 
+                                textareaAutoresize
+                                *ngIf="isEditing"
+                                [(ngModel)]="item.subtitle" 
+                                (input)="subtitle = $event.target.value"
+                                (focus)="isEditingSubtitleValueIndex = i;"
+                                (blur)="emitBlockSelect(i, 'subtitle', $event.target.value); isEditingSubtitleValueIndex = -1;"
+                                class="body-m editing-textarea"
+                                [style.color]="style?.subtitle?.color ? style?.subtitle?.color : ''"
+                                [style.fontFamily]="style?.subtitle?.font ? style?.subtitle?.font : ''"
+                                [style.fontSize]="style?.subtitle?.size ? style?.subtitle?.size + 'px' : ''"
+                                [style.fontWeight]="style?.subtitle?.weight ? style?.subtitle?.weight : ''"
+                                [style.lineHeight]="style?.subtitle?.line_height ? style?.subtitle?.line_height + 'px' : ''"
+                                [style.letter-spacing]="style?.subtitle?.letter_pacing ? style?.subtitle?.letter_pacing + 'px' : ''"
+                                [style.text-align]="alignment == carouselAlignmentValue.center ? 'center' : alignment == carouselAlignmentValue.right ? 'right' : 'left'"
+                            ></textarea>
+                        </div>
                 </div>
             </div>
         </div>

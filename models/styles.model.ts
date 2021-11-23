@@ -1,3 +1,10 @@
+export class EditBlockElementItem {
+    identifier: string; // block identifier for component
+    index: number; // which component item index is selected
+    selectedType: string; // 'title', 'subtitle'
+    value: any; // value to be updated to, if applicable (optional)
+}
+
 export class StyleButtonState {
     /// Color hex value
     color: string;

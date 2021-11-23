@@ -1,7 +1,7 @@
-.container {
+.layout-container {
     width: 100%;
 }
 
-.container > div {
+.layout-container > div {
     display: block;
 }

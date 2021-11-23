@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { EditBlockElementItem } from '../appify-image/appify-image.component'
+import { EditBlockElementItem } from "../../models/styles.model";
 
 export enum LineAlignment {
     left = 'left',

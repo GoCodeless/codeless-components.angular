@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { Animations } from "../../models/styles.model";
 import {
     StyleButton,
     StyleFont,
     StylePadding,
+    EditBlockElementItem
 } from "../../models/styles.model";
 
 import { PageService } from "@platform-services/page/page.service";
@@ -47,6 +48,11 @@ export class CarouselStyle {
     ],
 })
 export class AppifyCarouselComponent implements OnInit {
+    @Input() isEditing: boolean = false;
+    isEditingTitleValueIndex: number = -1;
+    isEditingSubtitleValueIndex: number = -1;
+    @Input() identifier: string = "";
+
     @Input() headline: String = "";
     @Input() subtitle: String = "";
     @Input() columns: Number = 2;
@@ -62,7 +68,12 @@ export class AppifyCarouselComponent implements OnInit {
         type: "none",
     };
 
+    @Output() editBlockElement = new EventEmitter<EditBlockElementItem>();
+
     @ViewChild("animate", {static: true, read: ElementRef}) animateRef: ElementRef<HTMLElement>;
+
+    isUploadingImage: boolean = false;
+    selectedIndex: number = -1;
 
     get carouselWidthValue() {
         return CarouselWidth;
@@ -78,6 +89,7 @@ export class AppifyCarouselComponent implements OnInit {
     sanitize(val) {
         return this.sanitizer.bypassSecurityTrustStyle(val);
     }
+
     ngOnInit() {
         const animation = this.animation;
 
@@ -96,5 +108,21 @@ export class AppifyCarouselComponent implements OnInit {
         let observer = new IntersectionObserver(callbackFunc);
 
         observer.observe(this.animateRef.nativeElement);
+    }
+
+    emitBlockSelect(index, type, value) {
+        let item: EditBlockElementItem = new EditBlockElementItem();
+        item.identifier = this.identifier;
+        item.index = index;
+        item.selectedType = type;
+        item.value = value
+
+        this.editBlockElement.emit(item);
+    }
+
+    changeImage(index, event) {
+        this.emitBlockSelect(index, 'image', event);
+        this.isUploadingImage = false;
+        this.selectedIndex = -1;
     }
 }

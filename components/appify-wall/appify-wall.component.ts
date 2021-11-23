@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from "@angular/core";
-import { Animations } from "../../models/styles.model";
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from "@angular/core";
+import { Animations, EditBlockElementItem } from "../../models/styles.model";
 import { PageService } from "@platform-services/page/page.service";
 export enum WallAlignment {
     left = "left",
@@ -21,6 +21,8 @@ export class WallModel {
     ],
 })
 export class AppifyWallComponent implements OnInit {
+    @Input() isEditing: boolean = false;
+    @Input() identifier: string = "";
     @Input() height: number = 800;
     @Input() maxWidth: number = 800;
     @Input() alignment: WallAlignment = WallAlignment.left;
@@ -28,7 +30,13 @@ export class AppifyWallComponent implements OnInit {
     @Input() style: any = {};
     @Input() hoverAnimation: { type: string } = { type: "none" };
     @Input() animation: { type: string } = { type: "none" };
+
+    @Output() editBlockElement = new EventEmitter<EditBlockElementItem>();
+
     @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
+
+    isUploadingImage: boolean = false;
+    selectedIndex: number = -1;
 
     /// Return the heroAlignment value computed in the component since enum is not
     /// accessible outside of this scope.
@@ -73,6 +81,23 @@ export class AppifyWallComponent implements OnInit {
     }
 
     selectedItem(url) {
+        if (this.isEditing) { return }
         window.open(url, "_blank");
+    }
+
+    emitBlockSelect(index, type, value) {
+        let item: EditBlockElementItem = new EditBlockElementItem();
+        item.identifier = this.identifier;
+        item.index = index;
+        item.selectedType = type;
+        item.value = value
+
+        this.editBlockElement.emit(item);
+    }
+
+    changeImage(index, event) {
+        this.emitBlockSelect(index, 'image', event);
+        this.isUploadingImage = false;
+        this.selectedIndex = -1;
     }
 }

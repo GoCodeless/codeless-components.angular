@@ -103,3 +103,14 @@
 .spacing-ms {
     height: var(--spacing-mediumSmall);
 }
+
+#container:hover  > .replace-button {
+    display: block;
+}
+
+.replace-button {
+    display: none;
+    position: absolute; 
+    right: 8px; 
+    bottom: 8px;
+}

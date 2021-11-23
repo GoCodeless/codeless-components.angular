@@ -92,10 +92,13 @@
                         <div>
                             <appify-grid-cell-variation-000
                                 *ngIf="style?.variation == '000'"
+                                [isEditing]="isEditing"
                                 [alignment]="alignment"
                                 [style]="style"
                                 [item]="item"
+                                [index]="getIndex(i, j)"
                                 [zoom]="hoverAnimation?.type == 'zoom'"
+                                (editBlockElement)="didSelectBlock($event)"
                             ></appify-grid-cell-variation-000>
                             <appify-grid-cell-variation-001
                                 *ngIf="style?.variation == '001'"
