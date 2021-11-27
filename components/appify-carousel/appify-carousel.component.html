@@ -89,7 +89,7 @@
                     </h5>
 
                         <div *ngIf="isEditing" style="position: relative;">
-                            <div *ngIf="isEditingTitleValueIndex == i" style="position: absolute; top: -26px; left: 0;">
+                            <div *ngIf="isEditingTitleValueIndex == i && item.title.length" style="position: absolute; top: -26px; left: 0;">
                                 <div class="editing-textarea-tag">
                                     Title
                                 </div>
@@ -97,7 +97,7 @@
     
                             <textarea type="text" 
                                 textareaAutoresize
-                                *ngIf="isEditing"
+                                *ngIf="isEditing && item.title.length"
                                 [(ngModel)]="item.title" 
                                 (input)="title = $event.target.value"
                                 (focus)="isEditingTitleValueIndex = i;"
@@ -129,7 +129,7 @@
                     </p>
 
                         <div *ngIf="isEditing" style="position: relative;">
-                            <div *ngIf="isEditingSubtitleValueIndex == i" style="position: absolute; top: -26px; left: 0;">
+                            <div *ngIf="isEditingSubtitleValueIndex == i && item.subtitle.length" style="position: absolute; top: -26px; left: 0;">
                                 <div class="editing-textarea-tag">
                                     Subtitle
                                 </div>
@@ -137,7 +137,7 @@
     
                             <textarea type="text" 
                                 textareaAutoresize
-                                *ngIf="isEditing"
+                                *ngIf="isEditing && item.subtitle.length"
                                 [(ngModel)]="item.subtitle" 
                                 (input)="subtitle = $event.target.value"
                                 (focus)="isEditingSubtitleValueIndex = i;"

@@ -1,5 +1,8 @@
 <div class="layout-container">
     <div *ngFor="let block of blocks; let i = index" style="background-color: var(--color-background);">
+        <!-- Add block line -->
+        <codeless-add-block-line *ngIf="isEditing && block.properties?.style?.web?.display" [index]="i" (addBlockElement)="didAddBlock($event)"></codeless-add-block-line>
+
         <!-- Layouts -->
         <appify-horizontal-stack [id]="'item-' + i" *ngIf="block.type == 'appify-horizontal-stack' && (block.properties.style?.web?.display == true)" [blocks]="block.properties.blocks"></appify-horizontal-stack>
         <appify-vertical-stack [id]="'item-' + i" *ngIf="block.type == 'appify-vertical-stack' && (block.properties.style?.web?.display == true)" [blocks]="block.properties.blocks"></appify-vertical-stack>
@@ -20,5 +23,8 @@
         <appify-text [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-text' && (block.properties.style?.web?.display == true)" [text]="block.properties.text" [textType]="block.properties.text_type" [alignment]="block.properties.style?.web?.alignment" [width]="block.properties.style?.web?.width" [style]="block.properties.style?.web"></appify-text>
         <appify-video [id]="'item-' + i" *ngIf="block.type == 'appify-video' && (block.properties.style?.web?.display == true)" [url]="block.properties.url" [width]="block.properties.style?.web?.width" [alignment]="block.properties.style?.web?.alignment" [style]="block.properties.style?.web"></appify-video>
         <appify-wall [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-wall' && (block.properties.style?.web?.display == true)" [height]="block.properties.style?.web?.height" [maxWidth]="block.properties.style?.web?.maxWidth" [alignment]="block.properties.style?.web?.alignment" [items]="block.properties.items" [style]="block.properties.style?.web"></appify-wall>
+
+        <!-- Add block line (last item only) -->
+        <codeless-add-block-line *ngIf="isEditing && block.properties?.style?.web?.display && (i == blocks.length - 1)" [index]="i + 1" (addBlockElement)="didAddBlock($event)"></codeless-add-block-line>
     </div>
 </div>

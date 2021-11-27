@@ -12,6 +12,7 @@ export class AppifyVerticalStackComponent implements OnInit {
     @Input() isEditing: boolean = false
     @Input() identifier: string = ''
 
+    @Output() addBlockElement = new EventEmitter<number>();
     @Output() editBlockElement = new EventEmitter<EditBlockElementItem>();
 
     constructor() { }
@@ -25,5 +26,9 @@ export class AppifyVerticalStackComponent implements OnInit {
     didSelectBlock(event) {
         this.selectedBlockElement = event;
         this.editBlockElement.emit(event);
+    }
+
+    didAddBlock(index) {
+      this.addBlockElement.emit(index)
     }
 }

@@ -89,7 +89,7 @@
                 </h1>
 
                     <div *ngIf="isEditing" style="position: relative;">
-                        <div *ngIf="isEditingHeadlineValue" style="position: absolute; top: -26px; left: 0;">
+                        <div *ngIf="isEditingHeadlineValue && headline.length" style="position: absolute; top: -26px; left: 0;">
                             <div class="editing-textarea-tag">
                                 Headline
                             </div>
@@ -101,7 +101,7 @@
                         
                         <textarea type="text" 
                             textareaAutoresize
-                            *ngIf="isEditing"
+                            *ngIf="isEditing && headline.length"
                             [(ngModel)]="headline" 
                             (input)="headline = $event.target.value"
                             (focus)="isEditingHeadlineValue = true;"
@@ -133,7 +133,7 @@
                 </p>
 
                     <div *ngIf="isEditing" style="position: relative;">
-                        <div *ngIf="isEditingSubtitleValue" style="position: absolute; top: -26px; left: 0;">
+                        <div *ngIf="isEditingSubtitleValue && subtitle.length" style="position: absolute; top: -26px; left: 0;">
                             <div class="editing-textarea-tag">
                                 Subtitle
                             </div>
@@ -141,7 +141,7 @@
 
                         <textarea type="text" 
                             textareaAutoresize
-                            *ngIf="isEditing"
+                            *ngIf="isEditing && subtitle.length"
                             [(ngModel)]="subtitle" 
                             (input)="subtitle = $event.target.value"
                             (focus)="isEditingSubtitleValue = true;"

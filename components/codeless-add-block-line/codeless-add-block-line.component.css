@@ -1,14 +1,3 @@
-.layout-container {
-    width: 100%;
-}
-
-.layout-container > div {
-    display: block;
-}
-
-/**
-
-*/
 .add-block-divider-inner {
     visibility: hidden;
 }

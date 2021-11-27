@@ -12,6 +12,7 @@ import { TextareaAutoresizeDirective } from "./directives/textarea-autoresize.di
 // Internal Components
 import { CodelessReplaceImageButton } from "./components/codeless-replace-image-button/codeless-replace-image-button.component";
 import { CodelessLoadingView } from "./components/codeless-loading-view/codeless-loading-view.component";
+import { CodelessAddBlockLineComponent } from "./components/codeless-add-block-line/codeless-add-block-line.component";
 
 // Elements
 import { AppifyButtonComponent } from "./elements/appify-button/appify-button.component";
@@ -84,7 +85,8 @@ import { AppifyVerticalStackComponent } from "./layouts/appify-vertical-stack/ap
         TextareaAutoresizeDirective,
         
         CodelessReplaceImageButton,
-        CodelessLoadingView
+        CodelessLoadingView,
+        CodelessAddBlockLineComponent
     ],
     providers: [CodelessComponentsService],
 
@@ -115,7 +117,8 @@ import { AppifyVerticalStackComponent } from "./layouts/appify-vertical-stack/ap
         TextareaAutoresizeDirective,
 
         CodelessReplaceImageButton,
-        CodelessLoadingView
+        CodelessLoadingView,
+        CodelessAddBlockLineComponent
     ],
     entryComponents: [],
 })

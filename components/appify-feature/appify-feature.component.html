@@ -108,7 +108,7 @@
             </caption>
 
                 <div *ngIf="isEditing" style="position: relative;">
-                    <div *ngIf="isEditingHeadingValue" style="position: absolute; top: -26px; left: 0;">
+                    <div *ngIf="isEditingHeadingValue && title.length" style="position: absolute; top: -26px; left: 0;">
                         <div class="editing-textarea-tag">
                             Heading
                         </div>
@@ -116,7 +116,7 @@
 
                     <textarea type="text" 
                         textareaAutoresize
-                        *ngIf="isEditing"
+                        *ngIf="isEditing && title.length"
                         [(ngModel)]="title" 
                         (input)="title = $event.target.value"
                         (focus)="isEditingHeadingValue = true;"
@@ -147,7 +147,7 @@
             </h3>
 
                 <div *ngIf="isEditing" style="position: relative;">
-                    <div *ngIf="isEditingSubtitleValue" style="position: absolute; top: -26px; left: 0;">
+                    <div *ngIf="isEditingSubtitleValue && subtitle.length" style="position: absolute; top: -26px; left: 0;">
                         <div class="editing-textarea-tag">
                             Subtitle
                         </div>
@@ -155,7 +155,7 @@
 
                     <textarea type="text" 
                         textareaAutoresize
-                        *ngIf="isEditing"
+                        *ngIf="isEditing && subtitle.length"
                         [(ngModel)]="subtitle" 
                         (input)="subtitle = $event.target.value"
                         (focus)="isEditingSubtitleValue = true;"
@@ -187,7 +187,7 @@
         </p>
 
                 <div *ngIf="isEditing" style="position: relative;">
-                    <div *ngIf="isEditingBodyValue" style="position: absolute; top: -26px; left: 0;">
+                    <div *ngIf="isEditingBodyValue && body.length" style="position: absolute; top: -26px; left: 0;">
                         <div class="editing-textarea-tag">
                             Body
                         </div>
@@ -195,7 +195,7 @@
 
                     <textarea type="text" 
                         textareaAutoresize
-                        *ngIf="isEditing"
+                        *ngIf="isEditing && body.length"
                         [(ngModel)]="body" 
                         (input)="body = $event.target.value"
                         (focus)="isEditingBodyValue = true;"

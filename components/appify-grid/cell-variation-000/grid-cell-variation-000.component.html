@@ -1,6 +1,7 @@
 <a (click)="select()"
     ><div class="item-container"
         *ngIf="item.image && item.image.length > 0"
+        [style.height]="style?.image_height ? style?.image_height + 'px' : ''"
         [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''">
         
         <img
@@ -34,7 +35,7 @@
     </h5>
 
         <div *ngIf="isEditing" style="position: relative;">
-            <div *ngIf="isEditingTitleValue" style="position: absolute; top: -26px; left: 0;">
+            <div *ngIf="isEditingTitleValue && item.title.length" style="position: absolute; top: -26px; left: 0;">
                 <div class="editing-textarea-tag">
                     Title
                 </div>
@@ -42,7 +43,7 @@
 
             <textarea type="text" 
                 textareaAutoresize
-                *ngIf="isEditing"
+                *ngIf="isEditing && item.title.length"
                 [(ngModel)]="item.title" 
                 (input)="item.title = $event.target.value"
                 (focus)="isEditingTitleValue = true;"
@@ -76,7 +77,7 @@
 </p>
 
     <div *ngIf="isEditing" style="position: relative;">
-        <div *ngIf="isEditingSubtitleValue" style="position: absolute; top: -26px; left: 0;">
+        <div *ngIf="isEditingSubtitleValue && item.subtitle.length" style="position: absolute; top: -26px; left: 0;">
             <div class="editing-textarea-tag">
                 Subtitle
             </div>
@@ -84,7 +85,7 @@
 
         <textarea type="text" 
             textareaAutoresize
-            *ngIf="isEditing"
+            *ngIf="isEditing && item.subtitle.length"
             [(ngModel)]="item.subtitle" 
             (input)="item.subtitle = $event.target.value"
             (focus)="isEditingSubtitleValue = true;"
