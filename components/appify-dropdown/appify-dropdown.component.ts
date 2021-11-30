@@ -1,3 +1,4 @@
+
 import { Component, Output, Input, EventEmitter, OnInit } from "@angular/core";
 import {
     StyleFont,
@@ -13,6 +14,7 @@ export class DropdownStyle {
     background_color: string = "#fff";
     border_color: string = "#000";
     border_width: string = "1px";
+    border_radius: string = "0px";
     padding: StylePadding = new StylePadding();
     margin: StyleMargin = new StyleMargin();
 }
@@ -34,7 +36,7 @@ export class AppifyDropdownComponent implements OnInit {
 
     constructor() {}
     ngOnInit() {
-        this.selectedOption = "Select a " + this.title;
+        this.selectedOption = this.title;
     }
     selectOption(option) {
         this.selectedOption = option;

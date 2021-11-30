@@ -25,13 +25,14 @@
         [style.border-width]="style.border_width ? style.border_width : ''"
         [style.border-color]="style.border_color ? style.border_color : ''"
         [style.border-style]="'solid'"
+        [style.border-radius]="style.border_radius ? style.border_radius : ''"
         [style.background-color]="
             style.background_color ? style.background_color : ''
         "
         (click)="toggleOptions()"
         class="option-selected"
     >
-        <appify-text [style]="textStyle" [text]="selectedOption"></appify-text>
+        <appify-text [style]="textStyle" [textType]="'body'" [text]="selectedOption"></appify-text>
         <svg
             *ngIf="!showOptions"
             width="24"
@@ -84,6 +85,7 @@
         >
             <appify-text
                 [text]="option"
+                [textType]="'body'"
                 [style]="textStyle"
                 alignment="center"
             ></appify-text>
