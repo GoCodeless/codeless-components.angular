@@ -1,33 +1,22 @@
-<div [class.margin-width]="width == imageWidthValue.margin">
+<div class="image-container" 
+    [class.margin-width]="width == imageWidthValue.margin">
     <div
-        [style.padding-top]="
-            style?.padding?.top ? style?.padding?.top + 'px' : ''
-        "
-        [style.padding-bottom]="
-            style?.padding?.bottom ? style?.padding?.bottom + 'px' : ''
-        "
-        [style.padding-left]="
-            style?.padding?.left ? style?.padding?.left + 'px' : ''
-        "
-        [style.padding-right]="
-            style?.padding?.right ? style?.padding?.right + 'px' : ''
-        "
+        [style.padding-top]="style?.padding?.top ? style?.padding?.top + 'px' : ''"
+        [style.padding-bottom]="style?.padding?.bottom ? style?.padding?.bottom + 'px' : ''"
+        [style.padding-left]="style?.padding?.left ? style?.padding?.left + 'px' : ''"
+        [style.padding-right]="style?.padding?.right ? style?.padding?.right + 'px' : ''"
     >
         <img
             [src]="pageService.getImageMapResource(url)"
-            (click)="emitBlockSelect(0, 'image')"
-            (mouseover)="hoveringElement = 'image'; hoveringIndex = 0"
-            (mouseout)="hoveringElement = null"
-            [class.selectable-image]="
-                hoveringElement == 'image' && hoveringIndex == 0 && isEditing == true
-            "
             [style.height]="style?.height ? style?.height + 'px' : ''"
-            [style.border-radius]="
-                style?.corner_radius ? style?.corner_radius + 'px' : ''
-            "
-            [style.object-fit]="
-                style?.background_size ? style?.background_size : 'cover'
-            "
+            [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
+            [style.object-fit]="style?.background_size ? style?.background_size : 'cover'"
         />
     </div>
+
+    <div *ngIf="isEditing" class="replace-button">
+        <codeless-replace-image-button (didStartUpload)="isUploadingImage = true;" (didUploadImage)="changeImage($event)"></codeless-replace-image-button>
+    </div>
+
+    <codeless-loading-view *ngIf="isUploadingImage"></codeless-loading-view>
 </div>

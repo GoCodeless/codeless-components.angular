@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from "@angular/core";
 
 import { DomSanitizer } from "@angular/platform-browser";
 import { PageService } from "@platform-services/page/page.service";
@@ -7,6 +7,7 @@ import {
     StyleFont,
     StylePadding,
     Animations,
+    EditBlockElementItem
 } from "../../models/styles.model";
 
 export class GridModel {
@@ -58,6 +59,9 @@ export class GridStyle {
     ],
 })
 export class AppifyGridComponent implements OnInit {
+    @Input() isEditing: boolean = false;
+    @Input() identifier: string = "";
+    
     @Input() headline: String = "";
     @Input() subtitle: String = "";
     @Input() columns: number = 2;
@@ -67,8 +71,10 @@ export class AppifyGridComponent implements OnInit {
     @Input() items: Array<GridModel> = [];
 
     @Input() hoverAnimation: { type: string } = { type: Animations.none };
-
     @Input() animation: { type: string } = { type: Animations.none };
+
+    @Output() editBlockElement = new EventEmitter<EditBlockElementItem>();
+
     @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
 
     buttonPadding: StylePadding = new StylePadding();
@@ -127,5 +133,15 @@ export class AppifyGridComponent implements OnInit {
         }
 
         return this.columns
+    }
+
+    getIndex(row, column) {
+        if (row == 0) { return column }
+        return row * this.columns + column
+    }
+
+    didSelectBlock(event) {
+        event.identifier = this.identifier
+        this.editBlockElement.emit(event);
     }
 }

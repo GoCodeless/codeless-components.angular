@@ -1,7 +1,12 @@
-p {
+p, input {
     max-width: var(--size-default-margin);
     margin: auto;
-    /* border: 2px solid transparent; */
+    border: 0;
+    width: 100%;
+}
+
+input {
+    background: transparent;
 }
 
 .initial-slideupfadein-state {
@@ -45,6 +50,7 @@ p {
     line-height: var(--typography-headline-m-line-height);
     letter-spacing: var(--typography-headline-m-letter-spacing);
     text-transform: var(--typography-headline-m-text-transform);
+    color: var(--color-headline);
 }
 
 .body {
@@ -55,6 +61,7 @@ p {
     line-height: var(--typography-body-m-line-height);
     letter-spacing: var(--typography-body-m-letter-spacing);
     text-transform: var(--typography-body-m-text-transform);
+    color: var(--color-body);
 }
 
 .selectable {

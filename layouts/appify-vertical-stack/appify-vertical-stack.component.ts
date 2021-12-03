@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
-import { StyleButton, StylePadding } from '../../models/styles.model'
+
+import { EditBlockElementItem } from '../../models/styles.model'
 
 @Component({
   selector: 'appify-vertical-stack',
@@ -10,14 +11,24 @@ export class AppifyVerticalStackComponent implements OnInit {
     @Input() blocks: Array<any> = []
     @Input() isEditing: boolean = false
     @Input() identifier: string = ''
-    // @Input() width: ButtonContainerWidth = ButtonContainerWidth.full
-    // @Input() padding: StylePadding = new StylePadding()
-    // @Input() style: StyleButton = new StyleButton()
+
+    @Output() addBlockElement = new EventEmitter<number>();
+    @Output() editBlockElement = new EventEmitter<EditBlockElementItem>();
 
     constructor() { }
     ngOnInit() { }
 
     ngOnChanges(changes: SimpleChanges) {
 
+    }
+
+    selectedBlockElement: any = null;
+    didSelectBlock(event) {
+        this.selectedBlockElement = event;
+        this.editBlockElement.emit(event);
+    }
+
+    didAddBlock(index) {
+      this.addBlockElement.emit(index)
     }
 }

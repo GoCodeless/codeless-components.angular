@@ -60,13 +60,14 @@
             class="col-md-6 col-sm-12 col-12 left-align-inner"
             [class.full-width]="width == featureWidthValue.full"
         >
-            <img
-                [src]="pageService.getImageMapResource(imageURL)"
-                [style.border-radius]="
-                    style?.corner_radius ? style?.corner_radius + 'px' : ''
-                "
-                [style.minHeight]="minimumHeight + 'px'"
-            />
+            <img [src]="pageService.getImageMapResource(imageURL)"
+                [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''" />
+
+                <div class="replace-button">
+                    <codeless-replace-image-button (didStartUpload)="isUploadingImage = true;" (didUploadImage)="changeImage(0, $event)"></codeless-replace-image-button>
+                </div>
+
+                <codeless-loading-view *ngIf="isUploadingImage"></codeless-loading-view>
         </div>
 
         <div
@@ -93,91 +94,123 @@
             "
         >
             <caption
+                *ngIf="!isEditing"
                 class="label-s"
-                [style.color]="
-                    style?.heading?.color ? style?.heading?.color : ''
-                "
-                [style.fontFamily]="
-                    style?.heading?.font ? style?.heading?.font : ''
-                "
-                [style.fontSize]="
-                    style?.heading?.size ? style?.heading?.size + 'px' : ''
-                "
-                [style.fontWeight]="
-                    style?.heading?.weight ? style?.heading?.weight : ''
-                "
-                [style.lineHeight]="
-                    style?.heading?.line_height
-                        ? style?.heading?.line_height + 'px'
-                        : ''
-                "
-                [style.letter-spacing]="
-                    style?.heading?.letter_spacing
-                        ? style?.heading?.letter_spacing + 'px'
-                        : ''
-                "
+                [innerHTML]="getHTMLFrom(title)"
+                [style.color]="style?.heading?.color ? style?.heading?.color : ''"
+                [style.fontFamily]="style?.heading?.font ? style?.heading?.font : ''"
+                [style.fontSize]="style?.heading?.size ? style?.heading?.size + 'px' : ''"
+                [style.fontWeight]="style?.heading?.weight ? style?.heading?.weight : ''"
+                [style.lineHeight]="style?.heading?.line_height ? style?.heading?.line_height + 'px' : ''"
+                [style.letter-spacing]="style?.heading?.letter_spacing ? style?.heading?.letter_spacing + 'px' : ''"
             >
-                {{
-                    title
-                }}
             </caption>
+
+                <div *ngIf="isEditing" style="position: relative;">
+                    <div *ngIf="isEditingHeadingValue && title.length" style="position: absolute; top: -26px; left: 0;">
+                        <div class="editing-textarea-tag">
+                            Heading
+                        </div>
+                    </div>
+
+                    <textarea type="text" 
+                        textareaAutoresize
+                        *ngIf="isEditing && title.length"
+                        [(ngModel)]="title" 
+                        (input)="title = $event.target.value"
+                        (focus)="isEditingHeadingValue = true;"
+                        (blur)="emitBlockSelect(0, 'heading', $event.target.value); isEditingHeadingValue = false;"
+                        class="label-s"
+                        [style.color]="style?.heading?.color ? style?.heading?.color : ''"
+                        [style.fontFamily]="style?.heading?.font ? style?.heading?.font : ''"
+                        [style.fontSize]="style?.heading?.size ? style?.heading?.size + 'px' : ''"
+                        [style.fontWeight]="style?.heading?.weight ? style?.heading?.weight : ''"
+                        [style.lineHeight]="style?.heading?.line_height ? style?.heading?.line_height + 'px' : ''"
+                        [style.letter-spacing]="style?.heading?.letter_spacing ? style?.heading?.letter_spacing + 'px' : ''"
+                    ></textarea>
+                </div>
+
             <div class="vertical-item-spacing-small"></div>
+
             <h3
+                *ngIf="!isEditing"
                 class="headline-m"
-                [style.color]="
-                    style?.subtitle?.color ? style?.subtitle?.color : ''
-                "
-                [style.fontFamily]="
-                    style?.subtitle?.font ? style?.subtitle?.font : ''
-                "
-                [style.fontSize]="
-                    style?.subtitle?.size ? style?.subtitle?.size + 'px' : ''
-                "
-                [style.fontWeight]="
-                    style?.subtitle?.weight ? style?.subtitle?.weight : ''
-                "
-                [style.lineHeight]="
-                    style?.subtitle?.line_height
-                        ? style?.subtitle?.line_height + 'px'
-                        : ''
-                "
-                [style.letter-spacing]="
-                    style?.subtitle?.letter_spacing
-                        ? style?.subtitle?.letter_spacing + 'px'
-                        : ''
-                "
+                [innerHTML]="getHTMLFrom(subtitle)"
+                [style.color]="style?.subtitle?.color ? style?.subtitle?.color : ''"
+                [style.fontFamily]="style?.subtitle?.font ? style?.subtitle?.font : ''"
+                [style.fontSize]="style?.subtitle?.size ? style?.subtitle?.size + 'px' : ''"
+                [style.fontWeight]="style?.subtitle?.weight ? style?.subtitle?.weight : ''"
+                [style.lineHeight]="style?.subtitle?.line_height ? style?.subtitle?.line_height + 'px' : ''"
+                [style.letter-spacing]="style?.subtitle?.letter_spacing ? style?.subtitle?.letter_spacing + 'px' : ''"
             >
-                {{ subtitle }}
             </h3>
+
+                <div *ngIf="isEditing" style="position: relative;">
+                    <div *ngIf="isEditingSubtitleValue && subtitle.length" style="position: absolute; top: -26px; left: 0;">
+                        <div class="editing-textarea-tag">
+                            Subtitle
+                        </div>
+                    </div>
+
+                    <textarea type="text" 
+                        textareaAutoresize
+                        *ngIf="isEditing && subtitle.length"
+                        [(ngModel)]="subtitle" 
+                        (input)="subtitle = $event.target.value"
+                        (focus)="isEditingSubtitleValue = true;"
+                        (blur)="emitBlockSelect(0, 'subtitle', $event.target.value); isEditingSubtitleValue = false;"
+                        class="headline-m"
+                        [style.color]="style?.subtitle?.color ? style?.subtitle?.color : ''"
+                        [style.fontFamily]="style?.subtitle?.font ? style?.subtitle?.font : ''"
+                        [style.fontSize]="style?.subtitle?.size ? style?.subtitle?.size + 'px' : ''"
+                        [style.fontWeight]="style?.subtitle?.weight ? style?.subtitle?.weight : ''"
+                        [style.lineHeight]="style?.subtitle?.line_height ? style?.subtitle?.line_height + 'px' : ''"
+                        [style.letter-spacing]="style?.subtitle?.letter_spacing ? style?.subtitle?.letter_spacing + 'px' : ''"
+                    ></textarea>
+                </div>
+
             <div class="vertical-item-spacing"></div>
+
             <p
+                *ngIf="!isEditing"
                 class="body-m"
-                [style.color]="
-                    style?.paragraph?.color ? style?.paragraph?.color : ''
-                "
-                [style.fontFamily]="
-                    style?.paragraph?.font ? style?.paragraph?.font : ''
-                "
-                [style.fontSize]="
-                    style?.paragraph?.size ? style?.paragraph?.size + 'px' : ''
-                "
-                [style.fontWeight]="
-                    style?.paragraph?.weight ? style?.paragraph?.weight : ''
-                "
-                [style.lineHeight]="
-                    style?.paragraph?.line_height
-                        ? style?.paragraph?.line_height + 'px'
-                        : ''
-                "
-                [style.letter-spacing]="
-                    style?.paragraph?.letter_spacing
-                        ? style?.paragraph?.letter_spacing + 'px'
-                        : ''
-                "
+                [innerHTML]="getHTMLFrom(body)"
+                [style.color]="style?.paragraph?.color ? style?.paragraph?.color : ''"
+                [style.fontFamily]="style?.paragraph?.font ? style?.paragraph?.font : ''"
+                [style.fontSize]="style?.paragraph?.size ? style?.paragraph?.size + 'px' : ''"
+                [style.fontWeight]="style?.paragraph?.weight ? style?.paragraph?.weight : ''"
+                [style.lineHeight]="style?.paragraph?.line_height ? style?.paragraph?.line_height + 'px' : ''"
+                [style.letter-spacing]="style?.paragraph?.letter_spacing ? style?.paragraph?.letter_spacing + 'px' : ''"
             >
-                {{ body }}
-            </p>
+
+        </p>
+
+                <div *ngIf="isEditing" style="position: relative;">
+                    <div *ngIf="isEditingBodyValue && body.length" style="position: absolute; top: -26px; left: 0;">
+                        <div class="editing-textarea-tag">
+                            Body
+                        </div>
+                    </div>
+
+                    <textarea type="text" 
+                        textareaAutoresize
+                        *ngIf="isEditing && body.length"
+                        [(ngModel)]="body" 
+                        (input)="body = $event.target.value"
+                        (focus)="isEditingBodyValue = true;"
+                        (blur)="emitBlockSelect(0, 'paragraph', $event.target.value); isEditingBodyValue = false;"
+                        class="body-m"
+                        [style.color]="style?.paragraph?.color ? style?.paragraph?.color : ''"
+                        [style.fontFamily]="style?.paragraph?.font ? style?.paragraph?.font : ''"
+                        [style.fontSize]="style?.paragraph?.size ? style?.paragraph?.size + 'px' : ''"
+                        [style.fontWeight]="style?.paragraph?.weight ? style?.paragraph?.weight : ''"
+                        [style.lineHeight]="style?.paragraph?.line_height ? style?.paragraph?.line_height + 'px' : ''"
+                        [style.letter-spacing]="style?.paragraph?.letter_spacing ? style?.paragraph?.letter_spacing + 'px' : ''"
+                    ></textarea>
+                </div>
+
             <div class="vertical-item-spacing"></div>
+
             <div>
                 <appify-button
                     [title]="buttonText"
@@ -199,7 +232,6 @@
                 [style.border-radius]="
                     style?.corner_radius ? style?.corner_radius + 'px' : ''
                 "
-                [style.minHeight]="minimumHeight + 'px'"
             />
         </div>
     </div>

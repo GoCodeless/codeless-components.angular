@@ -1,9 +1,9 @@
-.container {
+.layout-container {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.container > div {
+.layout-container > div {
     display: inline-block;
 }

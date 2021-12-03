@@ -1,3 +1,10 @@
+textarea {
+    background: transparent;
+    border: 0;
+    width: 100%;
+    resize: none;
+}
+
 .container-carousel {
     width: 100%;
     color: var(--color-foreground);
@@ -100,4 +107,19 @@ p {
 
 .col {
     padding-bottom: var(--spacing-mediumLarge);
+}
+
+.image-container {
+    position: relative;
+}
+
+.image-container:hover  > .replace-button {
+    display: block;
+}
+
+.replace-button {
+    display: none;
+    position: absolute; 
+    right: 8px; 
+    bottom: 8px;
 }

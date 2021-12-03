@@ -1,13 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { StyleFont, StylePadding } from "../../models/styles.model";
+import { EditBlockElementItem, StylePadding } from "../../models/styles.model";
 
 import { PageService } from "@platform-services/page/page.service";
-
-export class EditBlockElementItem {
-    identifier: string; // block identifier for `grid`
-    index: number; // which grid item index is selected
-    selectedType: string; // 'title', 'subtitle'
-}
 
 export enum ImageWidth {
     full = "full",
@@ -37,6 +31,8 @@ export class AppifyImageComponent implements OnInit {
     hoveringElement: string = null;
     hoveringIndex: number = 0;
 
+    isUploadingImage: boolean = false;
+
     get imageWidthValue() {
         return ImageWidth;
     }
@@ -44,12 +40,18 @@ export class AppifyImageComponent implements OnInit {
     constructor(public pageService: PageService) {}
     ngOnInit() {}
 
-    emitBlockSelect(index, type) {
+    emitBlockSelect(index, type, value) {
         let item: EditBlockElementItem = new EditBlockElementItem();
         item.identifier = this.identifier;
         item.index = index;
         item.selectedType = type;
+        item.value = value
 
         this.editBlockElement.emit(item);
+    }
+
+    changeImage(event) {
+        this.emitBlockSelect(0, 'image', event);
+        this.isUploadingImage = false
     }
 }

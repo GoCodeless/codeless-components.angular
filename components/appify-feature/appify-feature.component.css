@@ -1,3 +1,10 @@
+textarea {
+    background: transparent;
+    border: 0;
+    width: 100%;
+    resize: none;
+}
+
 #container {
     width: 100%;
     background: var(--color-background);
@@ -71,6 +78,7 @@ caption {
 }
 
 .left-align-inner {
+    position: relative;
     padding: 0;
     text-align: left;
 }
@@ -97,4 +105,15 @@ img {
 .row {
     margin-left: 0;
     margin-right: 0;
+}
+
+.left-align-inner:hover  > .replace-button {
+    display: block;
+}
+
+.replace-button {
+    display: none;
+    position: absolute; 
+    right: 8px; 
+    bottom: 8px;
 }

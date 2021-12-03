@@ -1,75 +1,115 @@
-<a [href]="item.button_url"
-    ><div
-        class="item-container"
+<a (click)="select()"
+    ><div class="item-container"
         *ngIf="item.image && item.image.length > 0"
-        [style.border-radius]="
-            style?.corner_radius ? style?.corner_radius + 'px' : ''
-        "
-    >
+        [style.height]="style?.image_height ? style?.image_height + 'px' : ''"
+        [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''">
+        
         <img
             [class.zoom-on-hover]="zoom"
             class="item-image"
-            [style.objectFit]="
-                style?.background_size ? style?.background_size : ''
-            "
-            [style.margin-bottom]="
-                item.title.length == 0 &&
-                item.subtitle.length == 0 &&
-                item.button_title.length == 0
-                    ? '0'
-                    : ''
-            "
-            [src]="
-                item.image ? pageService.getImageMapResource(item.image) : ''
-            "
+            [style.objectFit]="style?.background_size ? style?.background_size : ''"
+            [style.margin-bottom]="item.title.length == 0 && item.subtitle.length == 0 && item.button_title.length == 0 ? '0' : ''"
+            [src]="item.image ? pageService.getImageMapResource(item.image) : ''"
         />
+
+        <div class="replace-button">
+            <codeless-replace-image-button (didStartUpload)="isUploadingImage = true; selectedIndex = (i * 2) + (x);" (didUploadImage)="changeImage((i * 2) + (x), $event)"></codeless-replace-image-button>
+        </div>
+
+        <codeless-loading-view *ngIf="isUploadingImage"></codeless-loading-view>
     </div>
+
     <div *ngIf="item.title?.length" class="vertical-item-spacer"></div>
 
     <h5
-        *ngIf="item.title?.length"
+        *ngIf="item.title?.length && !isEditing"
         class="headline-xs"
         [style.color]="style?.title?.color ? style?.title?.color : ''"
         [style.fontFamily]="style?.title?.font ? style?.title?.font : ''"
         [style.fontSize]="style?.title?.size ? style?.title?.size + 'px' : ''"
         [style.fontWeight]="style?.title?.weight ? style?.title?.weight : ''"
-        [style.lineHeight]="
-            style?.title?.line_height ? style?.title?.line_height + 'px' : ''
-        "
-        [style.letter-spacing]="
-            style?.title?.letter_spacing
-                ? style?.title?.letter_spacing + 'px'
-                : ''
-        "
+        [style.lineHeight]="style?.title?.line_height ? style?.title?.line_height + 'px' : ''"
+        [style.letter-spacing]="style?.title?.letter_spacing ? style?.title?.letter_spacing + 'px' : ''"
     >
         {{ item.title }}
     </h5>
+
+        <div *ngIf="isEditing" style="position: relative;">
+            <div *ngIf="isEditingTitleValue && item.title.length" style="position: absolute; top: -26px; left: 0;">
+                <div class="editing-textarea-tag">
+                    Title
+                </div>
+            </div>
+
+            <textarea type="text" 
+                textareaAutoresize
+                *ngIf="isEditing && item.title.length"
+                [(ngModel)]="item.title" 
+                (input)="item.title = $event.target.value"
+                (focus)="isEditingTitleValue = true;"
+                (blur)="emitBlockSelect(index, 'title', $event.target.value); isEditingTitleValue = false;"
+                class="headline-xs editing-textarea"
+                [style.color]="style?.title?.color ? style?.title?.color : ''"
+                [style.fontFamily]="style?.title?.font ? style?.title?.font : ''"
+                [style.fontSize]="style?.title?.size ? style?.title?.size + 'px' : ''"
+                [style.fontWeight]="style?.title?.weight ? style?.title?.weight : ''"
+                [style.lineHeight]="style?.title?.line_height ? style?.title?.line_height + 'px' : ''"
+                [style.letter-spacing]="style?.title?.letter_spacing ? style?.title?.letter_spacing + 'px' : ''"
+                [style.text-align]="alignment == gridAlignmentValue.right ? 'right' : alignment == gridAlignmentValue.center ? 'center' : 'left'"
+            ></textarea>
+        </div>
 </a>
+
 <div *ngIf="item.subtitle?.length" class="vertical-item-spacer"></div>
+
 <p
-    *ngIf="item.subtitle?.length"
+    *ngIf="item.subtitle?.length && !isEditing"
     class="body-m subtitle"
     [style.color]="style?.subtitle?.color ? style?.subtitle?.color : ''"
     [style.fontFamily]="style?.subtitle?.font ? style?.subtitle?.font : ''"
     [style.fontSize]="style?.subtitle?.size ? style?.subtitle?.size + 'px' : ''"
     [style.fontWeight]="style?.subtitle?.weight ? style?.subtitle?.weight : ''"
-    [style.lineHeight]="
-        style?.subtitle?.line_height ? style?.subtitle?.line_height + 'px' : ''
-    "
-    [style.letter-spacing]="
-        style?.subtitle?.letter_spacing
-            ? style?.subtitle?.letter_spacing + 'px'
-            : ''
-    "
+    [style.lineHeight]="style?.subtitle?.line_height ? style?.subtitle?.line_height + 'px' : ''"
+    [style.letter-spacing]="style?.subtitle?.letter_spacing ? style?.subtitle?.letter_spacing + 'px' : ''"
+    [style.text-align]="alignment == gridAlignmentValue.right ? 'right' : alignment == gridAlignmentValue.center ? 'center' : 'left'"
 >
     {{ item.subtitle }}
 </p>
+
+    <div *ngIf="isEditing" style="position: relative;">
+        <div *ngIf="isEditingSubtitleValue && item.subtitle.length" style="position: absolute; top: -26px; left: 0;">
+            <div class="editing-textarea-tag">
+                Subtitle
+            </div>
+        </div>
+
+        <textarea type="text" 
+            textareaAutoresize
+            *ngIf="isEditing && item.subtitle.length"
+            [(ngModel)]="item.subtitle" 
+            (input)="item.subtitle = $event.target.value"
+            (focus)="isEditingSubtitleValue = true;"
+            (blur)="emitBlockSelect(index, 'subtitle', $event.target.value); isEditingSubtitleValue = false;"
+            class="body-m subtitle editing-textarea"
+            [style.color]="style?.subtitle?.color ? style?.subtitle?.color : ''"
+            [style.fontFamily]="style?.subtitle?.font ? style?.subtitle?.font : ''"
+            [style.fontSize]="style?.subtitle?.size ? style?.subtitle?.size + 'px' : ''"
+            [style.fontWeight]="style?.subtitle?.weight ? style?.subtitle?.weight : ''"
+            [style.lineHeight]="style?.subtitle?.line_height ? style?.subtitle?.line_height + 'px' : ''"
+            [style.letter-spacing]="style?.subtitle?.letter_spacing ? style?.subtitle?.letter_spacing + 'px' : ''"
+            [style.text-align]="alignment == gridAlignmentValue.right ? 'right' : alignment == gridAlignmentValue.center ? 'center' : 'left'"
+        ></textarea>
+    </div>
+
 <div *ngIf="item.button_title?.length" class="vertical-item-spacer"></div>
+
 <appify-button
     *ngIf="item.button_title?.length"
+    [isEditing]="isEditing"
     [title]="item.button_title"
     [url]="item.button_url"
     [padding]="buttonPadding"
     [alignment]="alignment"
     [style]="style?.button"
+    (editBlockElement)="editButtonText($event)"
 ></appify-button>

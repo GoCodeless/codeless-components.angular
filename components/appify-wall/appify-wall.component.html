@@ -1,4 +1,3 @@
-.
 <div
     #animate
     class="margin-width container"
@@ -35,16 +34,15 @@
                 "
             >
 
-                <img
-                [class.zoom-image]="hoverAnimation.type == 'zoom'"
-                 [src]="
+                <img [class.zoom-image]="hoverAnimation.type == 'zoom'"
+                    [src]="items[0].image ? pageService.getImageMapResource(items[0].image) : ''"/>
 
-                items[0].image
-                    ? pageService.getImageMapResource(
-                        items[0].image
-                      )
-                    : ''
-            " />
+                <div class="replace-button">
+                    <codeless-replace-image-button (didStartUpload)="isUploadingImage = true; selectedIndex = 0;" (didUploadImage)="changeImage(0, $event)"></codeless-replace-image-button>
+                </div>
+
+                <codeless-loading-view *ngIf="isUploadingImage && selectedIndex == 0"></codeless-loading-view>
+
                 <div *ngIf="hoverAnimation.type == 'focus'" class="fade-in-wall"></div>
 
             </div>
@@ -67,15 +65,14 @@
                 style="--index: 1; margin-top: 8px"
             >
 
-                <img
-                [class.zoom-image]="hoverAnimation.type == 'zoom'"
-                 [src]="items[2].image
+                <img [class.zoom-image]="hoverAnimation.type == 'zoom'"
+                    [src]="items[2].image ? pageService.getImageMapResource(items[2].image) : ''" />
 
-                ? pageService.getImageMapResource(
-                    items[2].image
-                  )
-                : ''
-        "  />
+                <div class="replace-button">
+                    <codeless-replace-image-button (didStartUpload)="isUploadingImage = true; selectedIndex = 2;" (didUploadImage)="changeImage(2, $event)"></codeless-replace-image-button>
+                </div>
+
+                <codeless-loading-view *ngIf="isUploadingImage && selectedIndex == 2"></codeless-loading-view>
 
                 <div *ngIf="hoverAnimation.type == 'focus'" class="fade-in-wall"></div>
 
@@ -106,17 +103,15 @@
                 "
             >
 
-                <img
-                [class.zoom-image]="hoverAnimation.type == 'zoom'"
-                 [src]="items[1].image
+                <img [class.zoom-image]="hoverAnimation.type == 'zoom'"
+                    [src]="items[1].image ? pageService.getImageMapResource(items[1].image) : ''"  />
 
-                ? pageService.getImageMapResource(
-                    items[1].image
-                  )
-                : ''
+                <div class="replace-button">
+                    <codeless-replace-image-button (didStartUpload)="isUploadingImage = true; selectedIndex = 1;" (didUploadImage)="changeImage(1, $event)"></codeless-replace-image-button>
+                </div>
 
-                
-        "  />
+                <codeless-loading-view *ngIf="isUploadingImage && selectedIndex == 1"></codeless-loading-view>
+
                 <div *ngIf="hoverAnimation.type == 'focus'" class="fade-in-wall"></div>
 
             </div>

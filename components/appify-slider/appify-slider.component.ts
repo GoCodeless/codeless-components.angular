@@ -2,6 +2,8 @@ import {
     Component,
     OnInit,
     Input,
+    Output,
+    EventEmitter,
     SimpleChanges,
     ViewChild,
     ElementRef,
@@ -12,6 +14,7 @@ import {
     StyleFont,
     StylePadding,
     Animations,
+    EditBlockElementItem
 } from "../../models/styles.model";
 
 import { PageService } from "@platform-services/page/page.service";
@@ -58,13 +61,20 @@ export class SliderStyle {
     ],
 })
 export class AppifySliderComponent implements OnInit {
+    @Input() isEditing: boolean = false;
+    isEditingHeadlineValue: boolean = false;
+    isEditingSubtitleValue: boolean = false;
+    @Input() identifier: string = "";
+
     @Input() alignment: SliderAlignment = SliderAlignment.left;
-    @Input() verticalAlignment: SliderVerticalAlignment =
-        SliderVerticalAlignment.middle;
+    @Input() verticalAlignment: SliderVerticalAlignment = SliderVerticalAlignment.middle;
     @Input() width: SliderWidth = SliderWidth.full;
     @Input() items: Array<SliderModel> = [];
     @Input() style: SliderStyle = new SliderStyle();
     @Input() animation: { type: string } = { type: "none" };
+
+    @Output() editBlockElement = new EventEmitter<EditBlockElementItem>();
+
     @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
 
     headline: string = "";
@@ -77,6 +87,8 @@ export class AppifySliderComponent implements OnInit {
     interval: any = null;
     intervalDuration: number = 6000;
     buttonPadding: StylePadding = new StylePadding();
+
+    isUploadingImage: boolean = false;
 
     /// Return the heroAlignment value computed in the component since enum is not
     /// accessible outside of this scope.
@@ -127,9 +139,12 @@ export class AppifySliderComponent implements OnInit {
     }
 
     setupView() {
-        this.interval = setInterval(() => {
-            this.naturalIncrement();
-        }, this.intervalDuration);
+        if (this.isEditing) {
+            this.interval = setInterval(() => {
+                this.naturalIncrement();
+            }, this.intervalDuration);
+        }
+
         this.updateView();
     }
 
@@ -160,5 +175,29 @@ export class AppifySliderComponent implements OnInit {
         }
 
         this.updateView();
+    }
+
+    emitBlockSelect(index, type, value) {
+        let item: EditBlockElementItem = new EditBlockElementItem();
+        item.identifier = this.identifier;
+        item.index = index;
+        item.selectedType = type;
+        item.value = value
+
+        this.editBlockElement.emit(item);
+    }
+    
+    editButtonText(event) {
+        this.emitBlockSelect(this.selectedIndex, 'button_text', event.value)
+        this.updateView();
+    }
+
+    getHTMLFrom(value) {
+        return value.replace(new RegExp('\n', 'g'), "<br />")
+    }
+
+    changeImage(event) {
+        this.emitBlockSelect(0, 'image', event);
+        this.isUploadingImage = false;
     }
 }

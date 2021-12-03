@@ -30,3 +30,14 @@
 .vertical-item-spacer {
     height: var(--spacing-xSmall);
 }
+
+.item-container:hover  > .replace-button {
+    display: block;
+}
+
+.replace-button {
+    display: none;
+    position: absolute; 
+    right: 8px; 
+    bottom: 8px;
+}

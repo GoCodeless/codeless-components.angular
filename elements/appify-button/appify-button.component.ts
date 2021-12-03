@@ -6,9 +6,7 @@ import {
     EventEmitter,
     SimpleChanges,
 } from "@angular/core";
-import { StyleButton, StylePadding } from "../../models/styles.model";
-
-import { EditBlockElementItem } from "../appify-image/appify-image.component";
+import { EditBlockElementItem, StyleButton, StylePadding } from "../../models/styles.model";
 
 export enum ButtonType {
     square = "square",
@@ -39,16 +37,19 @@ export enum Alignment {
 })
 export class AppifyButtonComponent implements OnInit {
     @Input() isEditing: boolean = false;
+    isEditingValue: boolean = false;
     @Input() identifier: string = "";
+
     @Input() title: String = "";
     @Input() url: string = "";
     @Input() alignment: Alignment = Alignment.center;
     @Input() width: ButtonContainerWidth = ButtonContainerWidth.full;
     @Input() padding: StylePadding = new StylePadding();
     @Input() style: StyleButton = new StyleButton();
-    @Output() didClick = new EventEmitter<any>();
 
+    @Output() didClick = new EventEmitter<any>();
     @Output() editBlockElement = new EventEmitter<EditBlockElementItem>();
+
     hoveringElement: string = null;
     hoveringIndex: number = 0;
 
@@ -168,11 +169,12 @@ export class AppifyButtonComponent implements OnInit {
         this.didClick.emit();
     }
 
-    emitBlockSelect(index, type) {
+    emitBlockSelect(index, type, value) {
         let item: EditBlockElementItem = new EditBlockElementItem();
         item.identifier = this.identifier;
         item.index = index;
         item.selectedType = type;
+        item.value = value
 
         this.editBlockElement.emit(item);
     }

@@ -9,9 +9,7 @@ import {
 } from "@angular/core";
 
 import { CodelessComponentsService } from "../../services/codeless-components.service";
-import { StyleFont, StylePadding, Animations } from "../../models/styles.model";
-
-import { EditBlockElementItem } from "../appify-image/appify-image.component";
+import { StyleFont, StylePadding, Animations, EditBlockElementItem } from "../../models/styles.model";
 
 export enum TextType {
     header = "header",
@@ -42,6 +40,8 @@ export class TextStyle {
 })
 export class AppifyTextComponent implements OnInit {
     @Input() isEditing: boolean = false;
+    isEditingValue: boolean = false;
+
     @Input() identifier: string = "";
     @Input() text: String = "";
     @Input() textType: TextType = TextType.header;
@@ -52,6 +52,7 @@ export class AppifyTextComponent implements OnInit {
     @Input() animation: { type: string } = { type: Animations.none };
 
     @ViewChild("animate") animateRef: ElementRef<HTMLElement>;
+    @ViewChild("editingTextField") editingTextField: ElementRef;
     @Output() editBlockElement = new EventEmitter<EditBlockElementItem>();
     hoveringElement: string = null;
     hoveringIndex: number = 0;
@@ -121,12 +122,36 @@ export class AppifyTextComponent implements OnInit {
         return size;
     }
 
-    emitBlockSelect(index, type) {
+    emitBlockSelect(index, type, value) {
         let item: EditBlockElementItem = new EditBlockElementItem();
         item.identifier = this.identifier;
         item.index = index;
         item.selectedType = type;
+        item.value = value
 
         this.editBlockElement.emit(item);
+    }
+
+    getHTMLFrom(value) {
+        return value.replace(new RegExp('\n', 'g'), "<br />")
+    }
+
+    shouldStopEditingTextField: boolean = false;
+    stopEditing() {
+        this.shouldStopEditingTextField = true;
+
+        setTimeout(() => {
+            if (this.editingTextField.nativeElement == document.activeElement) {
+            
+            } else {
+                this.shouldStopEditingTextField = false;
+                this.isEditingValue = false;
+            }
+        }, 500);
+    }
+
+    focusEditingTextField() {
+        console.log('Focus editing field')
+        this.editingTextField.nativeElement.focus();
     }
 }
