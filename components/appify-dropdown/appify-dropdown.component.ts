@@ -30,6 +30,8 @@ export class AppifyDropdownComponent implements OnInit {
     @Input() options: Array<string> = [];
     @Output() didSelectOption: EventEmitter<any> = new EventEmitter<any>();
     @Input() title: string = "Option";
+    @Input() alignment:string = "center";
+    @Input() spacing:number = 0;
     showOptions: boolean = false;
 
     selectedOption: string = "Select a Option";
