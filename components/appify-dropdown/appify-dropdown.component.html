@@ -25,13 +25,14 @@
         [style.border-width]="style.border_width ? style.border_width : ''"
         [style.border-color]="style.border_color ? style.border_color : ''"
         [style.border-style]="'solid'"
+        [style.border-radius]="style.border_radius ? style.border_radius : ''"
         [style.background-color]="
             style.background_color ? style.background_color : ''
         "
         (click)="toggleOptions()"
         class="option-selected"
     >
-        <appify-text [style]="textStyle" [text]="selectedOption"></appify-text>
+        <appify-text [style]="textStyle" [textType]="'body'" [text]="selectedOption"></appify-text>
         <svg
             *ngIf="!showOptions"
             width="24"
@@ -72,20 +73,42 @@
         [style.border-width]="style.border_width ? style.border_width : ''"
         [style.border-color]="style.border_color ? style.border_color : ''"
         [style.border-style]="'solid'"
+        [style.border-radius]="style.border_radius ? style.border_radius : ''"
         [style.background-color]="
             style.background_color ? style.background_color : ''
         "
-        [style.border-top]="'0px'"
+
+        [style.padding-top]="
+        style.padding?.top ? style.padding?.top + 'px' : ''
+    "
+    [style.padding-bottom]="
+        style.padding?.bottom ? style.padding?.bottom + 'px' : ''
+    "
+    [style.padding-left]="
+        style.padding?.left ? style.padding?.left + 'px' : ''
+    "
+    [style.padding-right]="
+        style.padding?.right ? style.padding?.right + 'px' : ''
+    "
+    [style.margin-top]="  spacing ? spacing + 'px' : ''"
     >
         <div
             *ngFor="let option of options"
             (click)="selectOption(option)"
             class="option"
+            [style.padding-top]="
+        spacing ? spacing + 'px' : ''
+    "
+    [style.padding-bottom]="
+        spacing ? spacing + 'px' : ''
+    "
+
         >
             <appify-text
                 [text]="option"
+                [textType]="'body'"
                 [style]="textStyle"
-                alignment="center"
+                [alignment]="alignment"
             ></appify-text>
         </div>
     </div>

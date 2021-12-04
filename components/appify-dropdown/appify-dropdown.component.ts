@@ -1,3 +1,4 @@
+
 import { Component, Output, Input, EventEmitter, OnInit } from "@angular/core";
 import {
     StyleFont,
@@ -13,6 +14,7 @@ export class DropdownStyle {
     background_color: string = "#fff";
     border_color: string = "#000";
     border_width: string = "1px";
+    border_radius: string = "0px";
     padding: StylePadding = new StylePadding();
     margin: StyleMargin = new StyleMargin();
 }
@@ -28,13 +30,15 @@ export class AppifyDropdownComponent implements OnInit {
     @Input() options: Array<string> = [];
     @Output() didSelectOption: EventEmitter<any> = new EventEmitter<any>();
     @Input() title: string = "Option";
+    @Input() alignment:string = "center";
+    @Input() spacing:number = 0;
     showOptions: boolean = false;
 
     selectedOption: string = "Select a Option";
 
     constructor() {}
     ngOnInit() {
-        this.selectedOption = "Select a " + this.title;
+        this.selectedOption = this.title;
     }
     selectOption(option) {
         this.selectedOption = option;
