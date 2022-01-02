@@ -7,6 +7,8 @@ button, input {
     padding: var(--spacing-xSmall) var(--spacing-small);
     box-sizing: border-box;
     border: var(--button-border-width) solid var(--button-border-color);
+    border-radius: var(--button-border-radius);
+    border-width: 1px;
     color: var(--button-text-color);
     background: var(--button-background-color);
     font-family: var(--typography-label-m-font-family);
@@ -17,7 +19,6 @@ button, input {
     letter-spacing: var(--typography-label-m-letter-spacing);
     text-transform: var(--typography-label-m-text-transform);
     text-align: center;
-    border-radius: var(--button-border-radius);
     transition: 0.3s;
 }
 

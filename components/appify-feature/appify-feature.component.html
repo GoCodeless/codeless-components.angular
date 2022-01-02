@@ -63,7 +63,7 @@
             <img [src]="pageService.getImageMapResource(imageURL)"
                 [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''" />
 
-                <div class="replace-button">
+                <div *ngIf="isEditing" class="replace-button">
                     <codeless-replace-image-button (didStartUpload)="isUploadingImage = true;" (didUploadImage)="changeImage(0, $event)"></codeless-replace-image-button>
                 </div>
 

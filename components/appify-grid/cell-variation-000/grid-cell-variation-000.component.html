@@ -12,7 +12,7 @@
             [src]="item.image ? pageService.getImageMapResource(item.image) : ''"
         />
 
-        <div class="replace-button">
+        <div *ngIf="isEditing" class="replace-button">
             <codeless-replace-image-button (didStartUpload)="isUploadingImage = true; selectedIndex = (i * 2) + (x);" (didUploadImage)="changeImage((i * 2) + (x), $event)"></codeless-replace-image-button>
         </div>
 

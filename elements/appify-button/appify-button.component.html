@@ -19,13 +19,15 @@
         (mouseleave)="isHovering = false"
         type="button"
         [ngStyle]="{ backgroundColor: backgroundColor() }"
-        [style.borderColor]="borderColor()"
+        [style.borderColor]="borderColor().length == 0 ? 'var(--button-background-color)' : borderColor()"
         [style.color]="color()"
         [style.borderRadius]="style?.border_radius ? style.border_radius : ''"
         [style.width]="width == containerWidthValue.margin ? '' : ''"
     >
         {{ title }}
     </button>
+
+    <!-- [style.borderWidth]="style?.fill_type == 'border' ? '1px' : ''" -->
 
     <div *ngIf="isEditing" style="position: relative;">
         <div *ngIf="isEditingValue" style="position: absolute; top: -26px; left: 0;">
@@ -43,7 +45,8 @@
             (focus)="isEditingValue = true;"
             (blur)="emitBlockSelect(0, 'button_text', $event.target.value); isEditingValue = false;"
             [ngStyle]="{ backgroundColor: backgroundColor() }"
-            [style.borderColor]="borderColor()"
+            [style.borderColor]="borderColor().length == 0 ? 'var(--button-background-color)' : borderColor()"
+            [style.borderWidth]="style?.fill_type == 'border' ? '1px' : ''"
             [style.color]="color()"
             [style.borderRadius]="style?.border_radius ? style.border_radius : ''"
             [style.width]="width == containerWidthValue.margin ? '' : ''"

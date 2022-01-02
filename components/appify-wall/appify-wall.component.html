@@ -37,7 +37,7 @@
                 <img [class.zoom-image]="hoverAnimation.type == 'zoom'"
                     [src]="items[0].image ? pageService.getImageMapResource(items[0].image) : ''"/>
 
-                <div class="replace-button">
+                <div *ngIf="isEditing" class="replace-button">
                     <codeless-replace-image-button (didStartUpload)="isUploadingImage = true; selectedIndex = 0;" (didUploadImage)="changeImage(0, $event)"></codeless-replace-image-button>
                 </div>
 
@@ -68,7 +68,7 @@
                 <img [class.zoom-image]="hoverAnimation.type == 'zoom'"
                     [src]="items[2].image ? pageService.getImageMapResource(items[2].image) : ''" />
 
-                <div class="replace-button">
+                <div *ngIf="isEditing" class="replace-button">
                     <codeless-replace-image-button (didStartUpload)="isUploadingImage = true; selectedIndex = 2;" (didUploadImage)="changeImage(2, $event)"></codeless-replace-image-button>
                 </div>
 
@@ -106,7 +106,7 @@
                 <img [class.zoom-image]="hoverAnimation.type == 'zoom'"
                     [src]="items[1].image ? pageService.getImageMapResource(items[1].image) : ''"  />
 
-                <div class="replace-button">
+                <div *ngIf="isEditing" class="replace-button">
                     <codeless-replace-image-button (didStartUpload)="isUploadingImage = true; selectedIndex = 1;" (didUploadImage)="changeImage(1, $event)"></codeless-replace-image-button>
                 </div>
 

@@ -7,3 +7,9 @@
 .layout-container > div {
     display: inline-block;
 }
+
+.margin-width {
+    margin: auto;
+    max-width: var(--size-default-margin);
+    width: calc(100% - (var(--spacing-small) * 2)) !important;
+}

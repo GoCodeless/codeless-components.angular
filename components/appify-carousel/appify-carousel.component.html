@@ -64,7 +64,7 @@
                             class="carousel-item-container"
                         />
 
-                        <div class="replace-button">
+                        <div *ngIf="isEditing" class="replace-button">
                             <codeless-replace-image-button (didStartUpload)="isUploadingImage = true; selectedIndex = i;" (didUploadImage)="changeImage(i, $event)"></codeless-replace-image-button>
                         </div>
 

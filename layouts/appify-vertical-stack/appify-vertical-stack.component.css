@@ -16,3 +16,9 @@
 .add-block-divider:hover > .add-block-divider-inner {
     visibility: visible;
 }
+
+.margin-width {
+    margin: auto;
+    max-width: var(--size-default-margin);
+    width: calc(100% - (var(--spacing-small) * 2)) !important;
+}
