@@ -58,6 +58,8 @@ export class AppifyVerticalStackComponent implements OnInit {
       }
       
       let block = this.blocks[index]
-      return this.isEditing && block.properties?.style[this.platform]?.display
+      if (!block) { return false }
+
+      return this.isEditing && block?.properties?.style[this.platform]?.display
     }
 }
