@@ -1,0 +1,26 @@
+<!-- <div>
+    <iframe [src]="urlSafe" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:200px; width:100%; border:none; overflow:hidden;"></iframe>
+</div> -->
+
+<!-- onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' -->
+<!-- <iframe 
+    [src]="urlSafe" 
+    onload="resizeIFrame()" 
+    onresize="resizeIFrame()"
+    scrolling="no" 
+    iframeAutoHeight></iframe> -->
+
+<iframe 
+    [style.height]="height + 'px'"
+    id="component-iframe"
+    scrolling="no" 
+    iframeAutoHeight>
+</iframe>
+
+<!-- <iframe [src]="urlSafe" sandbox="allow-same-origin"
+        onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';">
+</iframe> -->
+
+<!-- <div [innerHTML]="htmlValue">
+
+</div> -->
