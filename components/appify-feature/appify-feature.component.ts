@@ -43,6 +43,7 @@ export class FeatureStyle {
     paragraph: StyleFont;
     button: StyleButton;
     padding: StylePadding;
+    margin: StylePadding;
     background_image: string;
     background_size: string;
     background_position: string;

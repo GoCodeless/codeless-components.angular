@@ -3,7 +3,16 @@ import { StylePadding, EditBlockElementItem } from "../../models/styles.model";
 
 export class HorizontalStackStyle {
   padding: StylePadding;
+  margin: StylePadding;
   background_color: string;
+  background_image: string;
+  background_size: string;
+  background_position: string;
+  background_repeat: string;
+  gradient_start_color: string;
+  gradient_end_color: string;
+  gradient_degrees: number;
+  corner_radius: number;
 }
 
 export enum HorizontalStackWidth {
@@ -66,5 +75,13 @@ export class AppifyHorizontalStackComponent implements OnInit {
 
     getPlatform() {
       return this.platform
+    }
+
+    getBackgroundLinearGradient() {
+      if (this.style?.gradient_start_color) {
+          return '-webkit-linear-gradient(' + this.style?.gradient_degrees + 'deg, ' + this.style?.gradient_start_color + ', ' + this.style?.gradient_end_color + ')'
+      }
+
+      return ''
     }
 }

@@ -10,6 +10,7 @@ export enum VideoWidth {
 export class VideoStyle {
     height: number;
     padding: StylePadding;
+    margin: StylePadding;
 }
 
 export enum Alignment {

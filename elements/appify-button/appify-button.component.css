@@ -17,7 +17,7 @@ button, input {
     font-size: var(--typography-label-m-font-size);
     line-height: var(--typography-label-m-line-height);
     letter-spacing: var(--typography-label-m-letter-spacing);
-    text-transform: var(--typography-label-m-text-transform);
+    /* text-transform: var(--typography-label-m-text-transform); */
     text-align: center;
     transition: 0.3s;
 }

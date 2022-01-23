@@ -33,6 +33,7 @@ export class CarouselStyle {
     title: StyleFont;
     subtitle: StyleFont;
     padding: StylePadding;
+    margin: StylePadding;
     background_image: string;
     background_size: string;
     background_position: string;

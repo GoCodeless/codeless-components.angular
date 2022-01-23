@@ -51,6 +51,9 @@ input {
     letter-spacing: var(--typography-headline-m-letter-spacing);
     text-transform: var(--typography-headline-m-text-transform);
     color: var(--color-headline);
+    /* background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
 }
 
 .body {

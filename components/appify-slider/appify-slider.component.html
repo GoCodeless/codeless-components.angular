@@ -45,6 +45,10 @@
                 ? 'right'
                 : 'left'
         "
+        [style.margin-top]="style?.margin?.top ? style?.margin?.top + 'px' : ''"
+        [style.margin-bottom]="style?.margin?.bottom ? style?.margin?.bottom + 'px' : ''"
+        [style.margin-left]="style?.margin?.left ? style?.margin?.left + 'px' : ''"
+        [style.margin-right]="style?.margin?.right ? style?.margin?.right + 'px' : ''"
     >
         <div
             class="row row-container"

@@ -3,7 +3,16 @@ import { StylePadding, EditBlockElementItem } from "../../models/styles.model";
 
 export class VerticalStackStyle {
   padding: StylePadding;
+  margin: StylePadding;
   background_color: string;
+  background_image: string;
+  background_size: string;
+  background_position: string;
+  background_repeat: string;
+  gradient_start_color: string;
+  gradient_end_color: string;
+  gradient_degrees: number;
+  corner_radius: number;
 }
 
 export enum VerticalStackWidth {
@@ -53,7 +62,7 @@ export class AppifyVerticalStackComponent implements OnInit {
     }
 
     renderAddBlockLine(index) {
-      if (index > 0 && this.blocks[index - 1].type == 'appify-line') {
+      if (index > 0 && this.blocks[index - 1]?.type == 'appify-line') {
         return false
       }
       
@@ -62,4 +71,12 @@ export class AppifyVerticalStackComponent implements OnInit {
 
       return this.isEditing && block?.properties?.style[this.platform]?.display
     }
+
+    getBackgroundLinearGradient() {
+      if (this.style?.gradient_start_color) {
+          return '-webkit-linear-gradient(' + this.style?.gradient_degrees + 'deg, ' + this.style?.gradient_start_color + ', ' + this.style?.gradient_end_color + ')'
+      }
+
+      return ''
+  }
 }

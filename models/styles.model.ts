@@ -28,6 +28,10 @@ export enum Animations {
     fade_in = "fadeIn",
 }
 export class StyleButton {
+    // Padding within the button
+    padding: StylePadding;
+    // Margin around the button
+    margin: StylePadding;
     /// Example: 9999px, 0, or any pixel string
     border_radius: string;
     /// Options: 0 = left, 1 = center, 2 = right
@@ -61,6 +65,12 @@ export class StyleFont {
     line_height: number;
     /// Supports hex strings representing colors
     color: string;
+    /// Gradient start color
+    gradient_start_color: string;
+    /// Gradient end color
+    gradient_end_color: string;
+    /// Gradient degree angle
+    gradient_degrees: number;
     /// Supports fractional number (e.g. - 0.1) on the spacing between letters in EM values
     letter_spacing: number;
 
@@ -69,6 +79,9 @@ export class StyleFont {
         this.weight = object.weight;
         this.size = object.size;
         this.line_height = object.line_height;
+        this.gradient_start_color = object.gradient_start_color;
+        this.gradient_end_color = object.gradient_end_color;
+        this.gradient_degrees = object.gradient_degrees
         this.color = object.color;
         this.letter_spacing = object.letter_spacing;
     }

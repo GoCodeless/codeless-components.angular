@@ -39,6 +39,7 @@ export class GridStyle {
     subtitle: StyleFont;
     button: StyleButton;
     padding: StylePadding;
+    margin: StylePadding;
     background_color: string;
     background_image: string;
     background_size: string;

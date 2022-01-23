@@ -11,6 +11,7 @@ export enum ImageWidth {
 export class ImageStyle {
     height: number;
     padding: StylePadding;
+    margin: StylePadding;
     background_size: string;
     corner_radius: number;
 }

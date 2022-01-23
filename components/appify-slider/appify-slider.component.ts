@@ -49,6 +49,7 @@ export class SliderStyle {
     subtitle: StyleFont;
     button: StyleButton;
     padding: StylePadding;
+    margin: StylePadding;
     corner_radius: number;
 }
 

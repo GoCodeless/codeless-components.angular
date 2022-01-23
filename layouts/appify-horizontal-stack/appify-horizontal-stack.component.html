@@ -3,8 +3,20 @@
     [style.padding-top]="style?.padding?.top ? style?.padding?.top + 'px' : ''"
     [style.padding-bottom]="style?.padding?.bottom ? style?.padding?.bottom + 'px' : ''"
     [style.padding-left]="style?.padding?.left ? style?.padding?.left + 'px' : ''"
-    [style.padding-right]="style?.padding?.right ? style?.padding?.right + 'px' : ''">
-    <div *ngFor="let block of blocks; let i = index" style="background-color: var(--color-background);"
+    [style.padding-right]="style?.padding?.right ? style?.padding?.right + 'px' : ''"
+    [style.margin-top]="style?.margin?.top ? style?.margin?.top + 'px' : ''"
+    [style.margin-bottom]="style?.margin?.bottom ? style?.margin?.bottom + 'px' : ''"
+    [style.margin-left]="style?.margin?.left ? style?.margin?.left + 'px' : ''"
+    [style.margin-right]="style?.margin?.right ? style?.margin?.right + 'px' : ''"
+    [style.backgroundImage]="style?.background_image ? 'url(' + style?.background_image + ')' : ''"
+    [style.backgroundSize]="style?.background_size ? style?.background_size : ''"
+    [style.backgroundRepeat]="style?.background_repeat ? style?.background_repeat : ''"
+    [style.backgroundPosition]="style?.background_position ? style?.background_position : ''"
+    [style.background]="getBackgroundLinearGradient().length ? getBackgroundLinearGradient() : style?.background_color ? style?.background_color : ''"
+    [style.borderRadius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
+    >
+
+    <div *ngFor="let block of blocks; let i = index" 
         [style.width]="getElementWidth() + '%'">
 
         <!-- Layouts -->

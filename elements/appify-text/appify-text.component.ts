@@ -29,8 +29,12 @@ export enum Alignment {
 
 export class TextStyle {
     padding: StylePadding;
+    margin: StylePadding;
     text: StyleFont;
     background_color: string;
+    gradient_start_color: string;
+    gradient_end_color: string;
+    gradient_degrees: number;
 }
 
 @Component({
@@ -120,6 +124,22 @@ export class AppifyTextComponent implements OnInit {
         }
 
         return size;
+    }
+
+    getBackgroundLinearGradient() {
+        if (this.style?.gradient_start_color) {
+            return '-webkit-linear-gradient(' + this.style?.gradient_degrees + 'deg, ' + this.style?.gradient_start_color + ', ' + this.style?.gradient_end_color + ')'
+        }
+
+        return ''
+    }
+
+    getLinearGradient() {
+        if (this.style?.text?.gradient_start_color) {
+            return '-webkit-linear-gradient(' + this.style?.text?.gradient_degrees + 'deg, ' + this.style?.text?.gradient_start_color + ', ' + this.style?.text?.gradient_end_color + ')'
+        }
+
+        return null
     }
 
     emitBlockSelect(index, type, value) {
