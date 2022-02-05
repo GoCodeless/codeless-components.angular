@@ -62,21 +62,29 @@ export class AppifyVerticalStackComponent implements OnInit {
     }
 
     renderAddBlockLine(index) {
-      if (index > 0 && this.blocks[index - 1]?.type == 'appify-line') {
+      let previousBlock = this.blocks[index - 1]
+      if (!previousBlock) { return false }
+      
+      if (index > 0 && previousBlock.type == 'appify-line') {
         return false
       }
       
       let block = this.blocks[index]
-      if (!block) { return false }
+      if (!block || !block.properties || !block.properties.style) { return false }
 
-      return this.isEditing && block?.properties?.style[this.platform]?.display
+      return this.isEditing && block.properties.style[this.platform].display
     }
 
     getBackgroundLinearGradient() {
-      if (this.style?.gradient_start_color) {
-          return '-webkit-linear-gradient(' + this.style?.gradient_degrees + 'deg, ' + this.style?.gradient_start_color + ', ' + this.style?.gradient_end_color + ')'
+      let style = this.style
+      let gradientStartColor = style.gradient_start_color
+      let gradientEndColor = style.gradient_end_color
+      let gradientDegrees = style.gradient_degrees ? style.gradient_degrees : 0
+
+      if (gradientStartColor && gradientEndColor) {
+          return '-webkit-linear-gradient(' + gradientDegrees + 'deg, ' + gradientStartColor + ', ' + gradientEndColor + ')'
       }
 
       return ''
-  }
+    }
 }

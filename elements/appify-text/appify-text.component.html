@@ -29,6 +29,10 @@
         [style.line-height]="getLineHeight()"
         [style.text-align]="alignment == alignmentValue.right ? 'right' : alignment == alignmentValue.center ? 'center' : 'left'"
         [style.letter-spacing]="style?.text?.letter_spacing ? style?.text?.letter_spacing : ''"
+        [style.background]="getLinearGradient()"
+        [style.-webkit-background-clip]="style?.text?.color ? '' : style?.text?.gradient_start_color ? 'text' : ''"
+        [style.-webkit-text-fill-color]="style?.text?.color ? '' : style?.text?.gradient_start_color ? 'transparent' : ''"
+        [style.color]="style?.text?.color ? style?.text?.color : ''"
     >
     </p>
 
@@ -135,9 +139,9 @@
             [style.text-align]="alignment == alignmentValue.right ? 'right' : alignment == alignmentValue.center ? 'center' : 'left'"
             [style.letter-spacing]="style?.text?.letter_spacing ? style?.text?.letter_spacing : ''" 
             [style.background]="getLinearGradient()"
-            [style.-webkit-background-clip]="style?.text?.gradient_start_color ? 'text' : ''"
-            [style.-webkit-text-fill-color]="style?.text?.gradient_start_color ? 'transparent' : ''"
-            [style.color]="style?.text?.color ? style?.text?.color : ''"
+            [style.color]="style?.text?.color ? style?.text?.color : style?.text?.gradient_start_color ? 'transparent' : ''"
+            [style.-webkit-background-clip]="style?.text?.color ? '' : style?.text?.gradient_start_color ? 'text' : ''"
+            [style.-webkit-text-fill-color]="style?.text?.color ? '' : style?.text?.gradient_start_color ? 'transparent' : ''"
         ></textarea>
     </div>
 </div>

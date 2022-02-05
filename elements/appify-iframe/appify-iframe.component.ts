@@ -9,8 +9,9 @@ import { EditBlockElementItem } from "../../models/styles.model";
 })
 export class AppifyIframeComponent implements OnInit {
     @Input() isEditing: boolean = false;
-    @Input() identifier: string = ''
-    @Input() height: number = -1
+    @Input() identifier: string = '';
+    @Input() height: number = -1;
+    @Input() code: string = '';
 
     // url: string = "https://s3.amazonaws.com/tryappify.com/test-component.html";
     url: string = "https://www.gocodeless.com";
@@ -39,8 +40,11 @@ export class AppifyIframeComponent implements OnInit {
         
         const doc: Document = win.document;
         doc.open();
-        doc.write(this.htmlValue);
+        // doc.write(this.htmlValue);
+        doc.write(this.code);
         doc.close()
+
+        console.log('iFrame injecting code: ' + this.code)
 
         window.addEventListener("message", this.receiveMessage, true);
     }

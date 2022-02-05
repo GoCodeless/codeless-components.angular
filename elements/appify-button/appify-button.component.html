@@ -1,3 +1,11 @@
+<!-- [style.padding-top]="padding?.top ? padding?.top + 'px' : ''"
+    [style.padding-bottom]="padding?.bottom ? padding?.bottom + 'px' : ''"
+    [style.padding-left]="padding?.left ? padding?.left + 'px' : ''"
+    [style.padding-right]="padding?.right ? padding?.right + 'px' : ''"
+    [style.margin-top]="style?.margin?.top ? style?.margin?.top + 'px' : ''"
+    [style.margin-bottom]="style?.margin?.bottom ? style?.margin?.bottom + 'px' : ''"
+    [style.margin-left]="style?.margin?.left ? style?.margin?.left + 'px' : ''"
+    [style.margin-right]="style?.margin?.right ? style?.margin?.right + 'px' : ''" -->
 <div
     id="container"
     (click)="emitBlockSelect(0, 'button', null)"
@@ -6,14 +14,6 @@
     [class.selectable]="hoveringElement == 'button' && hoveringIndex == 0 && isEditing == true"
     [style.text-align]="alignment == alignmentValue.right ? 'right' : alignment == alignmentValue.center ? 'center' : 'left'"
     [class.margin-width]="width == containerWidthValue.margin"
-    [style.padding-top]="padding?.top ? padding?.top + 'px' : ''"
-    [style.padding-bottom]="padding?.bottom ? padding?.bottom + 'px' : ''"
-    [style.padding-left]="padding?.left ? padding?.left + 'px' : ''"
-    [style.padding-right]="padding?.right ? padding?.right + 'px' : ''"
-    [style.margin-top]="style?.margin?.top ? style?.margin?.top + 'px' : ''"
-    [style.margin-bottom]="style?.margin?.bottom ? style?.margin?.bottom + 'px' : ''"
-    [style.margin-left]="style?.margin?.left ? style?.margin?.left + 'px' : ''"
-    [style.margin-right]="style?.margin?.right ? style?.margin?.right + 'px' : ''"
     [style.borderRadius]="style?.border_radius ? style?.border_radius : ''"
 >
     <button
@@ -26,7 +26,16 @@
         [style.borderColor]="borderColor().length == 0 ? 'var(--button-background-color)' : borderColor()"
         [style.color]="color()"
         [style.borderRadius]="style?.border_radius ? style.border_radius : ''"
-        [style.width]="width == containerWidthValue.margin ? '' : ''"
+        [style.width]="width == containerWidthValue.margin ? '' : '100%'"
+
+        [style.padding-top]="padding?.top ? padding?.top + 'px' : ''"
+        [style.padding-bottom]="padding?.bottom ? padding?.bottom + 'px' : ''"
+        [style.padding-left]="padding?.left ? padding?.left + 'px' : ''"
+        [style.padding-right]="padding?.right ? padding?.right + 'px' : ''"
+        [style.margin-top]="margin?.top ? margin?.top + 'px' : ''"
+        [style.margin-bottom]="margin?.bottom ? margin?.bottom + 'px' : ''"
+        [style.margin-left]="margin?.left ? margin?.left + 'px' : ''"
+        [style.margin-right]="margin?.right ? margin?.right + 'px' : ''"
     >
         {{ title }}
     </button>
@@ -53,7 +62,16 @@
             [style.borderWidth]="style?.fill_type == 'border' ? '1px' : ''"
             [style.color]="color()"
             [style.borderRadius]="style?.border_radius ? style.border_radius : ''"
-            [style.width]="width == containerWidthValue.margin ? '' : ''"
+            [style.width]="width == containerWidthValue.margin ? '' : '100%'"
+            
+            [style.padding-top]="padding?.top ? padding?.top + 'px' : ''"
+            [style.padding-bottom]="padding?.bottom ? padding?.bottom + 'px' : ''"
+            [style.padding-left]="padding?.left ? padding?.left + 'px' : ''"
+            [style.padding-right]="padding?.right ? padding?.right + 'px' : ''"
+            [style.margin-top]="margin?.top ? margin?.top + 'px' : ''"
+            [style.margin-bottom]="margin?.bottom ? margin?.bottom + 'px' : ''"
+            [style.margin-left]="margin?.left ? margin?.left + 'px' : ''"
+            [style.margin-right]="margin?.right ? margin?.right + 'px' : ''"
         />
     </div>
 </div>

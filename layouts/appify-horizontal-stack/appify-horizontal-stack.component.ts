@@ -78,10 +78,15 @@ export class AppifyHorizontalStackComponent implements OnInit {
     }
 
     getBackgroundLinearGradient() {
-      if (this.style?.gradient_start_color) {
-          return '-webkit-linear-gradient(' + this.style?.gradient_degrees + 'deg, ' + this.style?.gradient_start_color + ', ' + this.style?.gradient_end_color + ')'
+      let style = this.style
+      let gradientStartColor = style.gradient_start_color
+      let gradientEndColor = style.gradient_end_color
+      let gradientDegrees = style.gradient_degrees ? style.gradient_degrees : 0
+
+      if (gradientStartColor && gradientEndColor) {
+          return '-webkit-linear-gradient(' + gradientDegrees + 'deg, ' + gradientStartColor + ', ' + gradientEndColor + ')'
       }
 
       return ''
-    }
+  }
 }

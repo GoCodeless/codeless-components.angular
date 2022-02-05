@@ -45,6 +45,7 @@ export class AppifyButtonComponent implements OnInit {
     @Input() alignment: Alignment = Alignment.center;
     @Input() width: ButtonContainerWidth = ButtonContainerWidth.full;
     @Input() padding: StylePadding = new StylePadding();
+    @Input() margin: StylePadding = new StylePadding();
     @Input() style: StyleButton = new StyleButton();
 
     @Output() didClick = new EventEmitter<any>();

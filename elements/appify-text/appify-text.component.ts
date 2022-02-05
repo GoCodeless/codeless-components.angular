@@ -127,19 +127,34 @@ export class AppifyTextComponent implements OnInit {
     }
 
     getBackgroundLinearGradient() {
-        if (this.style?.gradient_start_color) {
-            return '-webkit-linear-gradient(' + this.style?.gradient_degrees + 'deg, ' + this.style?.gradient_start_color + ', ' + this.style?.gradient_end_color + ')'
+        let style = this.style
+        if (style == null) { return 'transparent' }
+
+        let gradientStartColor = style.gradient_start_color ? style.gradient_start_color : null
+        let gradientEndColor = style.gradient_end_color ? style.gradient_end_color : null
+        let gradientDegrees = style.gradient_degrees ? style.gradient_degrees : 0
+
+        if (gradientStartColor && gradientEndColor) {
+            return '-webkit-linear-gradient(' + gradientDegrees + 'deg, ' + gradientStartColor + ', ' + gradientEndColor + ')'
         }
 
-        return ''
+        return 'transparent'
     }
 
     getLinearGradient() {
-        if (this.style?.text?.gradient_start_color) {
-            return '-webkit-linear-gradient(' + this.style?.text?.gradient_degrees + 'deg, ' + this.style?.text?.gradient_start_color + ', ' + this.style?.text?.gradient_end_color + ')'
+        let style = this.style?.text
+        if (style == null) { return 'transparent' }
+        
+        let gradientStartColor = style.gradient_start_color ? style.gradient_start_color : null
+        let gradientEndColor = style.gradient_end_color ? style.gradient_end_color : null
+        let gradientDegrees = style.gradient_degrees ? style.gradient_degrees : 0
+
+        if (gradientStartColor && gradientEndColor) {
+            console.log('-webkit-linear-gradient(' + gradientDegrees + 'deg, ' + gradientStartColor + ', ' + gradientEndColor + ')')
+            return '-webkit-linear-gradient(' + gradientDegrees + 'deg, ' + gradientStartColor + ', ' + gradientEndColor + ')'
         }
 
-        return null
+        return 'transparent'
     }
 
     emitBlockSelect(index, type, value) {
