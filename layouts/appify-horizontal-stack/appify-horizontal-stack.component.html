@@ -14,14 +14,15 @@
     [style.backgroundPosition]="style?.background_position ? style?.background_position : ''"
     [style.background]="getBackgroundLinearGradient().length ? getBackgroundLinearGradient() : style?.background_color ? style?.background_color : ''"
     [style.borderRadius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
+    [style.align-items]="style?.vertical_alignment ? style?.vertical_alignment : 'start'"
     >
 
     <div *ngFor="let block of blocks; let i = index" 
-        [style.width]="getElementWidth() + '%'">
+        [style.width]="getElementWidth(block)">
 
         <!-- Layouts -->
-        <appify-horizontal-stack [id]="'item-' + i" [platform]="platform" *ngIf="block?.type == 'appify-horizontal-stack' && (block?.properties.style[platform]?.display == true)" [blocks]="block?.properties.blocks" [isEditing]="isEditing" [width]="block.properties.style[platform]?.width" [style]="block.properties.style[platform]"></appify-horizontal-stack>
-        <appify-vertical-stack [id]="'item-' + i" [platform]="platform" *ngIf="block?.type == 'appify-vertical-stack' && (block?.properties.style[platform]?.display == true)" [blocks]="block?.properties.blocks" [isEditing]="isEditing" [width]="block.properties.style[platform]?.width" [style]="block.properties.style[platform]"></appify-vertical-stack>
+        <appify-horizontal-stack [id]="'item-' + i" [platform]="platform" *ngIf="block?.type == 'appify-horizontal-stack' && (block?.properties.style[platform]?.display == true)" (editBlockElement)="didSelectBlock($event)" [blocks]="block?.properties.blocks" [isEditing]="isEditing" [width]="block.properties.style[platform]?.width" [style]="block.properties.style[platform]"></appify-horizontal-stack>
+        <appify-vertical-stack [id]="'item-' + i" [platform]="platform" *ngIf="block?.type == 'appify-vertical-stack' && (block?.properties.style[platform]?.display == true)" (editBlockElement)="didSelectBlock($event)" [blocks]="block?.properties.blocks" [isEditing]="isEditing" [width]="block.properties.style[platform]?.width" [style]="block.properties.style[platform]"></appify-vertical-stack>
 
         <!-- Components -->
         <appify-button [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-button' && (block.properties.style[platform]?.display == true)" [title]="block.properties.text" [width]="block.properties.style[platform]?.width" [alignment]="block.properties.style[platform]?.alignment" [padding]="block.properties.style[platform]?.padding" [margin]="block.properties.style[platform]?.margin" [style]="block.properties.style[platform]?.button"></appify-button>

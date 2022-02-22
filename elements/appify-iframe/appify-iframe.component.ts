@@ -40,11 +40,8 @@ export class AppifyIframeComponent implements OnInit {
         
         const doc: Document = win.document;
         doc.open();
-        // doc.write(this.htmlValue);
         doc.write(this.code);
         doc.close()
-
-        console.log('iFrame injecting code: ' + this.code)
 
         window.addEventListener("message", this.receiveMessage, true);
     }

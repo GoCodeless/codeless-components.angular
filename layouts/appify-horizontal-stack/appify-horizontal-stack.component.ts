@@ -13,6 +13,7 @@ export class HorizontalStackStyle {
   gradient_end_color: string;
   gradient_degrees: number;
   corner_radius: number;
+  vertical_alignment: string;
 }
 
 export enum HorizontalStackWidth {
@@ -43,7 +44,7 @@ export class AppifyHorizontalStackComponent implements OnInit {
     
     @Output() addBlockElement = new EventEmitter<number>();
     @Output() editBlockElement = new EventEmitter<EditBlockElementItem>();
-
+  
     get stackWidthValue() {
       return HorizontalStackWidth;
     }
@@ -59,8 +60,12 @@ export class AppifyHorizontalStackComponent implements OnInit {
 
     }
 
-    getElementWidth() {
-        return 100 / this.blocks.length
+    getElementWidth(block) {
+        if (block.properties.style?.[this.platform].width) {
+          return block.properties.style?.[this.platform].width
+        }
+
+        return 100 / this.blocks.length + '%'
     }
 
     selectedBlockElement: any = null;

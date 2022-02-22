@@ -1,11 +1,3 @@
-<!-- [style.padding-top]="padding?.top ? padding?.top + 'px' : ''"
-    [style.padding-bottom]="padding?.bottom ? padding?.bottom + 'px' : ''"
-    [style.padding-left]="padding?.left ? padding?.left + 'px' : ''"
-    [style.padding-right]="padding?.right ? padding?.right + 'px' : ''"
-    [style.margin-top]="style?.margin?.top ? style?.margin?.top + 'px' : ''"
-    [style.margin-bottom]="style?.margin?.bottom ? style?.margin?.bottom + 'px' : ''"
-    [style.margin-left]="style?.margin?.left ? style?.margin?.left + 'px' : ''"
-    [style.margin-right]="style?.margin?.right ? style?.margin?.right + 'px' : ''" -->
 <div
     id="container"
     (click)="emitBlockSelect(0, 'button', null)"
@@ -40,8 +32,6 @@
         {{ title }}
     </button>
 
-    <!-- [style.borderWidth]="style?.fill_type == 'border' ? '1px' : ''" -->
-
     <div *ngIf="isEditing" style="position: relative;">
         <div *ngIf="isEditingValue" style="position: absolute; top: -26px; left: 0;">
             <div class="editing-textarea-tag">
@@ -52,7 +42,7 @@
         <input type="text" 
             *ngIf="isEditing"
             class="editing-input"
-            [size]="title.length + 4"
+            [size]="title.length"
             [(ngModel)]="title" 
             (input)="title = $event.target.value"
             (focus)="isEditingValue = true;"

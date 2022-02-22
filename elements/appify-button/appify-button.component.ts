@@ -79,7 +79,6 @@ export class AppifyButtonComponent implements OnInit {
         if (changes.style && changes.style.currentValue) {
             let current = changes.style.currentValue;
 
-            // if (current.type) { this.style.type = current.type }
             if (current.fill_type) {
                 this.style.fill_type = current.fill_type;
             }
@@ -176,6 +175,7 @@ export class AppifyButtonComponent implements OnInit {
         item.index = index;
         item.selectedType = type;
         item.value = value
+
 
         this.editBlockElement.emit(item);
     }

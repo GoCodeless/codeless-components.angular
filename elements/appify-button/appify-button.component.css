@@ -4,7 +4,11 @@
 
 button, input {
     cursor: pointer;
-    padding: var(--spacing-xSmall) var(--spacing-small);
+    /* padding: var(--spacing-xSmall) var(--spacing-small); */
+    padding-top: var(--spacing-xSmall);
+    padding-bottom: var(--spacing-xSmall);
+    padding-left: var(--spacing-small);
+    padding-right: var(--spacing-small);
     box-sizing: border-box;
     border: var(--button-border-width) solid var(--button-border-color);
     border-radius: var(--button-border-radius);
