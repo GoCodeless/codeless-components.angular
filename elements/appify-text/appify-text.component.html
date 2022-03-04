@@ -15,6 +15,7 @@
     [style.margin-left]="style?.margin?.left ? style?.margin?.left + 'px' : ''"
     [style.margin-right]="style?.margin?.right ? style?.margin?.right + 'px' : ''"
     [style.background]="getBackgroundLinearGradient().length ? getBackgroundLinearGradient() : style?.background_color ? style?.background_color : ''"
+    [style.width]="getWidth()"
 >
     <p
         *ngIf="!isEditing"

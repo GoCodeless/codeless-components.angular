@@ -49,6 +49,7 @@
         [style.margin-bottom]="style?.margin?.bottom ? style?.margin?.bottom + 'px' : ''"
         [style.margin-left]="style?.margin?.left ? style?.margin?.left + 'px' : ''"
         [style.margin-right]="style?.margin?.right ? style?.margin?.right + 'px' : ''"
+        [style.width]="getWidth()"
     >
         <div
             class="row row-container"
@@ -159,9 +160,7 @@
                             [style.letter-spacing]="style?.subtitle?.letter_spacing ? style?.subtitle?.letter_spacing + 'px' : ''"
                             [style.text-align]="alignment == sliderAlignmentValue.center ? 'center' : alignment == sliderAlignmentValue.right ? 'right' : 'left'"
                         ></textarea>
-                    </div>
-
-                            
+                    </div> 
 
                 <div class="spacing-ms"></div>
 
@@ -180,7 +179,9 @@
         </div>
     </div>
 
-    <div id="slider" *ngIf="items.length > 1">
+    <div id="slider"
+         *ngIf="items.length > 1"
+         [style.bottom]="getIndicatorBottomValue()">
         <appify-indicators
             [count]="items.length"
             [selectedIndex]="selectedIndex"

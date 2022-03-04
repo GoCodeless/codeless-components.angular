@@ -145,4 +145,10 @@ export class AppifyGridComponent implements OnInit {
         event.identifier = this.identifier
         this.editBlockElement.emit(event);
     }
+
+    getWidth() {
+        let left = this.style?.margin?.left ? this.style?.margin?.left : 0
+        let right = this.style?.margin?.right ? this.style?.margin?.right : 0
+        return 'calc(100% - ' + (left + right) + 'px)' 
+    }
 }

@@ -50,7 +50,7 @@ export class AppifyTextComponent implements OnInit {
     @Input() text: String = "";
     @Input() textType: TextType = TextType.header;
     @Input() alignment: Alignment = Alignment.left;
-    @Input() width: TextWidth = TextWidth.full;
+    @Input() width: string = ''; //TextWidth = TextWidth.full;
     @Input() style: TextStyle = new TextStyle();
 
     @Input() animation: { type: string } = { type: Animations.none };
@@ -188,5 +188,27 @@ export class AppifyTextComponent implements OnInit {
     focusEditingTextField() {
         console.log('Focus editing field')
         this.editingTextField.nativeElement.focus();
+    }
+
+    // getWidth() {
+    //     let left = this.style?.margin?.left ? this.style?.margin?.left : 0
+    //     let right = this.style?.margin?.right ? this.style?.margin?.right : 0
+    //     return 'calc(100% - ' + (left + right) + 'px)' 
+    // }
+
+    getWidth() {
+        var defaultWidth = '100%'
+
+        if (this.width == 'auto' || this.width == 'auto') {
+            return ''
+        } else if (this.width?.includes('px')) {
+            return this.width
+        } else if (this.width?.includes('%')) {
+            defaultWidth = this.width
+        }
+
+        let left = this.style?.margin?.left ? this.style?.margin?.left : 0
+        let right = this.style?.margin?.right ? this.style?.margin?.right : 0
+        return 'calc(' + defaultWidth + ' - ' + (left + right) + 'px)' 
     }
 }

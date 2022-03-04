@@ -42,6 +42,8 @@ export class StyleButton {
     normal_state: StyleButtonState;
     /// State information for hover state
     hover_state: StyleButtonState;
+    /// Width of the button. Options: 'auto', 0px (pixel), 100% (percent)
+    width: string;
 
     init(object: any) {
         this.border_radius = object.border_radius;
@@ -51,6 +53,7 @@ export class StyleButton {
         this.normal_state.init(object.normal_state);
         this.hover_state = new StyleButtonState();
         this.hover_state.init(object.hover_state);
+        this.width = object.width
     }
 }
 

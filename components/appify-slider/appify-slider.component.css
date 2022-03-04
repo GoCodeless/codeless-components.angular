@@ -47,7 +47,6 @@
 
 #inner {
     position: relative;
-    width: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -60,11 +59,11 @@
 
 #slider {
     position: absolute;
-    bottom: var(--spacing-xSmall);
+    /* bottom: var(--spacing-xSmall); */
     left: 0;
     width: 50%;
     transform: translateX(50%);
-    margin-left: -20px;
+    text-align: center;
 }
 
 #slider > div {

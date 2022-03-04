@@ -201,4 +201,15 @@ export class AppifySliderComponent implements OnInit {
         this.emitBlockSelect(0, 'image', event);
         this.isUploadingImage = false;
     }
+
+    getWidth() {
+        let left = this.style?.margin?.left ? this.style?.margin?.left : 0
+        let right = this.style?.margin?.right ? this.style?.margin?.right : 0
+        return 'calc(100% - ' + (left + right) + 'px)' 
+    }
+
+    getIndicatorBottomValue() {
+        let bottom = this.style?.margin?.bottom ? this.style?.margin?.bottom : 0
+        return 'calc(var(--spacing-xSmall) + ' + bottom + 'px)'
+    }
 }

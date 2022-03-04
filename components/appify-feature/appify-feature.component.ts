@@ -109,7 +109,7 @@ export class AppifyFeatureComponent implements OnInit {
     }
     ngOnInit() {
         this.buttonPadding.top = 0;
-        this.buttonPadding.bottom = 32;
+        this.buttonPadding.bottom = 0;
         this.buttonPadding.left = 0;
         this.buttonPadding.right = 0;
         const animation = this.animation;
@@ -148,5 +148,11 @@ export class AppifyFeatureComponent implements OnInit {
     changeImage(index, event) {
         this.emitBlockSelect(index, 'image', event);
         this.isUploadingImage = false;
+    }
+
+    getWidth() {
+        let left = this.style?.margin?.left ? this.style?.margin?.left : 0
+        let right = this.style?.margin?.right ? this.style?.margin?.right : 0
+        return 'calc(100% - ' + (left + right) + 'px)' 
     }
 }

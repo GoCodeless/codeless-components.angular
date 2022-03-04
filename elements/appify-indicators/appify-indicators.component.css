@@ -29,5 +29,5 @@
 }
 
 .selected-page {
-    background-color: var(--indicator-background-color);
+    background-color: var(--indicator-background-color) !important;
 }

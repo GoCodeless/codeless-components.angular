@@ -1,12 +1,15 @@
+<!-- [style.text-align]="alignment == alignmentValue.right ? 'right' : alignment == alignmentValue.center ? 'center' : 'left'" -->
 <div
     id="container"
     (click)="emitBlockSelect(0, 'button', null)"
     (mouseover)="hoveringElement = 'button'; hoveringIndex = 0"
     (mouseout)="hoveringElement = null"
     [class.selectable]="hoveringElement == 'button' && hoveringIndex == 0 && isEditing == true"
-    [style.text-align]="alignment == alignmentValue.right ? 'right' : alignment == alignmentValue.center ? 'center' : 'left'"
     [class.margin-width]="width == containerWidthValue.margin"
     [style.borderRadius]="style?.border_radius ? style?.border_radius : ''"
+    [style.text-align]="alignment == alignmentValue.center ? 'center'
+                : alignment == alignmentValue.right ? 'right'
+                : 'left'"
 >
     <button
         *ngIf="title?.length > 0 && !isEditing"
@@ -28,11 +31,16 @@
         [style.margin-bottom]="margin?.bottom ? margin?.bottom + 'px' : ''"
         [style.margin-left]="margin?.left ? margin?.left + 'px' : ''"
         [style.margin-right]="margin?.right ? margin?.right + 'px' : ''"
+        [style.width]="getWidth()"
     >
         {{ title }}
     </button>
 
-    <div *ngIf="isEditing" style="position: relative;">
+    <div *ngIf="isEditing" 
+        style="position: relative;"
+        [style.text-align]="alignment == alignmentValue.center ? 'center'
+        : alignment == alignmentValue.right ? 'right'
+        : 'left'">
         <div *ngIf="isEditingValue" style="position: absolute; top: -26px; left: 0;">
             <div class="editing-textarea-tag">
                 Button
@@ -62,6 +70,7 @@
             [style.margin-bottom]="margin?.bottom ? margin?.bottom + 'px' : ''"
             [style.margin-left]="margin?.left ? margin?.left + 'px' : ''"
             [style.margin-right]="margin?.right ? margin?.right + 'px' : ''"
+            [style.width]="getWidth()"
         />
     </div>
 </div>

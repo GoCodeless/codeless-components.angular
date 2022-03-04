@@ -14,6 +14,10 @@ export class HorizontalStackStyle {
   gradient_degrees: number;
   corner_radius: number;
   vertical_alignment: string;
+  shadow_x: number;
+  shadow_y: number;
+  shadow_blur: number;
+  shadow_color: string;
 }
 
 export enum HorizontalStackWidth {
@@ -93,5 +97,22 @@ export class AppifyHorizontalStackComponent implements OnInit {
       }
 
       return ''
-  }
+    }
+
+    getWidth() {
+      let left = this.style?.margin?.left ? this.style?.margin?.left : 0
+      let right = this.style?.margin?.right ? this.style?.margin?.right : 0
+      return 'calc(100% - ' + (left + right) + 'px)' 
+    }
+
+    getShadow() {
+      let x = this.style?.shadow_x ? this.style?.shadow_x : 0
+      let y = this.style?.shadow_y ? this.style?.shadow_y : 0
+      let blur = this.style?.shadow_blur ? this.style?.shadow_blur : 0
+      let color = this.style?.shadow_color ? this.style?.shadow_color : ''
+
+      if (!color.length) { return '' }
+
+      return x + 'px ' + y + 'px ' + blur + 'px ' + color
+    }
 }
