@@ -28,6 +28,53 @@ export class AppifyIframeComponent implements OnInit {
     // htmlValue = '<!DOCTYPE html><html><body><button onclick="myFunction()" style="margin-bottom: 100px;">Click me</button><p id="demo"></p><p>A function is triggered when the button is clicked. The function outputs some text in a p element with id="demo".</p><script>function myFunction(){document.getElementById("demo").innerHTML="Hello World";}window.onload=function(){var height=document.body.scrollHeight; window.parent.window.postMessage({"bodyHeight": height})}</script></body></html>'
     // "<!DOCTYPE html><html><body><button onclick=\"myFunction()\">Click me</button><p id=\"demo\"></p><p>A function is triggered when the button is clicked. The function outputs some text in a p element with id=\"demo\".</p><script>function myFunction(){document.getElementById(\"demo\").innerHTML=\"Hello World\";}</script></body></html>"
 
+    /*
+        EXAMPLE:
+
+        <!DOCTYPE html>
+        <html>
+            <body style="margin: 0;">
+                <button onclick="test()" style="width: 100%; cursor: pointer; background-color: #058A1B; padding: 12px 24px; border: 0; color: white;">Click me</button>
+                <p id="cookies"></p>
+                <p id="codeless"></p>
+                
+                <script>
+                    function test() {
+                        document.getElementById("cookies").innerHTML="Hello World";
+                        refreshDocument();
+                    }
+
+                    receiveMessage = (event) => {
+                        console.log('Event Type: ', event.data.type)
+
+                        if (event.data.type == 'cookies' && event.data.message) {
+                            document.getElementById("cookies").innerHTML = event.data.message
+                            refreshDocument();
+                        }
+
+                        if (event.data.type == 'codeless' && event.data.message) {
+                            document.getElementById("codeless").innerHTML = JSON.stringify(event.data.message)
+                            refreshDocument();
+                        }
+                    }
+                    
+                    var refreshDocument = function() {
+                        var height = document.body.scrollHeight;
+                        window.parent.window.postMessage({"bodyHeight": height});
+                    };
+                    
+                    window.document.addEventListener('readystatechange', () => {
+                            if (window.document.readyState == 'complete') {
+                                refreshDocument();
+                            }
+                        }
+                    );
+
+                    window.addEventListener("message", receiveMessage, true);
+                </script>
+            </body>
+        </html>
+     */
     @Output() editBlockElement = new EventEmitter<EditBlockElementItem>();
 
     constructor(public sanitizer: DomSanitizer) { }
@@ -44,13 +91,22 @@ export class AppifyIframeComponent implements OnInit {
         doc.close()
 
         window.addEventListener("message", this.receiveMessage, true);
+
+        // Pass cookies to the iframe
+        win.postMessage({type: "cookies", message: document.cookie}, "*")
+
+        // Pass Codeless application information to the iframe
+        win.postMessage({type: "codeless", message: {
+            application_guid: localStorage.getItem('application_guid'),
+            token: localStorage.getItem('token')
+        }}, "*")
     }
 
     receiveMessage = (event) => {
       if (event.data.bodyHeight) {
           this.height = event.data.bodyHeight
       }
-  }
+    }
 
     emitBlockSelect(index, type) {
         let item: EditBlockElementItem = new EditBlockElementItem()
