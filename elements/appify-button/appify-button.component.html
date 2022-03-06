@@ -5,7 +5,6 @@
     (mouseover)="hoveringElement = 'button'; hoveringIndex = 0"
     (mouseout)="hoveringElement = null"
     [class.selectable]="hoveringElement == 'button' && hoveringIndex == 0 && isEditing == true"
-    [class.margin-width]="width == containerWidthValue.margin"
     [style.borderRadius]="style?.border_radius ? style?.border_radius : ''"
     [style.text-align]="alignment == alignmentValue.center ? 'center'
                 : alignment == alignmentValue.right ? 'right'

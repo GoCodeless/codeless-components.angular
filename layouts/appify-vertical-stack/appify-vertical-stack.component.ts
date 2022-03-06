@@ -24,6 +24,12 @@ export enum VerticalStackWidth {
   margin = "margin",
 }
 
+export enum Alignment {
+  left = "left",
+  center = "center",
+  right = "right",
+}
+
 @Component({
   selector: 'appify-vertical-stack',
   templateUrl: './appify-vertical-stack.component.html',
@@ -34,22 +40,23 @@ export class AppifyVerticalStackComponent implements OnInit {
     @Input() isEditing: boolean = false
     @Input() identifier: string = ''
     @Input() platform: string = 'web'
-    @Input() width: VerticalStackWidth = VerticalStackWidth.full;
+    @Input() width: string = ''; //VerticalStackWidth = VerticalStackWidth.full;
     @Input() style: VerticalStackStyle = new VerticalStackStyle();
+    @Input() screen_size: string = 'medium';
+    @Input() alignment: Alignment = Alignment.center;
 
     @Output() addBlockElement = new EventEmitter<number>();
     @Output() editBlockElement = new EventEmitter<EditBlockElementItem>();
 
+    
     get stackWidthValue() {
       return VerticalStackWidth;
     }
 
     constructor() { }
     ngOnInit() { }
-
-    ngOnChanges(changes: SimpleChanges) {
-
-    }
+    ngOnChanges(changes: SimpleChanges) { }
+    ngAfterContentChecked() { }
 
     selectedBlockElement: any = null;
     didSelectBlock(event) {
@@ -76,7 +83,7 @@ export class AppifyVerticalStackComponent implements OnInit {
       let block = this.blocks[index]
       if (!block || !block.properties || !block.properties.style) { return false }
 
-      return this.isEditing && block.properties.style[this.platform].display
+      return this.isEditing && block.properties.style[this.screen_size]?.display
     }
 
     getBackgroundLinearGradient() {
@@ -93,9 +100,19 @@ export class AppifyVerticalStackComponent implements OnInit {
     }
 
     getWidth() {
+      var defaultWidth = '100%'
+
+      if (this.width == 'auto' || this.width == 'auto') {
+          return ''
+      } else if (this.width?.includes('px')) {
+          return this.width
+      } else if (this.width?.includes('%')) {
+          defaultWidth = this.width
+      }
+
       let left = this.style?.margin?.left ? this.style?.margin?.left : 0
       let right = this.style?.margin?.right ? this.style?.margin?.right : 0
-      return 'calc(100% - ' + (left + right) + 'px)' 
+      return 'calc(' + defaultWidth + ' - ' + (left + right) + 'px)' 
     }
 
     getShadow() {

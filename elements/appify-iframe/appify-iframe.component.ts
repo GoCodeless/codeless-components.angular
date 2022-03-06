@@ -93,7 +93,7 @@ export class AppifyIframeComponent implements OnInit {
         window.addEventListener("message", this.receiveMessage, true);
 
         // Pass cookies to the iframe
-        win.postMessage({type: "cookies", message: document.cookie}, "*")
+        // win.postMessage({type: "cookies", message: document.cookie}, "*")
 
         // Pass Codeless application information to the iframe
         win.postMessage({type: "codeless", message: {

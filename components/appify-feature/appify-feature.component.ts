@@ -124,7 +124,9 @@ export class AppifyFeatureComponent implements OnInit {
 
         let observer = new IntersectionObserver(callbackFunc);
 
-        observer.observe(this.animateRef.nativeElement);
+        if (this.animateRef?.nativeElement) {
+            observer.observe(this.animateRef?.nativeElement);
+        }
     }
 
     clickButton() {

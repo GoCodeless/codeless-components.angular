@@ -10,17 +10,12 @@
 #inner-container {
     max-width: 100%;
     margin: auto;
-    padding: calc(var(--size-section-padding) / 2) var(--spacing-xxLarge);
+    /* padding: calc(var(--size-section-padding) / 2) var(--spacing-xxLarge); */
 }
 #inner-container a {
     text-decoration: none;
 }
 
-.margin-width {
-    margin: auto;
-    max-width: var(--size-default-margin);
-    width: calc(100% - (var(--spacing-small) * 2)) !important;
-}
 .fade-in-grid {
     position: absolute;
     width: 100%;
@@ -31,16 +26,13 @@
 }
 
 .focus-on-hover:hover .row div > div > div.fade-in-grid {
-
     background: white;
     opacity: 0.7;
 }
+
 #inner-container:hover .row div > div:hover > div.fade-in-grid {
     opacity: 0;
-
-
     visibility: hidden;
-
 }
 
 #headings-spacer {
@@ -77,13 +69,16 @@ img {
     background-repeat: no-repeat;
     margin-bottom: var(--spacing-small);
 }
+
 .initial-slideupfadein-state {
     transform: translate3d(0px, 150px, 0px);
     opacity: 0;
 }
+
 .initial-slideup-state {
     transform: translate3d(0px, 150px, 0px);
 }
+
 .initial-fadein-state {
     opacity: 0;
 }
@@ -111,4 +106,13 @@ img {
     transition-duration: 2s;
     transition-delay: calc(0.5s * var(--index));
     opacity: 1 !important;
+}
+
+.col-12 {
+    
+}
+
+.col-sm-4 {
+    width: 33.33%;
+    display: inline-block;
 }

@@ -89,4 +89,26 @@ export class AppifyImageComponent implements OnInit {
         let right = this.style?.margin?.right ? this.style?.margin?.right : 0
         return 'calc(' + defaultWidth + ' - ' + (left + right) + 'px)' 
     }
+
+    getMarginLeft() {
+        let left = this.style?.margin?.left ? this.style?.margin?.left : 0
+        
+        if (this.alignment == this.alignmentValue.right || this.alignment == this.alignmentValue.center) {
+            return 'auto'
+        }
+
+        return left + 'px'
+        // alignment == alignmentValue.right || alignment == alignmentValue.center ? 'auto' : 'unset'
+    }
+
+    getMarginRight() {
+        let right = this.style?.margin?.right ? this.style?.margin?.right : 0
+        
+        if (this.alignment == this.alignmentValue.left || this.alignment == this.alignmentValue.center) {
+            return 'auto'
+        }
+
+        return right + 'px'
+        // alignment == alignmentValue.left || alignment == alignmentValue.center ? 'auto' : 'unset'
+    }
 }

@@ -14,8 +14,8 @@
         [style.margin-left]="style?.margin?.left ? style?.margin?.left + 'px' : ''"
         [style.margin-right]="style?.margin?.right ? style?.margin?.right + 'px' : ''"
         [style.width]="getWidth()"
-        [style.margin-left]="alignment == alignmentValue.right || alignment == alignmentValue.center ? 'auto' : 'unset'" 
-        [style.margin-right]="alignment == alignmentValue.left || alignment == alignmentValue.center ? 'auto' : 'unset'" 
+        [style.margin-left]="getMarginLeft()" 
+        [style.margin-right]="getMarginRight()" 
     >
         <img
             [src]="pageService.getImageMapResource(url)"

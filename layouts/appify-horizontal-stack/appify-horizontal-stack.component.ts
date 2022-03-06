@@ -42,16 +42,17 @@ export class AppifyHorizontalStackComponent implements OnInit {
     @Input() isEditing: boolean = false
     @Input() identifier: string = ''
     @Input() platform: string = 'web'
-    @Input() width: HorizontalStackWidth = HorizontalStackWidth.full;
+    @Input() screen_size: string = 'medium';
+    @Input() width: string = ''; //HorizontalStackWidth = HorizontalStackWidth.full;
     @Input() distribution: HorizontalStackDistribution = HorizontalStackDistribution.auto;
     @Input() style: HorizontalStackStyle = new HorizontalStackStyle();
     
     @Output() addBlockElement = new EventEmitter<number>();
     @Output() editBlockElement = new EventEmitter<EditBlockElementItem>();
   
-    get stackWidthValue() {
-      return HorizontalStackWidth;
-    }
+    // get stackWidthValue() {
+    //   return HorizontalStackWidth;
+    // }
 
     get stackDistribution() {
       return HorizontalStackDistribution;
@@ -65,8 +66,8 @@ export class AppifyHorizontalStackComponent implements OnInit {
     }
 
     getElementWidth(block) {
-        if (block.properties.style?.[this.platform].width) {
-          return block.properties.style?.[this.platform].width
+        if (block.properties.style?.[this.screen_size].width) {
+          return block.properties.style?.[this.screen_size].width
         }
 
         return 100 / this.blocks.length + '%'
@@ -99,10 +100,26 @@ export class AppifyHorizontalStackComponent implements OnInit {
       return ''
     }
 
+    // getWidth() {
+    //   let left = this.style?.margin?.left ? this.style?.margin?.left : 0
+    //   let right = this.style?.margin?.right ? this.style?.margin?.right : 0
+    //   return 'calc(100% - ' + (left + right) + 'px)' 
+    // }
+
     getWidth() {
+      var defaultWidth = '100%'
+
+      if (this.width == 'auto' || this.width == 'auto') {
+          return ''
+      } else if (this.width?.includes('px')) {
+          return this.width
+      } else if (this.width?.includes('%')) {
+          defaultWidth = this.width
+      }
+
       let left = this.style?.margin?.left ? this.style?.margin?.left : 0
       let right = this.style?.margin?.right ? this.style?.margin?.right : 0
-      return 'calc(100% - ' + (left + right) + 'px)' 
+      return 'calc(' + defaultWidth + ' - ' + (left + right) + 'px)' 
     }
 
     getShadow() {
