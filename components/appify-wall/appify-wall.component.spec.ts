@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AppifyWallComponent } from './appify-wall.component';
 
@@ -6,7 +6,7 @@ describe('AppifyWallComponent', () => {
   let component: AppifyWallComponent;
   let fixture: ComponentFixture<AppifyWallComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AppifyWallComponent ]
     })
