@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AppifyIndicatorsComponent } from './appify-indicators.component';
 
@@ -6,7 +6,7 @@ describe('AppifyIndicatorsComponent', () => {
   let component: AppifyIndicatorsComponent;
   let fixture: ComponentFixture<AppifyIndicatorsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AppifyIndicatorsComponent ]
     })
