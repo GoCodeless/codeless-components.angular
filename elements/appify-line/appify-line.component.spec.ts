@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AppifyLineComponent } from './appify-line.component';
 
@@ -6,7 +6,7 @@ describe('AppifyLineComponent', () => {
   let component: AppifyLineComponent;
   let fixture: ComponentFixture<AppifyLineComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AppifyLineComponent ]
     })

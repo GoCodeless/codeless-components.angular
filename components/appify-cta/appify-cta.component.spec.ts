@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AppifyCtaComponent } from './appify-cta.component';
 
@@ -6,7 +6,7 @@ describe('AppifyCtaComponent', () => {
   let component: AppifyCtaComponent;
   let fixture: ComponentFixture<AppifyCtaComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AppifyCtaComponent ]
     })

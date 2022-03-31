@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AppifyNewsletterComponent } from './appify-newsletter.component';
 
@@ -6,7 +6,7 @@ describe('AppifyNewsletterComponent', () => {
   let component: AppifyNewsletterComponent;
   let fixture: ComponentFixture<AppifyNewsletterComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AppifyNewsletterComponent ]
     })

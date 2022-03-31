@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Services
 import { CodelessComponentsService } from "./services/codeless-components.service";
@@ -50,7 +50,7 @@ import { AppifyHorizontalStackComponent } from "./layouts/appify-horizontal-stac
 import { AppifyVerticalStackComponent } from "./layouts/appify-vertical-stack/appify-vertical-stack.component";
 
 @NgModule({
-    imports: [CommonModule, RouterModule, FormsModule],
+    imports: [CommonModule, RouterModule, FormsModule,ReactiveFormsModule],
     declarations: [
         AppifyButtonComponent,
         AppifyIframeComponent,
@@ -84,16 +84,13 @@ import { AppifyVerticalStackComponent } from "./layouts/appify-vertical-stack/ap
         AppifyIndicatorsComponent,
         AppifyHorizontalStackComponent,
         AppifyVerticalStackComponent,
-
         IframeAutoHeightDirective,
         TextareaAutoresizeDirective,
-        
         CodelessReplaceImageButton,
         CodelessLoadingView,
         CodelessAddBlockLineComponent
     ],
     providers: [CodelessComponentsService],
-
     exports: [
         AppifyButtonComponent,
         AppifyIframeComponent,
@@ -118,13 +115,10 @@ import { AppifyVerticalStackComponent } from "./layouts/appify-vertical-stack/ap
         AppifyWallComponent,
         AppifyHorizontalStackComponent,
         AppifyVerticalStackComponent,
-
         TextareaAutoresizeDirective,
-
         CodelessReplaceImageButton,
         CodelessLoadingView,
         CodelessAddBlockLineComponent
-    ],
-    entryComponents: [],
+    ]
 })
 export class AppifyModule {}
