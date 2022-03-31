@@ -39,6 +39,7 @@ export class GridStyle {
     subtitle: StyleFont;
     button: StyleButton;
     padding: StylePadding;
+    margin: StylePadding;
     background_color: string;
     background_image: string;
     background_size: string;
@@ -143,5 +144,11 @@ export class AppifyGridComponent implements OnInit {
     didSelectBlock(event) {
         event.identifier = this.identifier
         this.editBlockElement.emit(event);
+    }
+
+    getWidth() {
+        let left = this.style?.margin?.left ? this.style?.margin?.left : 0
+        let right = this.style?.margin?.right ? this.style?.margin?.right : 0
+        return 'calc(100% - ' + (left + right) + 'px)' 
     }
 }

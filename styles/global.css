@@ -133,7 +133,7 @@
 
     /* Indicators */
     --indicator-width: 8px;
-    --indicator-height: 8px;
+    --indicator-height: 6px;
     --indicator-margin: 8px;
     --indicator-border-radius: 9999px;
     --indicator-background-color: #C4C4C4;
@@ -150,9 +150,9 @@
     width: var(--indicator-width);
     height: var(--indicator-height);
     border-radius: var(--indicator-border-radius);
-    background-color: var(--indicator-background-color);
+    background-color: gray; /* var(--indicator-background-color); */
     display: inline-block;
-    margin-right: var(--indicator-margin);
+    /* margin-right: var(--indicator-margin); */
     cursor: pointer;
 }
 

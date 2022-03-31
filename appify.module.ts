@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { CodelessComponentsService } from "./services/codeless-components.service";
 
 // Directives
+import { IframeAutoHeightDirective } from "./directives/iframe-autoheight.directive";
 import { TextareaAutoresizeDirective } from "./directives/textarea-autoresize.directive";
 
 // Internal Components
@@ -16,6 +17,7 @@ import { CodelessAddBlockLineComponent } from "./components/codeless-add-block-l
 
 // Elements
 import { AppifyButtonComponent } from "./elements/appify-button/appify-button.component";
+import { AppifyIframeComponent } from "./elements/appify-iframe/appify-iframe.component";
 import { AppifyImageComponent } from "./elements/appify-image/appify-image.component";
 import { AppifyLineComponent } from "./elements/appify-line/appify-line.component";
 import { AppifySpacerComponent } from "./elements/appify-spacer/appify-spacer.component";
@@ -51,6 +53,7 @@ import { AppifyVerticalStackComponent } from "./layouts/appify-vertical-stack/ap
     imports: [CommonModule, RouterModule, FormsModule],
     declarations: [
         AppifyButtonComponent,
+        AppifyIframeComponent,
         AppifyImageComponent,
         AppifyLineComponent,
         AppifySpacerComponent,
@@ -82,6 +85,7 @@ import { AppifyVerticalStackComponent } from "./layouts/appify-vertical-stack/ap
         AppifyHorizontalStackComponent,
         AppifyVerticalStackComponent,
 
+        IframeAutoHeightDirective,
         TextareaAutoresizeDirective,
         
         CodelessReplaceImageButton,
@@ -92,6 +96,7 @@ import { AppifyVerticalStackComponent } from "./layouts/appify-vertical-stack/ap
 
     exports: [
         AppifyButtonComponent,
+        AppifyIframeComponent,
         AppifyImageComponent,
         AppifyLineComponent,
         AppifySpacerComponent,

@@ -43,8 +43,9 @@ export class AppifyButtonComponent implements OnInit {
     @Input() title: String = "";
     @Input() url: string = "";
     @Input() alignment: Alignment = Alignment.center;
-    @Input() width: ButtonContainerWidth = ButtonContainerWidth.full;
+    @Input() width: string = ''; //ButtonContainerWidth = ButtonContainerWidth.full;
     @Input() padding: StylePadding = new StylePadding();
+    @Input() margin: StylePadding = new StylePadding();
     @Input() style: StyleButton = new StyleButton();
 
     @Output() didClick = new EventEmitter<any>();
@@ -78,7 +79,6 @@ export class AppifyButtonComponent implements OnInit {
         if (changes.style && changes.style.currentValue) {
             let current = changes.style.currentValue;
 
-            // if (current.type) { this.style.type = current.type }
             if (current.fill_type) {
                 this.style.fill_type = current.fill_type;
             }
@@ -177,5 +177,21 @@ export class AppifyButtonComponent implements OnInit {
         item.value = value
 
         this.editBlockElement.emit(item);
+    }
+
+    getWidth() {
+        var defaultWidth = '100%'
+
+        if (this.width == 'auto' || this.width == 'auto') {
+            return ''
+        } else if (this.width?.includes('px')) {
+            return this.width
+        } else if (this.width?.includes('%')) {
+            defaultWidth = this.width
+        }
+
+        let left = this.margin?.left ? this.margin?.left : 0
+        let right = this.margin?.right ? this.margin?.right : 0
+        return 'calc(' + defaultWidth + ' - ' + (left + right) + 'px)' 
     }
 }

@@ -39,14 +39,8 @@ textarea {
     opacity: 1 !important;
 }
 .feature-container {
-    padding: calc(var(--size-section-padding) / 2) var(--spacing-xxLarge);
+    /* padding: calc(var(--size-section-padding) / 2) var(--spacing-xxLarge); */
     align-items: center;
-}
-
-.margin-width {
-    margin: auto;
-    max-width: var(--size-default-margin);
-    width: calc(100% - (var(--spacing-small) * 2)) !important;
 }
 
 .full-width {

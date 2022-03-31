@@ -2,13 +2,19 @@
     #animate
     class="margin-width container"
     [class.initial-animation-state]="animation ? true : false"
+    [style.margin-top]="style?.margin?.top ? style?.margin?.top + 'px' : ''"
+    [style.margin-bottom]="style?.margin?.bottom ? style?.margin?.bottom + 'px' : ''"
+    [style.margin-left]="style?.margin?.left ? style?.margin?.left + 'px' : ''"
+    [style.margin-right]="style?.margin?.right ? style?.margin?.right + 'px' : ''"
+    [style.width]="getWidth()"
 >
     <div
         id="inner-container"
         [class.left-align-inner]="alignment == alignmentValue.left"
         [class.right-align-inner]="alignment == alignmentValue.right"
-        [style.height]="height + 'px'"
+        
     >
+        <!-- [style.height]="height + 'px'" -->
         <!-- [style.max-width]="(maxWidth + 8) + 'px'"> -->
 
         <div
@@ -37,7 +43,7 @@
                 <img [class.zoom-image]="hoverAnimation.type == 'zoom'"
                     [src]="items[0].image ? pageService.getImageMapResource(items[0].image) : ''"/>
 
-                <div class="replace-button">
+                <div *ngIf="isEditing" class="replace-button">
                     <codeless-replace-image-button (didStartUpload)="isUploadingImage = true; selectedIndex = 0;" (didUploadImage)="changeImage(0, $event)"></codeless-replace-image-button>
                 </div>
 
@@ -68,7 +74,7 @@
                 <img [class.zoom-image]="hoverAnimation.type == 'zoom'"
                     [src]="items[2].image ? pageService.getImageMapResource(items[2].image) : ''" />
 
-                <div class="replace-button">
+                <div *ngIf="isEditing" class="replace-button">
                     <codeless-replace-image-button (didStartUpload)="isUploadingImage = true; selectedIndex = 2;" (didUploadImage)="changeImage(2, $event)"></codeless-replace-image-button>
                 </div>
 
@@ -106,7 +112,7 @@
                 <img [class.zoom-image]="hoverAnimation.type == 'zoom'"
                     [src]="items[1].image ? pageService.getImageMapResource(items[1].image) : ''"  />
 
-                <div class="replace-button">
+                <div *ngIf="isEditing" class="replace-button">
                     <codeless-replace-image-button (didStartUpload)="isUploadingImage = true; selectedIndex = 1;" (didUploadImage)="changeImage(1, $event)"></codeless-replace-image-button>
                 </div>
 

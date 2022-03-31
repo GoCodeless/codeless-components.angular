@@ -2,8 +2,17 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: start;
+    overflow: hidden;
 }
 
 .layout-container > div {
     display: inline-block;
+    /* box-shadow: 5px 10px 2px #888888; */
+}
+
+.margin-width {
+    margin: auto;
+    max-width: var(--size-default-margin);
+    width: calc(100% - (var(--spacing-small) * 2)) !important;
 }

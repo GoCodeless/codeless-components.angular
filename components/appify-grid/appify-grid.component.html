@@ -1,7 +1,6 @@
 <div
     id="container"
     #animate
-    [class.margin-width]="width == gridWidthValue.margin"
     [style.backgroundColor]="
         style?.background_color ? style?.background_color : ''
     "
@@ -17,6 +16,11 @@
     [style.backgroundPosition]="
         style?.background_position ? style?.background_position : ''
     "
+    [style.margin-top]="style?.margin?.top ? style?.margin?.top + 'px' : ''"
+    [style.margin-bottom]="style?.margin?.bottom ? style?.margin?.bottom + 'px' : ''"
+    [style.margin-left]="style?.margin?.left ? style?.margin?.left + 'px' : ''"
+    [style.margin-right]="style?.margin?.right ? style?.margin?.right + 'px' : ''"
+    [style.width]="getWidth()"
 >
     <div
         id="inner-container"
@@ -58,11 +62,11 @@
                 "
                 class="col col-12"
                 [class.col-12]="columns == 1"
-                [class.col-sm-6]="columns == 2"
-                [class.col-sm-4]="columns == 3"
-                [class.col-sm-3]="columns == 4"
+                [class.col-6]="columns == 2"
+                [class.col-4]="columns == 3"
+                [class.col-3]="columns == 4"
                 [class.col-sm-5ths]="columns == 5"
-                [class.col-sm-2]="columns == 6"
+                [class.col-2]="columns == 6"
                 [style.padding-left]="
                     style?.item_spacing || style?.item_spacing == 0
                         ? style?.item_spacing / 2 + 'px'

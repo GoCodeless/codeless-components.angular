@@ -1,8 +1,4 @@
-@media screen and (max-width: 480px) {
-    /* #inner-container {
-        padding: var(--spacing-medium) var(--spacing-medium)
-            calc(var(--spacing-medium) / 2) !important;
-    } */
+/* @media screen and (max-width: 480px) {
 
     #inner-container {
         padding: 0 !important;
@@ -37,4 +33,4 @@
     .column {
         flex: 0 0 calc(100%) !important;
     }
-}
+} */

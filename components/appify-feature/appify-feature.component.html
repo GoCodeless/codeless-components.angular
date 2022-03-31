@@ -15,7 +15,6 @@
         : '0'
 " [style.padding-top]=" style?.padding?.top ? style?.padding?.top + 'px' : ''"
     [style.padding-bottom]="style?.padding?.bottom ? style?.padding?.bottom + 'px' : '' "
-    [class.margin-width]="width == featureWidthValue.margin"
     [style.backgroundColor]="
         style?.background_color ? style?.background_color : ''
     "
@@ -35,12 +34,17 @@
     [style.backgroundPosition]="
         style?.background_position ? style?.background_position : ''
     "
-    #animate
     [class.initial-slideup-state]="animation?.type == 'slideUp' ? true : false"
     [class.initial-slideupfadein-state]="
         animation?.type == 'glide_up' ? true : false
     "
     [class.initial-fadein-state]="animation?.type == 'fade_in' ? true : false"
+    [style.margin-top]="style?.margin?.top ? style?.margin?.top + 'px' : ''"
+    [style.margin-bottom]="style?.margin?.bottom ? style?.margin?.bottom + 'px' : ''"
+    [style.margin-left]="style?.margin?.left ? style?.margin?.left + 'px' : ''"
+    [style.margin-right]="style?.margin?.right ? style?.margin?.right + 'px' : ''"
+    [style.width]="getWidth()"
+    #animate
 >
     <div
         class="row feature-container"
@@ -63,7 +67,7 @@
             <img [src]="pageService.getImageMapResource(imageURL)"
                 [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''" />
 
-                <div class="replace-button">
+                <div *ngIf="isEditing" class="replace-button">
                     <codeless-replace-image-button (didStartUpload)="isUploadingImage = true;" (didUploadImage)="changeImage(0, $event)"></codeless-replace-image-button>
                 </div>
 

@@ -33,6 +33,7 @@ export class CarouselStyle {
     title: StyleFont;
     subtitle: StyleFont;
     padding: StylePadding;
+    margin: StylePadding;
     background_image: string;
     background_size: string;
     background_position: string;
@@ -124,5 +125,11 @@ export class AppifyCarouselComponent implements OnInit {
         this.emitBlockSelect(index, 'image', event);
         this.isUploadingImage = false;
         this.selectedIndex = -1;
+    }
+
+    getWidth() {
+        let left = this.style?.margin?.left ? this.style?.margin?.left : 0
+        let right = this.style?.margin?.right ? this.style?.margin?.right : 0
+        return 'calc(100% - ' + (left + right) + 'px)' 
     }
 }

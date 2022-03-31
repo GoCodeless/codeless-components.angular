@@ -12,6 +12,11 @@
     [style.backgroundSize]="
         style?.background_size ? style?.background_size : ''
     "
+    [style.margin-top]="style?.margin?.top ? style?.margin?.top + 'px' : ''"
+    [style.margin-bottom]="style?.margin?.bottom ? style?.margin?.bottom + 'px' : ''"
+    [style.margin-left]="style?.margin?.left ? style?.margin?.left + 'px' : ''"
+    [style.margin-right]="style?.margin?.right ? style?.margin?.right + 'px' : ''"
+    [style.width]="getWidth()"
     #animate
 >
     <div
@@ -64,7 +69,7 @@
                             class="carousel-item-container"
                         />
 
-                        <div class="replace-button">
+                        <div *ngIf="isEditing" class="replace-button">
                             <codeless-replace-image-button (didStartUpload)="isUploadingImage = true; selectedIndex = i;" (didUploadImage)="changeImage(i, $event)"></codeless-replace-image-button>
                         </div>
 

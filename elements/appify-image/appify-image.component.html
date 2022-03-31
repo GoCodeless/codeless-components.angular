@@ -1,10 +1,21 @@
 <div class="image-container" 
     [class.margin-width]="width == imageWidthValue.margin">
+    <!-- [style.float]="alignment == alignmentValue.center ? ''
+                : alignment == alignmentValue.right ? 'right'
+                : 'left'"
+        [style.margin]="alignment == alignmentValue.center ? 'auto' : 'unset'" -->
     <div
         [style.padding-top]="style?.padding?.top ? style?.padding?.top + 'px' : ''"
         [style.padding-bottom]="style?.padding?.bottom ? style?.padding?.bottom + 'px' : ''"
         [style.padding-left]="style?.padding?.left ? style?.padding?.left + 'px' : ''"
         [style.padding-right]="style?.padding?.right ? style?.padding?.right + 'px' : ''"
+        [style.margin-top]="style?.margin?.top ? style?.margin?.top + 'px' : ''"
+        [style.margin-bottom]="style?.margin?.bottom ? style?.margin?.bottom + 'px' : ''"
+        [style.margin-left]="style?.margin?.left ? style?.margin?.left + 'px' : ''"
+        [style.margin-right]="style?.margin?.right ? style?.margin?.right + 'px' : ''"
+        [style.width]="getWidth()"
+        [style.margin-left]="getMarginLeft()" 
+        [style.margin-right]="getMarginRight()" 
     >
         <img
             [src]="pageService.getImageMapResource(url)"
@@ -12,6 +23,7 @@
             [style.border-radius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
             [style.object-fit]="style?.background_size ? style?.background_size : 'cover'"
         />
+        <!-- <div style="clear: right"></div>     -->
     </div>
 
     <div *ngIf="isEditing" class="replace-button">

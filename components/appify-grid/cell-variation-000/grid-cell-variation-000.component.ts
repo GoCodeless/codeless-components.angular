@@ -37,7 +37,7 @@ export class AppifyGridCellVariation000Component implements OnInit {
 
     ngOnInit() {
         this.buttonPadding.top = 0;
-        this.buttonPadding.bottom = 32;
+        this.buttonPadding.bottom = 0;
         this.buttonPadding.left = 0;
         this.buttonPadding.right = 0;
     }
