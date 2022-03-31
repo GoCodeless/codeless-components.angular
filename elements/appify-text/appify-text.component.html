@@ -123,7 +123,30 @@
             </div> -->
         </div>
 
-        <textarea #editingTextField
+        <!-- (focus)="isEditingValue = true;"
+        (blur)="emitBlockSelect(0, 'text', $event.target.value); stopEditing();" -->
+        <div #editingTextField
+            contenteditable="true"
+            class="editing-textarea"
+            textareaAutoresize
+            [innerHTML]="text"
+            (input)="text = $event.target.value"
+            
+            [class.headline]="textType == textTypeValue.header"
+            [class.body]="textType == textTypeValue.body"
+            [style.font-family]="style?.text?.font ? style?.text?.font : ''"
+            [style.font-size]="getFontSize()"
+            [style.font-weight]="style?.text?.weight ? style?.text?.weight : ''"
+            [style.line-height]="getLineHeight()"
+            [style.text-align]="alignment == alignmentValue.right ? 'right' : alignment == alignmentValue.center ? 'center' : 'left'"
+            [style.letter-spacing]="style?.text?.letter_spacing ? style?.text?.letter_spacing : ''" 
+            [style.background]="getLinearGradient()"
+            [style.color]="style?.text?.color ? style?.text?.color : style?.text?.gradient_start_color ? 'transparent' : ''"
+            [style.-webkit-background-clip]="style?.text?.color ? '' : style?.text?.gradient_start_color ? 'text' : ''"
+            [style.-webkit-text-fill-color]="style?.text?.color ? '' : style?.text?.gradient_start_color ? 'transparent' : ''">
+        </div>
+
+        <!-- <textarea #editingTextField
             type="text" 
             class="editing-textarea"
             textareaAutoresize
@@ -143,6 +166,6 @@
             [style.color]="style?.text?.color ? style?.text?.color : style?.text?.gradient_start_color ? 'transparent' : ''"
             [style.-webkit-background-clip]="style?.text?.color ? '' : style?.text?.gradient_start_color ? 'text' : ''"
             [style.-webkit-text-fill-color]="style?.text?.color ? '' : style?.text?.gradient_start_color ? 'transparent' : ''"
-        ></textarea>
+        ></textarea> -->
     </div>
 </div>
