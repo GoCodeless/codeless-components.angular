@@ -150,7 +150,6 @@ export class AppifyTextComponent implements OnInit {
         let gradientDegrees = style.gradient_degrees ? style.gradient_degrees : 0
 
         if (gradientStartColor && gradientEndColor) {
-            console.log('-webkit-linear-gradient(' + gradientDegrees + 'deg, ' + gradientStartColor + ', ' + gradientEndColor + ')')
             return '-webkit-linear-gradient(' + gradientDegrees + 'deg, ' + gradientStartColor + ', ' + gradientEndColor + ')'
         }
 
@@ -158,6 +157,10 @@ export class AppifyTextComponent implements OnInit {
     }
 
     emitBlockSelect(index, type, value) {
+        if (this.editingTextField.nativeElement == document.activeElement) {
+            this.text = this.editingTextField.nativeElement.innerHTML
+        }
+
         let item: EditBlockElementItem = new EditBlockElementItem();
         item.identifier = this.identifier;
         item.index = index;
