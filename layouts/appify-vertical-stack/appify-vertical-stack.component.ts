@@ -1,3 +1,5 @@
+import { StylesService } from "@platform-services/styles/styles.service";
+
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { StylePadding, EditBlockElementItem } from "../../models/styles.model";
 
@@ -53,7 +55,7 @@ export class AppifyVerticalStackComponent implements OnInit {
       return VerticalStackWidth;
     }
 
-    constructor() { }
+    constructor(private stylesService: StylesService) { }
     ngOnInit() { }
     ngOnChanges(changes: SimpleChanges) { }
     ngAfterContentChecked() { }
@@ -124,5 +126,9 @@ export class AppifyVerticalStackComponent implements OnInit {
       if (!color.length) { return '' }
 
       return x + 'px ' + y + 'px ' + blur + 'px ' + color
+    }
+
+    getStyle(block) {
+        return this.stylesService.mergeDeep(block.properties.style['medium'], block.properties.style[this.screen_size])
     }
 }
