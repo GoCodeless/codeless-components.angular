@@ -1,4 +1,5 @@
 import { StylesService } from "@platform-services/styles/styles.service";
+import { PageService } from "@platform-services/page/page.service";
 
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { StylePadding, EditBlockElementItem } from "../../models/styles.model";
@@ -15,6 +16,7 @@ export class HorizontalStackStyle {
   gradient_end_color: string;
   gradient_degrees: number;
   corner_radius: number;
+  alignment: string;
   vertical_alignment: string;
   shadow_x: number;
   shadow_y: number;
@@ -60,7 +62,9 @@ export class AppifyHorizontalStackComponent implements OnInit {
       return HorizontalStackDistribution;
     }
 
-    constructor(private stylesService: StylesService) { }
+    constructor(
+        public pageService: PageService,
+        private stylesService: StylesService) { }
     ngOnInit() { }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -136,6 +140,6 @@ export class AppifyHorizontalStackComponent implements OnInit {
     }
 
     getStyle(block) {
-        return this.stylesService.mergeDeep(block.properties.style['medium'], block.properties.style[this.screen_size])
+        return this.stylesService?.mergeDeep(block.properties.style['medium'], block.properties.style[this.screen_size])
     }
 }

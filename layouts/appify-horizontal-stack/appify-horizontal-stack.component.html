@@ -1,47 +1,137 @@
-<div class="layout-container"
-    [style.padding-top]="style?.padding?.top ? style?.padding?.top + 'px' : ''"
-    [style.padding-bottom]="style?.padding?.bottom ? style?.padding?.bottom + 'px' : ''"
-    [style.padding-left]="style?.padding?.left ? style?.padding?.left + 'px' : ''"
-    [style.padding-right]="style?.padding?.right ? style?.padding?.right + 'px' : ''"
+<!--
+    1. Need to support horizontal stack with single image, horizontal alignment
+
+-->
+
+<!-- [style.width]="getWidth()" -->
+<!-- [style.margin-left]="style?.alignment == 'left' ? '0' : 'auto'"
+[style.margin-right]="style?.alignment == 'right' ? '0' : 'auto'" -->
+<div
+    [style.backgroundImage]="style?.background_image ? 'url(' + pageService.getImageMapResource(style?.background_image) + ')' : ''"
+    [style.backgroundSize]="style?.background_size ? style?.background_size : ''"
+    [style.backgroundRepeat]="style?.background_repeat ? style?.background_repeat : ''"
+    [style.backgroundPosition]="style?.background_position ? style?.background_position : ''"
+
     [style.margin-top]="style?.margin?.top ? style?.margin?.top + 'px' : ''"
     [style.margin-bottom]="style?.margin?.bottom ? style?.margin?.bottom + 'px' : ''"
     [style.margin-left]="style?.margin?.left ? style?.margin?.left + 'px' : ''"
     [style.margin-right]="style?.margin?.right ? style?.margin?.right + 'px' : ''"
-    [style.backgroundImage]="style?.background_image ? 'url(' + style?.background_image + ')' : ''"
-    [style.backgroundSize]="style?.background_size ? style?.background_size : ''"
-    [style.backgroundRepeat]="style?.background_repeat ? style?.background_repeat : ''"
-    [style.backgroundPosition]="style?.background_position ? style?.background_position : ''"
-    [style.background]="getBackgroundLinearGradient().length ? getBackgroundLinearGradient() : style?.background_color ? style?.background_color : ''"
-    [style.borderRadius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
-    [style.align-items]="style?.vertical_alignment ? style?.vertical_alignment : 'start'"
-    [style.width]="getWidth()"
-    [style.box-shadow]="getShadow()"
+    [style.text-align]="style?.alignment == 'left' ? 'left' : style?.alignment == 'right' ? 'right' : 'center'"
     >
 
-    <div *ngFor="let block of blocks; let i = index" 
-        [style.width]="getElementWidth(block)">
+    <!-- [style.float]="style?.alignment == 'left' ? 'left' : style?.alignment == 'right' ? 'right' : ''" -->
 
-        <!-- Layouts -->
-        <appify-horizontal-stack [id]="'item-' + i" [screen_size]="screen_size" [screen_size]="screen_size" *ngIf="block?.type == 'appify-horizontal-stack' && (block?.properties.style[screen_size]?.display == true)" (editBlockElement)="didSelectBlock($event)" [blocks]="block?.properties.blocks" [isEditing]="isEditing" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-horizontal-stack>
-        <appify-vertical-stack [id]="'item-' + i" [screen_size]="screen_size" [screen_size]="screen_size" *ngIf="block?.type == 'appify-vertical-stack' && (block?.properties.style[screen_size]?.display == true)" (editBlockElement)="didSelectBlock($event)" [blocks]="block?.properties.blocks" [isEditing]="isEditing" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-vertical-stack>
+    <!-- If right align -->
+        <!-- justify-content: unset  -->
+        <!-- display: inline-block  -->
+        <!-- text-align: right = THIS GOES ON DIV CONTAINER ABOVE -->
+    <div class="layout-container"
+        [style.padding-top]="style?.padding?.top ? style?.padding?.top + 'px' : ''"
+        [style.padding-bottom]="style?.padding?.bottom ? style?.padding?.bottom + 'px' : ''"
+        [style.padding-left]="style?.padding?.left ? style?.padding?.left + 'px' : ''"
+        [style.padding-right]="style?.padding?.right ? style?.padding?.right + 'px' : ''"
+        
+        [style.background]="style?.background_image ? '' : getBackgroundLinearGradient().length ? getBackgroundLinearGradient() : style?.background_color ? style?.background_color : ''"
+        [style.borderRadius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
+        [style.align-items]="style?.vertical_alignment ? style?.vertical_alignment : 'start'"
+        [style.box-shadow]="getShadow()"
+        [style.borderRadius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
 
-        <!-- Components -->
-        <appify-button [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-button' && (getStyle(block)?.display == true)" [title]="block.properties.text" [width]="getStyle(block)?.width" [alignment]="getStyle(block)?.alignment" [padding]="getStyle(block)?.padding" [margin]="getStyle(block)?.margin" [style]="getStyle(block)?.button"></appify-button>
-        <appify-carousel [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-carousel' && (getStyle(block)?.display == true)" [items]="block.properties.items" [headline]="block.properties.headline" [subtitle]="block.properties.subtitle" [width]="getStyle(block)?.width" [alignment]="getStyle(block)?.alignment" [style]="getStyle(block)"></appify-carousel>
-        <appify-cta [id]="'item-' + i" *ngIf="block.type == 'appify-cta' && (getStyle(block)?.display == true)" [headline]="block.properties.headline" [subtitle]="block.properties.subtitle" [paragraph]="block.properties.paragraph" [width]="getStyle(block)?.width" [buttonText]="block.properties.buttonText" [buttonURL]="block.properties.buttonURL" [backgroundColor]="getStyle(block)?.backgroundColor" [style]="getStyle(block)"></appify-cta>
-        <appify-feature [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-feature' && (getStyle(block)?.display == true)" [featureAlignment]="getStyle(block)?.alignment" [verticalAlignment]="getStyle(block)?.verticalAlignment" [imageURL]="block.properties.url" [title]="block.properties.title" [subtitle]="block.properties.subtitle" [body]="block.properties.body" [buttonText]="block.properties.button_text" [buttonURL]="block.properties.buttonURL" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-feature>
-        <appify-grid [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-grid' && (getStyle(block)?.display == true)" [items]="block.properties.items" [alignment]="getStyle(block)?.alignment" [headline]="block.properties.headline" [subtitle]="block.properties.subtitle" [columns]="getStyle(block)?.columns" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-grid>
-        <appify-image [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-image' && (getStyle(block)?.display == true)" [url]="block.properties.url" [width]="getStyle(block)?.width" [alignment]="getStyle(block)?.alignment" [style]="getStyle(block)"></appify-image>
-        <appify-line [id]="'item-' + i" *ngIf="block.type == 'appify-line' && (getStyle(block)?.display == true)" [height]="getStyle(block)?.height" [widthPercent]="getStyle(block)?.width" [color]="getStyle(block)?.color"></appify-line>
-        <appify-list [id]="'item-' + i" *ngIf="block.type == 'appify-list' && (getStyle(block)?.display == true)" [items]="block.properties.items" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-list>
-        <appify-newsletter [id]="'item-' + i" *ngIf="block.type == 'appify-newsletter' && (getStyle(block)?.display == true)" [headline]="block.properties.headline" [subtitle]="block.properties.subtitle" [buttonText]="block.properties.buttonText" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-newsletter>
-        <appify-slider [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-slider' && (getStyle(block)?.display == true)"  [items]="block.properties.items" [width]="getStyle(block)?.width" [alignment]="getStyle(block)?.alignment" [verticalAlignment]="getStyle(block)?.verticalAlignment" [style]="getStyle(block)"></appify-slider>
-        <appify-spacer [id]="'item-' + i" *ngIf="block.type == 'appify-spacer' && (getStyle(block)?.display == true)" [space]="getStyle(block)?.value"></appify-spacer>
-        <appify-testimonial [id]="'item-' + i" *ngIf="block.type == 'appify-testimonial' && (getStyle(block)?.display == true)" [items]="block.properties.items" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-testimonial>
-        <appify-text [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-text' && (getStyle(block)?.display == true)" [text]="block.properties.text" [textType]="block.properties.text_type" [alignment]="getStyle(block)?.alignment" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-text>
-        <appify-video [id]="'item-' + i" *ngIf="block.type == 'appify-video' && (getStyle(block)?.display == true)" [url]="block.properties.url" [width]="getStyle(block)?.width" [alignment]="getStyle(block)?.alignment" [style]="getStyle(block)"></appify-video>
-        <appify-wall [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-wall' && (getStyle(block)?.display == true)" [height]="getStyle(block)?.height" [maxWidth]="getStyle(block)?.maxWidth" [alignment]="getStyle(block)?.alignment" [items]="block.properties.items" [style]="getStyle(block)"></appify-wall>
-        <appify-iframe [id]="'item-' + i" (editBlockElement)="didSelectBlock($event)" [identifier]="block.id" [isEditing]="isEditing" *ngIf="block?.type == 'appify-iframe' && (block?.properties.style[screen_size]?.display == true)" [code]="block.properties.code"></appify-iframe>
+        [style.justify-content]="'unset'"
+        [style.display]="'inline-block'"
+        [style.margin-left]="style?.alignment == 'left' ? '0' : 'auto'"
+        [style.margin-right]="style?.alignment == 'right' ? '0' : 'auto'"
+        [style.width]="getWidth()"
+        >
+        <!-- [style.width]="getWidth()" -->
+        <!-- [style.width]="'100%'" -->
 
+
+        <div *ngFor="let block of blocks; let i = index" 
+            [style.width]="getElementWidth(block)"
+            [style.vertical-align]="style?.vertical_alignment == 'start' ? 'top' : style?.vertical_alignment == 'center' ? 'center' : style?.vertical_alignment == 'end' ? 'bottom' : ''"
+            >
+
+            <!-- Layouts -->
+            <appify-horizontal-stack [id]="'item-' + i" [screen_size]="screen_size" [screen_size]="screen_size" *ngIf="block?.type == 'appify-horizontal-stack' && (getStyle(block)?.display == true)" (editBlockElement)="didSelectBlock($event)" [blocks]="block?.properties.blocks" [isEditing]="isEditing" [width]="'100%'" [style]="getStyle(block)"></appify-horizontal-stack>
+            <appify-vertical-stack [id]="'item-' + i" [screen_size]="screen_size" [screen_size]="screen_size" *ngIf="block?.type == 'appify-vertical-stack' && (getStyle(block)?.display == true)" (editBlockElement)="didSelectBlock($event)" [blocks]="block?.properties.blocks" [isEditing]="isEditing" [width]="'100%'" [style]="getStyle(block)"></appify-vertical-stack>
+
+            <!-- Components -->
+            <appify-button [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-button' && (getStyle(block)?.display == true)" [title]="block.properties.text" [width]="getStyle(block)?.width" [alignment]="getStyle(block)?.alignment" [padding]="getStyle(block)?.padding" [margin]="getStyle(block)?.margin" [style]="getStyle(block)?.button"></appify-button>
+            <appify-carousel [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-carousel' && (getStyle(block)?.display == true)" [items]="block.properties.items" [headline]="block.properties.headline" [subtitle]="block.properties.subtitle" [width]="getStyle(block)?.width" [alignment]="getStyle(block)?.alignment" [style]="getStyle(block)"></appify-carousel>
+            <appify-cta [id]="'item-' + i" *ngIf="block.type == 'appify-cta' && (getStyle(block)?.display == true)" [headline]="block.properties.headline" [subtitle]="block.properties.subtitle" [paragraph]="block.properties.paragraph" [width]="getStyle(block)?.width" [buttonText]="block.properties.buttonText" [buttonURL]="block.properties.buttonURL" [backgroundColor]="getStyle(block)?.backgroundColor" [style]="getStyle(block)"></appify-cta>
+            <appify-feature [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-feature' && (getStyle(block)?.display == true)" [featureAlignment]="getStyle(block)?.alignment" [verticalAlignment]="getStyle(block)?.verticalAlignment" [imageURL]="block.properties.url" [title]="block.properties.title" [subtitle]="block.properties.subtitle" [body]="block.properties.body" [buttonText]="block.properties.button_text" [buttonURL]="block.properties.buttonURL" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-feature>
+            <appify-grid [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-grid' && (getStyle(block)?.display == true)" [items]="block.properties.items" [alignment]="getStyle(block)?.alignment" [headline]="block.properties.headline" [subtitle]="block.properties.subtitle" [columns]="getStyle(block)?.columns" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-grid>
+            
+            <!-- [width]="getStyle(block)?.width" -->
+            <appify-image [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-image' && (getStyle(block)?.display == true)" [url]="block.properties.url" [width]="'100%'" [alignment]="getStyle(block)?.alignment" [style]="getStyle(block)"></appify-image>
+            
+            <appify-line [id]="'item-' + i" *ngIf="block.type == 'appify-line' && (getStyle(block)?.display == true)" [height]="getStyle(block)?.height" [widthPercent]="getStyle(block)?.width" [color]="getStyle(block)?.color"></appify-line>
+            <appify-list [id]="'item-' + i" *ngIf="block.type == 'appify-list' && (getStyle(block)?.display == true)" [items]="block.properties.items" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-list>
+            <appify-newsletter [id]="'item-' + i" *ngIf="block.type == 'appify-newsletter' && (getStyle(block)?.display == true)" [headline]="block.properties.headline" [subtitle]="block.properties.subtitle" [buttonText]="block.properties.buttonText" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-newsletter>
+            <appify-slider [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-slider' && (getStyle(block)?.display == true)"  [items]="block.properties.items" [width]="getStyle(block)?.width" [alignment]="getStyle(block)?.alignment" [verticalAlignment]="getStyle(block)?.verticalAlignment" [style]="getStyle(block)"></appify-slider>
+            <appify-spacer [id]="'item-' + i" *ngIf="block.type == 'appify-spacer' && (getStyle(block)?.display == true)" [space]="getStyle(block)?.value"></appify-spacer>
+            <appify-testimonial [id]="'item-' + i" *ngIf="block.type == 'appify-testimonial' && (getStyle(block)?.display == true)" [items]="block.properties.items" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-testimonial>
+            
+            <!-- [width]="getStyle(block)?.width" -->
+            <appify-text [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-text' && (getStyle(block)?.display == true)" [text]="block.properties.text" [textType]="block.properties.text_type" [url]="block.properties.url" [alignment]="getStyle(block)?.alignment" [style]="getStyle(block)"></appify-text>
+            
+            <appify-video [id]="'item-' + i" *ngIf="block.type == 'appify-video' && (getStyle(block)?.display == true)" [url]="block.properties.url" [width]="getStyle(block)?.width" [alignment]="getStyle(block)?.alignment" [style]="getStyle(block)"></appify-video>
+            <appify-wall [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-wall' && (getStyle(block)?.display == true)" [height]="getStyle(block)?.height" [maxWidth]="getStyle(block)?.maxWidth" [alignment]="getStyle(block)?.alignment" [items]="block.properties.items" [style]="getStyle(block)"></appify-wall>
+            <appify-iframe [id]="'item-' + i" (editBlockElement)="didSelectBlock($event)" [identifier]="block.id" [isEditing]="isEditing" *ngIf="block?.type == 'appify-iframe' && (getStyle(block)?.display == true)" [code]="block.properties.code"></appify-iframe>
+
+        </div>
     </div>
 </div>
+
+
+
+
+<!-- <div
+    [style.backgroundImage]="style?.background_image ? 'url(' + pageService.getImageMapResource(style?.background_image) + ')' : ''"
+    [style.backgroundSize]="style?.background_size ? style?.background_size : ''"
+    [style.backgroundRepeat]="style?.background_repeat ? style?.background_repeat : ''"
+    [style.backgroundPosition]="style?.background_position ? style?.background_position : ''">
+
+    <div class="layout-container"
+        [style.padding-top]="style?.padding?.top ? style?.padding?.top + 'px' : ''"
+        [style.padding-bottom]="style?.padding?.bottom ? style?.padding?.bottom + 'px' : ''"
+        [style.padding-left]="style?.padding?.left ? style?.padding?.left + 'px' : ''"
+        [style.padding-right]="style?.padding?.right ? style?.padding?.right + 'px' : ''"
+        [style.margin-top]="style?.margin?.top ? style?.margin?.top + 'px' : ''"
+        [style.margin-bottom]="style?.margin?.bottom ? style?.margin?.bottom + 'px' : ''"
+        [style.margin-left]="style?.margin?.left ? style?.margin?.left + 'px' : ''"
+        [style.margin-right]="style?.margin?.right ? style?.margin?.right + 'px' : ''"
+        [style.background]="style?.background_image ? '' : getBackgroundLinearGradient().length ? getBackgroundLinearGradient() : style?.background_color ? style?.background_color : ''"
+        [style.borderRadius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
+        [style.align-items]="style?.vertical_alignment ? style?.vertical_alignment : 'start'"
+        [style.width]="getWidth()"
+        [style.box-shadow]="getShadow()"
+        [style.borderRadius]="style?.corner_radius ? style?.corner_radius + 'px' : ''"
+        >
+
+        <div *ngFor="let block of blocks; let i = index" [style.width]="getElementWidth(block)">
+
+            <appify-horizontal-stack [id]="'item-' + i" [screen_size]="screen_size" [screen_size]="screen_size" *ngIf="block?.type == 'appify-horizontal-stack' && (block?.properties.style[screen_size]?.display == true)" (editBlockElement)="didSelectBlock($event)" [blocks]="block?.properties.blocks" [isEditing]="isEditing" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-horizontal-stack>
+            <appify-vertical-stack [id]="'item-' + i" [screen_size]="screen_size" [screen_size]="screen_size" *ngIf="block?.type == 'appify-vertical-stack' && (block?.properties.style[screen_size]?.display == true)" (editBlockElement)="didSelectBlock($event)" [blocks]="block?.properties.blocks" [isEditing]="isEditing" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-vertical-stack>
+
+            <appify-button [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-button' && (getStyle(block)?.display == true)" [title]="block.properties.text" [width]="getStyle(block)?.width" [alignment]="getStyle(block)?.alignment" [padding]="getStyle(block)?.padding" [margin]="getStyle(block)?.margin" [style]="getStyle(block)?.button"></appify-button>
+            <appify-carousel [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-carousel' && (getStyle(block)?.display == true)" [items]="block.properties.items" [headline]="block.properties.headline" [subtitle]="block.properties.subtitle" [width]="getStyle(block)?.width" [alignment]="getStyle(block)?.alignment" [style]="getStyle(block)"></appify-carousel>
+            <appify-cta [id]="'item-' + i" *ngIf="block.type == 'appify-cta' && (getStyle(block)?.display == true)" [headline]="block.properties.headline" [subtitle]="block.properties.subtitle" [paragraph]="block.properties.paragraph" [width]="getStyle(block)?.width" [buttonText]="block.properties.buttonText" [buttonURL]="block.properties.buttonURL" [backgroundColor]="getStyle(block)?.backgroundColor" [style]="getStyle(block)"></appify-cta>
+            <appify-feature [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-feature' && (getStyle(block)?.display == true)" [featureAlignment]="getStyle(block)?.alignment" [verticalAlignment]="getStyle(block)?.verticalAlignment" [imageURL]="block.properties.url" [title]="block.properties.title" [subtitle]="block.properties.subtitle" [body]="block.properties.body" [buttonText]="block.properties.button_text" [buttonURL]="block.properties.buttonURL" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-feature>
+            <appify-grid [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-grid' && (getStyle(block)?.display == true)" [items]="block.properties.items" [alignment]="getStyle(block)?.alignment" [headline]="block.properties.headline" [subtitle]="block.properties.subtitle" [columns]="getStyle(block)?.columns" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-grid>
+            <appify-image [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-image' && (getStyle(block)?.display == true)" [url]="block.properties.url" [width]="getStyle(block)?.width" [alignment]="getStyle(block)?.alignment" [style]="getStyle(block)"></appify-image>
+            <appify-line [id]="'item-' + i" *ngIf="block.type == 'appify-line' && (getStyle(block)?.display == true)" [height]="getStyle(block)?.height" [widthPercent]="getStyle(block)?.width" [color]="getStyle(block)?.color"></appify-line>
+            <appify-list [id]="'item-' + i" *ngIf="block.type == 'appify-list' && (getStyle(block)?.display == true)" [items]="block.properties.items" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-list>
+            <appify-newsletter [id]="'item-' + i" *ngIf="block.type == 'appify-newsletter' && (getStyle(block)?.display == true)" [headline]="block.properties.headline" [subtitle]="block.properties.subtitle" [buttonText]="block.properties.buttonText" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-newsletter>
+            <appify-slider [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-slider' && (getStyle(block)?.display == true)"  [items]="block.properties.items" [width]="getStyle(block)?.width" [alignment]="getStyle(block)?.alignment" [verticalAlignment]="getStyle(block)?.verticalAlignment" [style]="getStyle(block)"></appify-slider>
+            <appify-spacer [id]="'item-' + i" *ngIf="block.type == 'appify-spacer' && (getStyle(block)?.display == true)" [space]="getStyle(block)?.value"></appify-spacer>
+            <appify-testimonial [id]="'item-' + i" *ngIf="block.type == 'appify-testimonial' && (getStyle(block)?.display == true)" [items]="block.properties.items" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-testimonial>
+            <appify-text [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-text' && (getStyle(block)?.display == true)" [text]="block.properties.text" [textType]="block.properties.text_type" [alignment]="getStyle(block)?.alignment" [width]="getStyle(block)?.width" [style]="getStyle(block)"></appify-text>
+            <appify-video [id]="'item-' + i" *ngIf="block.type == 'appify-video' && (getStyle(block)?.display == true)" [url]="block.properties.url" [width]="getStyle(block)?.width" [alignment]="getStyle(block)?.alignment" [style]="getStyle(block)"></appify-video>
+            <appify-wall [id]="'item-' + i" [isEditing]="isEditing" [identifier]="block.id" (editBlockElement)="didSelectBlock($event)" *ngIf="block.type == 'appify-wall' && (getStyle(block)?.display == true)" [height]="getStyle(block)?.height" [maxWidth]="getStyle(block)?.maxWidth" [alignment]="getStyle(block)?.alignment" [items]="block.properties.items" [style]="getStyle(block)"></appify-wall>
+            <appify-iframe [id]="'item-' + i" (editBlockElement)="didSelectBlock($event)" [identifier]="block.id" [isEditing]="isEditing" *ngIf="block?.type == 'appify-iframe' && (block?.properties.style[screen_size]?.display == true)" [code]="block.properties.code"></appify-iframe>
+
+        </div>
+    </div>
+</div> -->

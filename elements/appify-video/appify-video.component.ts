@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { EditBlockElementItem, StylePadding } from '../../models/styles.model'
+import { PageService } from "@platform-services/page/page.service";
 
 export enum VideoWidth {
     full = 'full',
@@ -34,7 +35,11 @@ export class AppifyVideoComponent implements OnInit {
     }
     @Input() alignment: Alignment = Alignment.center
     @Input() style: VideoStyle = new VideoStyle()
-    @Input() width: VideoWidth = VideoWidth.margin
+    // @Input() width: VideoWidth = VideoWidth.margin
+    @Input() width: string = '';
+
+    // TODO: Implement video key here
+    @Input() video: string = null;
 
     @Output() editBlockElement = new EventEmitter<EditBlockElementItem>();
     hoveringElement: string = null
@@ -44,7 +49,9 @@ export class AppifyVideoComponent implements OnInit {
     get videoWidthValue() { return VideoWidth; }
     get alignmentValue() { return Alignment; }
 
-    constructor(private sanitizer: DomSanitizer) { }
+    constructor(
+        public pageService: PageService, 
+        private sanitizer: DomSanitizer) { }
     ngOnInit() { }
 
     emitBlockSelect(index, type) {
@@ -55,4 +62,20 @@ export class AppifyVideoComponent implements OnInit {
 
         this.editBlockElement.emit(item)
     }
+
+    getWidth() {
+        var defaultWidth = '100%'
+  
+        if (this.width == 'auto' || this.width == 'auto') {
+            return ''
+        } else if (this.width?.includes('px')) {
+            return this.width
+        } else if (this.width?.includes('%')) {
+            defaultWidth = this.width
+        }
+  
+        let left = this.style?.margin?.left ? this.style?.margin?.left : 0
+        let right = this.style?.margin?.right ? this.style?.margin?.right : 0
+        return 'calc(' + defaultWidth + ' - ' + (left + right) + 'px)' 
+      }
 }

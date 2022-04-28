@@ -1,9 +1,9 @@
+<!-- [class.margin-width]="width == videoWidthValue.margin" -->
 <div
     (click)="emitBlockSelect(0, 'video')"
     (mouseover)="hoveringElement = 'video'; hoveringIndex = 0;"
     (mouseout)="hoveringElement = null"
     [class.selectable]="hoveringElement == 'video' && hoveringIndex == 0 && isEditing == true"
-    [class.margin-width]="width == videoWidthValue.margin"
     [style.margin-top]="style?.margin?.top ? style?.margin?.top + 'px' : ''"
     [style.margin-bottom]="style?.margin?.bottom ? style?.margin?.bottom + 'px' : ''"
     [style.margin-left]="style?.margin?.left ? style?.margin?.left + 'px' : ''"
@@ -15,10 +15,27 @@
         [style.padding-left]="style?.padding?.left ? style?.padding?.left + 'px' : ''"
         [style.padding-right]="style?.padding?.right ? style?.padding?.right + 'px' : ''"
     >
-        <iframe *ngIf="safeURL"
+        <!-- <iframe *ngIf="safeURL"
             [style.height]="style?.height ? style?.height + 'px' : ''"
             [style.width]="style?.width ? style?.width + 'px' : ''"
             width="1080" height="760" [src]="safeURL" frameborder="0" allow="autoplay; encrypted-media"
-            allowfullscreen></iframe>
+            allowfullscreen></iframe> -->
+
+        <!-- *ngIf="pageService.getVideoMapResource(video)" -->
+        <!-- [src]="pageService.getVideoMapResource(video)" -->
+        <!-- src="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4" -->
+        <video
+            id="vid"
+            [style.width]="getWidth()"
+            [style.height]="style?.height ? style?.height : 'auto'"
+            [src]="safeURL"
+            [muted]="'muted'"
+            video
+            autoBuffer
+            autoPlay
+            muted
+            loop
+            playsinline
+        ></video>
     </div>
 </div>

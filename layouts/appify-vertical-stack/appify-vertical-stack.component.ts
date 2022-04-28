@@ -1,4 +1,5 @@
 import { StylesService } from "@platform-services/styles/styles.service";
+import { PageService } from "@platform-services/page/page.service";
 
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { StylePadding, EditBlockElementItem } from "../../models/styles.model";
@@ -6,6 +7,7 @@ import { StylePadding, EditBlockElementItem } from "../../models/styles.model";
 export class VerticalStackStyle {
   padding: StylePadding;
   margin: StylePadding;
+  alignment: string;
   background_color: string;
   background_image: string;
   background_size: string;
@@ -55,7 +57,9 @@ export class AppifyVerticalStackComponent implements OnInit {
       return VerticalStackWidth;
     }
 
-    constructor(private stylesService: StylesService) { }
+    constructor(
+        public pageService: PageService,
+        private stylesService: StylesService) { }
     ngOnInit() { }
     ngOnChanges(changes: SimpleChanges) { }
     ngAfterContentChecked() { }

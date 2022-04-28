@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: start;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .layout-container > div {

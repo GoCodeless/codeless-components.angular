@@ -1,7 +1,6 @@
 <div
     #animate
     id="container"
-    (click)="emitBlockSelect(0, 'text', null)"
     [class.initial-slideup-state]="animation?.type == 'slideUp' ? true : false"
     [class.initial-slideupfadein-state]="animation?.type == 'slideUpFadeIn' ? true : false"
     [class.initial-fadein-state]="animation?.type == 'fadeIn' ? true : false"
@@ -19,6 +18,7 @@
 >
     <p
         *ngIf="!isEditing"
+        (click)="didClick()"
         #toggle
         [innerHTML]="getHTMLFrom(text)"
         [class.headline]="textType == textTypeValue.header"
@@ -34,11 +34,11 @@
         [style.-webkit-background-clip]="style?.text?.color ? '' : style?.text?.gradient_start_color ? 'text' : ''"
         [style.-webkit-text-fill-color]="style?.text?.color ? '' : style?.text?.gradient_start_color ? 'transparent' : ''"
         [style.color]="style?.text?.color ? style?.text?.color : ''"
+        [style.cursor]="url?.length ? 'pointer' : ''"
     >
     </p>
 
     <div *ngIf="isEditing" style="position: relative;">
-        <!-- *ngIf="isEditingValue || shouldStopEditingTextField" -->
         <div *ngIf="isEditingValue || shouldStopEditingTextField" style="position: absolute; top: -28px; left: 0;">
             <div class="editing-textarea-tag" style="display: inline-block; margin-right: 12px;">
                 Text
@@ -123,14 +123,12 @@
             </div> -->
         </div>
 
-        <!-- (focus)="isEditingValue = true;"
-        (blur)="emitBlockSelect(0, 'text', $event.target.value); stopEditing();" -->
         <div #editingTextField
             contenteditable="true"
             class="editing-textarea"
             textareaAutoresize
             [innerHTML]="text"
-            (input)="text = $event.target.value"
+            (blur)="emitBlockSelect(0, 'text', $event.target.innerHTML); stopEditing();"
             
             [class.headline]="textType == textTypeValue.header"
             [class.body]="textType == textTypeValue.body"
@@ -145,27 +143,5 @@
             [style.-webkit-background-clip]="style?.text?.color ? '' : style?.text?.gradient_start_color ? 'text' : ''"
             [style.-webkit-text-fill-color]="style?.text?.color ? '' : style?.text?.gradient_start_color ? 'transparent' : ''">
         </div>
-
-        <!-- <textarea #editingTextField
-            type="text" 
-            class="editing-textarea"
-            textareaAutoresize
-            [(ngModel)]="text" 
-            (input)="text = $event.target.value"
-            (focus)="isEditingValue = true;"
-            (blur)="emitBlockSelect(0, 'text', $event.target.value); stopEditing();"
-            [class.headline]="textType == textTypeValue.header"
-            [class.body]="textType == textTypeValue.body"
-            [style.font-family]="style?.text?.font ? style?.text?.font : ''"
-            [style.font-size]="getFontSize()"
-            [style.font-weight]="style?.text?.weight ? style?.text?.weight : ''"
-            [style.line-height]="getLineHeight()"
-            [style.text-align]="alignment == alignmentValue.right ? 'right' : alignment == alignmentValue.center ? 'center' : 'left'"
-            [style.letter-spacing]="style?.text?.letter_spacing ? style?.text?.letter_spacing : ''" 
-            [style.background]="getLinearGradient()"
-            [style.color]="style?.text?.color ? style?.text?.color : style?.text?.gradient_start_color ? 'transparent' : ''"
-            [style.-webkit-background-clip]="style?.text?.color ? '' : style?.text?.gradient_start_color ? 'text' : ''"
-            [style.-webkit-text-fill-color]="style?.text?.color ? '' : style?.text?.gradient_start_color ? 'transparent' : ''"
-        ></textarea> -->
     </div>
 </div>

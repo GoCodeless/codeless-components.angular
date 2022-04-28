@@ -2,11 +2,14 @@ import {
     Component,
     OnInit,
     Input,
+    Inject,
     Output,
     EventEmitter,
     ViewChild,
     ElementRef,
 } from "@angular/core";
+import { Router } from "@angular/router";
+import { DOCUMENT } from '@angular/common';
 
 import { CodelessComponentsService } from "../../services/codeless-components.service";
 import { StyleFont, StylePadding, Animations, EditBlockElementItem } from "../../models/styles.model";
@@ -48,6 +51,7 @@ export class AppifyTextComponent implements OnInit {
 
     @Input() identifier: string = "";
     @Input() text: String = "";
+    @Input() url: string = "";
     @Input() textType: TextType = TextType.header;
     @Input() alignment: Alignment = Alignment.left;
     @Input() width: string = ''; //TextWidth = TextWidth.full;
@@ -73,7 +77,10 @@ export class AppifyTextComponent implements OnInit {
         return Alignment;
     }
 
-    constructor(public componentsService: CodelessComponentsService) {}
+    constructor(
+        public componentsService: CodelessComponentsService,
+        @Inject(DOCUMENT) private document: Document,
+        private router: Router) {}
     ngOnInit() {
         const animation = this.animation;
 
@@ -94,9 +101,20 @@ export class AppifyTextComponent implements OnInit {
         observer.observe(this.animateRef.nativeElement);
     }
 
+    didClick() {
+        if (this.url.startsWith('www') || this.url.startsWith('http')) {
+            // External routing
+            this.document.location.href = this.url
+        } else {
+            // Internal routing
+            this.router.navigate([this.url]);
+        }
+    }
+
     cleanPixelText(string) {
         return string.replace(/px/g, "");
     }
+
     getLineHeight() {
         if (!this.style || !this.style.text || !this.style.text.line_height) {
             return;
@@ -111,6 +129,7 @@ export class AppifyTextComponent implements OnInit {
 
         return height;
     }
+
     getFontSize() {
         if (!this.style || !this.style.text || !this.style.text.size) {
             return;
@@ -157,7 +176,12 @@ export class AppifyTextComponent implements OnInit {
     }
 
     emitBlockSelect(index, type, value) {
+        console.log('emitBlockSelect 1: ', index)
+        console.log('emitBlockSelect 2: ', type)
+        console.log('emitBlockSelect 3: ', value)
+
         if (this.editingTextField.nativeElement == document.activeElement) {
+            console.log('Flag 1')
             this.text = this.editingTextField.nativeElement.innerHTML
         }
 
@@ -189,7 +213,6 @@ export class AppifyTextComponent implements OnInit {
     }
 
     focusEditingTextField() {
-        console.log('Focus editing field')
         this.editingTextField.nativeElement.focus();
     }
 
